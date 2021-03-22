@@ -1,0 +1,60 @@
+
+
+    .form{
+        width: 45%;
+        height: 90vh;
+        background-color:white;
+    }
+
+    .form-title{
+        width: 100%;
+        text-align:center;
+    }
+
+    .form-title h1{
+        color:#80d4a4;
+        font-family: Poppins;
+        font-size: 1.2em;
+    }
+
+    .form-container{
+        width: 100%;
+    }
+
+    .form-container form{
+        width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 1em;
+        width: 100%;
+    }
+
+    .form-label, .form-input{
+        width: 100%;
+    }
+
+    .form-label{
+        margin-bottom: 0.5em;
+    }
+
+    .form-label label{
+        font-family: Lato;
+        font-size: 1.2em;
+    }
+
+    .form-input input{
+
+        border-radius: 5px 5px 5px 5px;  
+        font-family: Lato;
+        font-size: 1.2em;
+        padding: 0.5em;
+        width: 90%;
+
+    }
+
+    .form-submit input{
+        font-family: Lato;
+        font-size: 1.2em;  
+    }
+    

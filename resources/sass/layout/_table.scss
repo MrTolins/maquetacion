@@ -1,0 +1,38 @@
+
+
+    .table{
+        background-color:white;
+        width: 45%;
+        height: 90vh;
+    }
+
+    .table-title{
+        width: 100%;
+        text-align:center;
+    }
+
+    .table-title h1{
+        color: #80d4a4;
+        font-family: Poppins;
+        font-size: 1.2em;
+    }
+
+    .table-container{
+        width: 100%;
+    }
+
+    .table-container table{
+        width: 100%;
+    }
+
+    table, th, td {
+        background-color: #ffffff;
+        border-radius: 3px 3px 0 0;
+        border-collapse: collapse;
+        display: center;
+        text-align:center;
+        font-family: Lato;
+        font-size: 20px;
+        margin: 0 auto;
+        padding: 15px; 
+    }
