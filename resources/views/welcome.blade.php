@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-container">
-            <form>
+            <form class="admin-form" id="form-faqs">
                 <div class="form-group">
                     <div class="form-label">
                         <label>Pregunta</label>
@@ -63,9 +63,9 @@
                 </div>
 
                 <div class="form-submit">
-                    <input type="submit" value="Enviar" >
+                    <input type="submit" value="Enviar" id="sendButton">
                 </div>
-            </form>    
+            </form>   
         </div>
     </div>
     

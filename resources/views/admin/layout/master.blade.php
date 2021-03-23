@@ -19,6 +19,8 @@
         <div class="main">
             @yield('content')
         </div>
+        
+        @include("admin.layout.partials.js")  
     </body>
 </html>
     

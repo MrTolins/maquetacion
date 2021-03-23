@@ -1,1 +1,98 @@
-.main{display:flex;justify-content:space-around;width:100%}.form{width:45%;height:90vh;background-color:#fff}.form-title{width:100%;text-align:center}.form-title h1{color:#80d4a4;font-family:Poppins;font-size:1.2em}.form-container,.form-container form{width:100%}.form-group{margin-bottom:1em;width:100%}.form-input,.form-label{width:100%}.form-label{margin-bottom:.5em}.form-input input,.form-label label{font-family:Lato;font-size:1.2em}.form-input input{border-radius:5px 5px 5px 5px;padding:.5em;width:90%}.form-submit input{font-family:Lato;font-size:1.2em}.table{background-color:#fff;width:45%;height:90vh}.table-title{width:100%;text-align:center}.table-title h1{color:#80d4a4;font-family:Poppins;font-size:1.2em}.table-container,.table-container table{width:100%}table,td,th{background-color:#fff;border-radius:3px 3px 0 0;border-collapse:collapse;display:center;text-align:center;font-family:Lato;font-size:20px;margin:0 auto;padding:15px}
+.main {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.form {
+  width: 45%;
+  height: 90vh;
+  background-color: white;
+}
+
+.form-title {
+  width: 100%;
+  text-align: center;
+}
+
+.form-title h1 {
+  color: #80d4a4;
+  font-family: Poppins;
+  font-size: 1.2em;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-container form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.form-label, .form-input {
+  width: 100%;
+}
+
+.form-label {
+  margin-bottom: 0.5em;
+}
+
+.form-label label {
+  font-family: Lato;
+  font-size: 1.2em;
+}
+
+.form-input input {
+  border-radius: 5px 5px 5px 5px;
+  font-family: Lato;
+  font-size: 1.2em;
+  padding: 0.5em;
+  width: 90%;
+}
+
+.form-submit input {
+  font-family: Lato;
+  font-size: 1.2em;
+}
+
+.table {
+  background-color: white;
+  width: 45%;
+  height: 90vh;
+}
+
+.table-title {
+  width: 100%;
+  text-align: center;
+}
+
+.table-title h1 {
+  color: #80d4a4;
+  font-family: Poppins;
+  font-size: 1.2em;
+}
+
+.table-container {
+  width: 100%;
+}
+
+.table-container table {
+  width: 100%;
+}
+
+table, th, td {
+  background-color: #ffffff;
+  border-radius: 3px 3px 0 0;
+  border-collapse: collapse;
+  display: center;
+  text-align: center;
+  font-family: Lato;
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 15px;
+}

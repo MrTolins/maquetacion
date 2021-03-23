@@ -16,3 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function () {
+
+    Route::resource('faqs', 'App\Http\Controllers\Admin\FaqController', [
+        'names' => [
+            'index' => 'faqs',
+            'create' => 'faqs_create',
+            'store' => 'faqs_store',
+            'destroy' => 'faqs_destroy',
+            'show' => 'faqs_show',
+        ]
+    ]);
+        
+});
