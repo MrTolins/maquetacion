@@ -3,23 +3,7 @@ const labels = document.getElementsByTagName('label');
 const inputs = document.querySelectorAll('.input')
 const sendButton = document.getElementById("send-button");
 
-/*
-sendButton.addEventListener("click", (event) => {
-    event.preventDefault();
 
-    const formularios = document.querySelectorAll(".admin-form");
-
-    formularios.forEach(formulario => {
-        const formID = document.getElementById(formulario.id);
-        console.log(formID);
-        const datosFormulario = new FormData(formID);
-
-        for (var entrada of datosFormulario.entries()) {
-            console.log(datosFormulario);
-            console.log(entrada[0] + ": " + entrada[1]);
-        }
-    })
-}); */
 
 inputs.forEach(input => {
 
