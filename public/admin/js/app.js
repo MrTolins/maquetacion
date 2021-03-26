@@ -1914,24 +1914,7 @@ var forms = document.querySelectorAll(".admin-form");
 var labels = document.getElementsByTagName('label');
 var inputs = document.querySelectorAll('.input');
 var sendButton = document.getElementById("send-button");
-/*
-sendButton.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    const formularios = document.querySelectorAll(".admin-form");
-
-    formularios.forEach(formulario => {
-        const formID = document.getElementById(formulario.id);
-        console.log(formID);
-        const datosFormulario = new FormData(formID);
-
-        for (var entrada of datosFormulario.entries()) {
-            console.log(datosFormulario);
-            console.log(entrada[0] + ": " + entrada[1]);
-        }
-    })
-}); */
-
+var table = document.getElementById("table");
 inputs.forEach(function (input) {
   input.addEventListener('focusin', function () {
     for (var i = 0; i < labels.length; i++) {
@@ -1949,12 +1932,11 @@ inputs.forEach(function (input) {
 sendButton.addEventListener("click", function (event) {
   event.preventDefault();
   forms.forEach(function (form) {
-    var data = new FormData(document.getElementById(form.id));
+    var data = new FormData(document.getElementById('form-faqs'));
     var url = form.action;
 
     var sendPostRequest = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -1962,26 +1944,26 @@ sendButton.addEventListener("click", function (event) {
                 _context.prev = 0;
                 _context.next = 3;
                 return axios.post(url, data).then(function (response) {
-                  form.innerHTML = response.data.form;
+                  form.id.value = response.data.id;
+                  table.innerHTML = response.data.table;
                   console.log('2');
                 });
 
               case 3:
-                response = _context.sent;
-                _context.next = 9;
+                _context.next = 8;
                 break;
 
-              case 6:
-                _context.prev = 6;
+              case 5:
+                _context.prev = 5;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 9:
+              case 8:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 6]]);
+        }, _callee, null, [[0, 5]]);
       }));
 
       return function sendPostRequest() {

@@ -2,7 +2,7 @@ const forms = document.querySelectorAll(".admin-form");
 const labels = document.getElementsByTagName('label');
 const inputs = document.querySelectorAll('.input')
 const sendButton = document.getElementById("send-button");
-
+const table = document.getElementById("table");
 
 
 inputs.forEach(input => {
@@ -24,21 +24,21 @@ inputs.forEach(input => {
     });
 });
 
-
 sendButton.addEventListener("click", (event) => {
 
     event.preventDefault();
 
     forms.forEach(form => { 
         
-        let data = new FormData(document.getElementById(form.id));
+        let data = new FormData(document.getElementById('form-faqs'));
         let url = form.action;
 
         let sendPostRequest = async () => {
 
             try {
-                let response = await axios.post(url, data).then(response => {
-                    form.innerHTML = response.data.form;
+                await axios.post(url, data).then(response => {
+                    form.id.value = response.data.id;
+                    table.innerHTML = response.data.table;
                     console.log('2');
                 });
                  

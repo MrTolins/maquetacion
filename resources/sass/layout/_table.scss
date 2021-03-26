@@ -1,39 +1,66 @@
+.table{
+    
+    width: 45%;
+    height: 90vh;
+}
 
+.table-title{
+    width: 100%;
+    text-align:center;
+}
 
-    .table{
-        background-color:white;
-        width: 45%;
-        height: 90vh;
-    }
+.table-titles{
+    background-color: #80d4a4;
+    font-family: Poppins;
+}
 
-    .table-title{
-        width: 100%;
-        text-align:center;
-    }
+.table-title h1{
+    color: #80d4a4;
+    font-family: Poppins;
+    font-size: 1.2em;
+}
 
-    .table-title h1{
-        color: #80d4a4;
-        font-family: Poppins;
-        font-size: 1.2em;
-    }
+.table-container{
+    width: 100%;
+}
 
-    .table-container{
-        width: 100%;
-    }
+.table-container table{
+    width: 100%;
+}
 
-    .table-container table{
-        width: 100%;
-    }
+th{
+    padding: 20px 15px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align:center;
+}
 
-    table, th, td {
-        background-color: #ffffff;
-        border-radius: 3px 3px 0 0;
-        border-collapse: collapse;
-        display: center;
-        text-align:center;
-        font-family: Lato;
-        font-size: 20px;
-        margin: 0 auto;
-        padding: 15px;
-        
-    }
+table, td {
+    background-color: #ffffff;
+    border-radius: 3px 3px 0 0;
+    border-collapse: collapse;
+    display: center;
+    text-align:center;
+    font-family: Lato;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 15px;  
+    border-collapse: collapse;
+    margin: 25px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#table-edit:hover {
+	color: #226fbe;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
+}
+
+#table-delete:hover {
+    color: #cf0000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+ 
+    
+}
