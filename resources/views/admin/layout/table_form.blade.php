@@ -14,11 +14,7 @@
         </div>
     </div>
 
-    <div class="form">
-        <div class="form-title">
-            <h1>FAQs</h1>
-        </div>
-
+    <div class="form" id="form-container">
         @yield('form')    
     </div>
 

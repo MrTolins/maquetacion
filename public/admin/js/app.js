@@ -1914,7 +1914,80 @@ var forms = document.querySelectorAll(".admin-form");
 var labels = document.getElementsByTagName('label');
 var inputs = document.querySelectorAll('.input');
 var sendButton = document.getElementById("send-button");
-var table = document.getElementById("table");
+var editButtons = document.querySelectorAll(".table-edit");
+var deleteButtons = document.querySelectorAll(".table-delete");
+var formContainer = document.getElementById("form-container");
+editButtons.forEach(function (editButton) {
+  var sendGetRequest = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              editButton.addEventListener("click", function (event) {
+                //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
+                //para obtener todos los atributos de datos personalizados (data-*) de cada uno de los elementos. 
+                var url = editButton.dataset.url;
+
+                try {
+                  axios.get(url).then(function (response) {
+                    console.log(response.data.form);
+                    formContainer.innerHTML = response.data.form;
+                  });
+                } catch (error) {
+                  console.error(error);
+                }
+              });
+
+            case 1:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function sendGetRequest() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  sendGetRequest();
+});
+deleteButtons.forEach(function (deleteButton) {
+  var sendDeleteRequest = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              deleteButton.addEventListener("click", function (event) {
+                var url = deleteButton.dataset.url;
+
+                try {
+                  axios["delete"](url).then(function (response) {
+                    table.innerHTML = response.data.table;
+                  });
+                } catch (error) {
+                  console.error(error);
+                }
+              });
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function sendDeleteRequest() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  sendDeleteRequest();
+});
 inputs.forEach(function (input) {
   input.addEventListener('focusin', function () {
     for (var i = 0; i < labels.length; i++) {
@@ -1936,13 +2009,13 @@ sendButton.addEventListener("click", function (event) {
     var url = form.action;
 
     var sendPostRequest = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _context3.prev = 0;
+                _context3.next = 3;
                 return axios.post(url, data).then(function (response) {
                   form.id.value = response.data.id;
                   table.innerHTML = response.data.table;
@@ -1950,24 +2023,24 @@ sendButton.addEventListener("click", function (event) {
                 });
 
               case 3:
-                _context.next = 8;
+                _context3.next = 8;
                 break;
 
               case 5:
-                _context.prev = 5;
-                _context.t0 = _context["catch"](0);
-                console.error(_context.t0);
+                _context3.prev = 5;
+                _context3.t0 = _context3["catch"](0);
+                console.error(_context3.t0);
 
               case 8:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee, null, [[0, 5]]);
+        }, _callee3, null, [[0, 5]]);
       }));
 
       return function sendPostRequest() {
-        return _ref.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }();
 

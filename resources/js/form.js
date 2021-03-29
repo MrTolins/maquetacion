@@ -2,7 +2,55 @@ const forms = document.querySelectorAll(".admin-form");
 const labels = document.getElementsByTagName('label');
 const inputs = document.querySelectorAll('.input')
 const sendButton = document.getElementById("send-button");
-const table = document.getElementById("table");
+const editButtons = document.querySelectorAll(".table-edit");
+const deleteButtons = document.querySelectorAll(".table-delete");
+const formContainer = document.getElementById("form-container");
+
+editButtons.forEach(editButton => {
+
+    let sendGetRequest = async () => {
+
+        editButton.addEventListener("click", (event) =>{
+        //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
+        //para obtener todos los atributos de datos personalizados (data-*) de cada uno de los elementos. 
+    
+            let url = editButton.dataset.url;
+            
+            try {
+                axios.get(url).then(response => {
+                    console.log(response.data.form);
+                    formContainer.innerHTML = response.data.form;
+                });
+            } catch (error) {   
+                console.error(error);
+            }
+        });
+    }
+
+    sendGetRequest();
+});
+
+
+deleteButtons.forEach(deleteButton => {
+
+    let sendDeleteRequest = async () => {
+
+        deleteButton.addEventListener("click", (event) =>{
+
+            let url = deleteButton.dataset.url;
+        
+            try {
+                axios.delete(url).then(response => {
+                    table.innerHTML = response.data.table;
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    sendDeleteRequest();
+});
 
 
 inputs.forEach(input => {
