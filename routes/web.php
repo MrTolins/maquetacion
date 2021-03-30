@@ -26,3 +26,5 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
         
 });
+
+Route::get('/faqs', 'App\Http\Controllers\Front\FaqController@index')->name('faqs_front');

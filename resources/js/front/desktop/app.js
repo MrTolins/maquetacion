@@ -1,5 +1,5 @@
-require('./bootstrap');
-require('./form');
+require('../../bootstrap');
+require('./front');
 
 /*let enviar = document.getElementById("sendButton");
 

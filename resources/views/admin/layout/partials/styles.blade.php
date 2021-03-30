@@ -1,1 +1,1 @@
-<link href="{{mix('admin/css/app.css')}}" rel="stylesheet">
+<link href="{{mix('admin/desktop/css/app.css')}}" rel="stylesheet">
