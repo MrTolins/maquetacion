@@ -1,10 +1,10 @@
 {
     "/admin/desktop/js/app.js": "/admin/desktop/js/app.js?id=1f7fcbbde6039616f0bc",
     "/admin/mobile/js/app.js": "/admin/mobile/js/app.js?id=da915a358bb4b90fcb63",
-    "/front/desktop/js/app.js": "/front/desktop/js/app.js?id=f11cf1e108379711838d",
-    "/front/mobile/js/app.js": "/front/mobile/js/app.js?id=f11cf1e108379711838d",
+    "/front/desktop/js/app.js": "/front/desktop/js/app.js?id=447aea1e83bfe399ccbf",
+    "/front/mobile/js/app.js": "/front/mobile/js/app.js?id=447aea1e83bfe399ccbf",
     "/front/mobile/css/app.css": "/front/mobile/css/app.css?id=68b329da9893e34099c7",
-    "/front/desktop/css/app.css": "/front/desktop/css/app.css?id=d3b0b9b1c1d97efddc6e",
     "/admin/mobile/css/app.css": "/admin/mobile/css/app.css?id=bbe05e342e98009d8ea0",
-    "/admin/desktop/css/app.css": "/admin/desktop/css/app.css?id=bbe05e342e98009d8ea0"
+    "/admin/desktop/css/app.css": "/admin/desktop/css/app.css?id=bbe05e342e98009d8ea0",
+    "/front/desktop/css/app.css": "/front/desktop/css/app.css?id=77b26add6f6ea739ba93"
 }
