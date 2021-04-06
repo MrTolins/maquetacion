@@ -1,2 +1,7 @@
-<script src="{{mix('front/desktop/js/app.js')}}"></script>
-<script src="{{mix('front/mobile/js/app.js')}}"></script>
+@if($agent->isDesktop())
+    <script src="{{mix('front/desktop/js/app.js')}}"></script>
+@endif
+
+@if($agent->isMobile())
+    <script src="{{mix('front/mobile/js/app.js')}}"></script>
+@endif

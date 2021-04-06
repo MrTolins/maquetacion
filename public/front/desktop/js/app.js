@@ -1869,26 +1869,32 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*********************************************!*\
   !*** ./resources/js/front/desktop/front.js ***!
   \*********************************************/
-/***/ (function() {
+/***/ (() => {
 
-var _this = this;
+var plusButtons = document.querySelectorAll('.accordion');
+var faqElements = document.querySelectorAll(".admin-form");
+plusButtons.forEach(function (plusButton) {
+  plusButton.addEventListener("click", function () {
+    var activeElements = document.querySelectorAll(".active");
 
-var button = document.querySelectorAll(".accordion");
-var i;
-
-for (i = 0; i < button.length; i++) {
-  button[i].addEventListener("click", function () {
-    _this.classList.toggle("active");
-
-    var panel = document.querySelectorAll(".panel");
-
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
+    if (plusButton.classList.contains("active")) {
+      plusButton.classList.remove("active");
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
     } else {
-      panel.style.display = "block";
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
+      plusButton.classList.add("active");
+      faqElements.forEach(function (faqElement) {
+        if (faqElement.dataset.content == plusButton.dataset.button) {
+          faqElement.classList.add("active");
+        } else {}
+      });
     }
   });
-}
+});
 
 /***/ }),
 

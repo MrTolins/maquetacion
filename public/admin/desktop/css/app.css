@@ -144,12 +144,12 @@ table, td {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-#table-edit:hover {
+.table-edit:hover {
   color: #226fbe;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-#table-delete:hover {
+.table-delete:hover {
   color: #cf0000;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }

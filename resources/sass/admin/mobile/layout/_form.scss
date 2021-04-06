@@ -1,12 +1,12 @@
 .form{
-    width: 45%;
-    height: 90vh;
-  
+    width: 100%;
+    height: auto;
+    
 }
 
 .form-title{
     width: 100%;
-    text-align:center;
+    text-align: center;
 }
 
 .form-title h1{
@@ -51,12 +51,9 @@
     padding: 10px 10px 10px 5px;
     display: block;
     width: 70%;
-    
     border: 2px solid transparent;
     -webkit-transition: width .35s ease-in-out;
-    transition: width .35s ease-in-out;
-    
-
+    transition: width .35s ease-in-out;  
 }
 
 .form-input input:focus{
@@ -76,6 +73,8 @@
     color: white;
     background-color: #80d4a4; 
     width: 20%;  
+
+    
 }
   
 #send-button:hover {

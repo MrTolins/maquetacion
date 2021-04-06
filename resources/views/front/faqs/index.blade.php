@@ -6,15 +6,15 @@
 </div>
 
 <div class="form-container">
-    <form class="admin-form" id="form-faqs" action="" autocomplete="off">
+    <div class="admin-form" data-content="" id="form-faqs" autocomplete="off">
         
         @foreach($faqs as $faq_element)
-            <button class="accordion">{{$faq_element->title}}</button>
+            <button class="accordion" data-button="">{{$faq_element->title}}</button>
             <div class="panel">
                 <p>{{$faq_element->description}}</p>
             </div>
         @endforeach 
     
-    </form> 
+        </div> 
 </div>
 @endsection
