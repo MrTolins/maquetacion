@@ -7,6 +7,7 @@
             <th>ID</th>
             <th>Pregunta</th>
             <th>Respuesta</th>
+            <th>Category ID</th>
             <th></th>
             <th></th>
         </tr>
@@ -16,6 +17,7 @@
                 <td>{{$faq_element->id}}</td>
                 <td>{{$faq_element->title}}</td>
                 <td>{{$faq_element->description}}</td>
+                <td>{{$faq_element->category_id}}</td>
                 <td class="table-edit" data-url="{{route('faqs_show', ['faq' => $faq_element->id])}}"> 
                     <svg style="width:24px;height:24px;cursor: pointer;" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
@@ -61,6 +63,21 @@
                 </div>
                 <div class="form-input">
                     <input type="text" class="input" name="description" value="{{isset($faq->description) ? $faq->description : ''}}" placeholder="Añada una respuesta">  
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-label">
+                    <label for="select">Seleccionar</label>
+                </div>
+                <div class="form-input">
+                    <select class="form-select" name="category_id" value="" id="categories">
+
+                        @foreach($faqs_categories as $faq_category)
+                            <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>                
+                        @endforeach
+
+                    </select>
                 </div>
             </div>
 
