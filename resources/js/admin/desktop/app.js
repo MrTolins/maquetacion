@@ -1,5 +1,7 @@
 require('../../bootstrap');
 require('./form');
+require('./ckeditor');
+require('./sidebar');
 
 /*let enviar = document.getElementById("sendButton");
 

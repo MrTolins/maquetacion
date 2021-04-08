@@ -1,7 +1,14 @@
 .table{
-    
-    width: 45%;
-    height: 90vh;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+@media screen and (max-width: 700px) {
+
+    .table{
+        display:block;    
+    }
+
 }
 
 .table-title{
@@ -38,7 +45,7 @@ th{
     width: 100%;
 }
 
-table, td {
+td {
     width: 100%;
     background-color: #ffffff;
     border-radius: 3px 3px 0 0;
@@ -52,6 +59,18 @@ table, td {
     border-collapse: collapse;
     margin: 25px 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-edit svg{
+    width:24px;
+    height:24px;
+    cursor: pointer;
+}
+
+.table-delete svg{
+    width:24px;
+    height:24px;
+    cursor: pointer;
 }
 
 .table-edit:hover {

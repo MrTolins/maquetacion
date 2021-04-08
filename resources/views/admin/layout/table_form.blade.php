@@ -2,6 +2,11 @@
 
 @section('content')
 
+    <div class="form" id="form">
+        @yield('form')    
+    </div>
+
+
     <div class="table">
 
         <div class="table-title">
@@ -14,8 +19,6 @@
         </div>
     </div>
 
-    <div class="form" id="form-container">
-        @yield('form')    
-    </div>
+    
 
 @endsection

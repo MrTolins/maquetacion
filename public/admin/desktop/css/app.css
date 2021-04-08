@@ -1,8 +1,8 @@
 .main {
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  background-color: #e3faed;
+  width: 88%;
+  margin-left: 150px;
 }
 
 body {
@@ -10,8 +10,64 @@ body {
   min-height: inherit;
   margin: 0;
   padding: 0;
+  background-color: #e3faed;
 }
 
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 150px;
+  background-color: #80d4a4;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  font-family: Poppins;
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.sidebar li.active {
+  background-color: #0000003a;
+  color: white;
+}
+
+.sidebar li:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebar li {
+    float: left;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 400px) {
+  .sidebar li {
+    text-align: center;
+    float: none;
+  }
+}
 .form {
   width: 45%;
   height: 90vh;
@@ -26,10 +82,6 @@ body {
   color: #80d4a4;
   font-family: Poppins;
   font-size: 1.2em;
-}
-
-.form-container {
-  width: 100%;
 }
 
 .form-container form {
@@ -67,6 +119,26 @@ body {
   transition: width 0.35s ease-in-out;
 }
 
+.form-input .input {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  font-family: Lato;
+  font-size: 1.2em;
+  padding: 0.5em;
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 70%;
+  border: 2px solid transparent;
+  transition: width 0.35s ease-in-out;
+}
+
+.form-input .input:focus {
+  border: 2px solid #80d4a4;
+  box-shadow: none;
+  outline: 0 none;
+  width: 90%;
+}
+
 .form-input input:focus {
   border: 2px solid #80d4a4;
   box-shadow: none;
@@ -82,6 +154,13 @@ body {
   border: 1px solid #80d4a4;
 }
 
+.category_id {
+  font-weight: bold !important;
+  color: #fff !important;
+  background: #80d4a4 !important;
+  text-transform: uppercase;
+}
+
 .form-submit input {
   font-family: Lato;
   font-size: 1.2em;
@@ -90,7 +169,6 @@ body {
   height: 40px;
   color: white;
   background-color: #80d4a4;
-  width: 20%;
 }
 
 #send-button:hover {
@@ -98,10 +176,15 @@ body {
 }
 
 .table {
-  width: 45%;
-  height: 90vh;
+  border-collapse: collapse;
+  width: 50%;
 }
 
+@media screen and (max-width: 700px) {
+  .table {
+    display: block;
+  }
+}
 .table-title {
   width: 100%;
   text-align: center;
@@ -136,7 +219,7 @@ th {
   width: 100%;
 }
 
-table, td {
+td {
   width: 100%;
   background-color: #ffffff;
   border-radius: 3px 3px 0 0;
@@ -150,6 +233,18 @@ table, td {
   border-collapse: collapse;
   margin: 25px 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-edit svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.table-delete svg {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
 }
 
 .table-edit:hover {

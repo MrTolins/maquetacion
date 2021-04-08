@@ -16,6 +16,8 @@
     </head>
 
     <body>
+        @include("admin.layout.partials.sidebar")
+
         <div class="main">
             @yield('content')
         </div>
