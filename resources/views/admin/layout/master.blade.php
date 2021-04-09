@@ -16,9 +16,13 @@
     </head>
 
     <body>
+
         @include("admin.layout.partials.sidebar")
 
-        <div class="main">
+        <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
+        <div class="main" id="main">
+           
+
             @yield('content')
         </div>
         

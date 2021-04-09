@@ -1,8 +1,7 @@
 .main {
     display:flex;
     justify-content: space-around;
-    width: 88%; 
-    margin-left: 150px;
+    width: 100%; 
 }   
 body{
     width: inherit; 
@@ -12,54 +11,9 @@ body{
     background-color:#e3faed;
 }
 
-.sidebar {
-    margin: 0;
-    padding: 0;
-    width: 150px;
-    background-color: #80d4a4;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
-  }
-
-.sidebar ul{
-    margin: 0;
-    padding: 0;
-}
-  
-.sidebar li {
-font-family: Poppins;
-display: block;
-color: black;
-padding: 16px;
-text-decoration: none;
-cursor: pointer;
-}
-
-.sidebar li.active {
-background-color: #0000003a;
-color: white;
-}
-
-.sidebar li:hover:not(.active) {
-background-color: #555;
-color: white;
-}
-
-
-@media screen and (max-width: 700px) {
-.sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-}
-.sidebar li {float: left;}
-.main {margin-left: 0;}
-}
-
-@media screen and (max-width: 400px) {
-.sidebar li {
+h3{
     text-align: center;
-    float: none;
-}
+    font-family: Poppins;
+    margin-top: -3em;
+    margin-left: 0em;
 }

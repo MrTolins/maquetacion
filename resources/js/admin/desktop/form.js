@@ -36,6 +36,14 @@ export let renderForm = () => {
         forms.forEach(form => { 
             
             let data = new FormData(document.getElementById('form-faqs'));
+
+            if( ckeditors != 'null'){
+
+                Object.entries(ckeditors).forEach(([key, value]) => {
+                    data.append(key, value.getData());
+                });
+            }
+            
             let url = form.action;
     
             let sendPostRequest = async () => {
@@ -44,6 +52,7 @@ export let renderForm = () => {
                     await axios.post(url, data).then(response => {
                         form.id.value = response.data.id;
                         table.innerHTML = response.data.table;
+                        renderTable();
                         console.log('2');
                     });
                      
