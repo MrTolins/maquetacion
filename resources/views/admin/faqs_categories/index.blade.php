@@ -2,7 +2,7 @@
 
 @section('table')
 
-    <table class="tabla">
+    <table class="table">
         <tr class="table-titles">
             <th>ID</th>
             <th>Name</th>

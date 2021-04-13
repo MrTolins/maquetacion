@@ -18,8 +18,9 @@
     <body>
 
         @include("admin.layout.partials.sidebar")
-
-        <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
+        <div class="master-title">
+            <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
+        </div>
         <div class="main" id="main">
            
 

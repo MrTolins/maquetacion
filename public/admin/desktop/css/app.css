@@ -12,7 +12,12 @@ body {
   background-color: #e3faed;
 }
 
-h3 {
+.master-title {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.master-title h3 {
   text-align: center;
   font-family: Poppins;
   margin-top: -3em;
@@ -122,6 +127,7 @@ h3 {
 
 #send-button:hover {
   cursor: pointer;
+  background-color: #00d35b;
 }
 
 .table {
@@ -220,6 +226,10 @@ td {
 .sidebar-title {
   background-color: #80d4a4;
   width: 100%;
+}
+
+.sidebar-title svg:hover {
+  background-color: #00d35b;
 }
 
 .sidebar-content {

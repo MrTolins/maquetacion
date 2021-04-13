@@ -13,8 +13,12 @@
 .sidebar-title{
     background-color: #80d4a4;
     width: 100%;
-
 }
+
+.sidebar-title svg:hover{
+    background-color:#00d35b ;
+}
+
 .sidebar-content{
     position: relative;
     top: 25%;
@@ -50,4 +54,3 @@
     font-size: 60px;
     color: #f1f1f1;
 }
-

@@ -22,9 +22,9 @@ sidebarItems.forEach(sidebarItem => {
                     window.history.pushState('','',url);
 
                     //introducir con la clase active en el css
-                    // document.getElementById("menu").style.height = "0%";
-                    // document.getElementById("main").style.filter = "blur(0px)";
-                    // document.getElementById("lang-faqs").style.filter = "blur(0px)";
+                    document.getElementById("menu").style.height = "0%";
+                    document.getElementById("main").style.filter = "blur(0px)";
+                    document.getElementById("lang-faqs").style.filter = "blur(0px)";
 
                     renderForm();
                     renderTable();
@@ -37,3 +37,4 @@ sidebarItems.forEach(sidebarItem => {
         refreshRequest();
     });
 });
+
