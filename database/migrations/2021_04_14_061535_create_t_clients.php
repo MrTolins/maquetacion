@@ -17,6 +17,7 @@ class CreateTClients extends Migration
             $table->id();
             $table->string('name');
             $table->string('age');
+            $table->string('country_id');
             $table->string('email');
             $table->string('address');
             $table->decimal('credit', 6, 2);

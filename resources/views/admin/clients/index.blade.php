@@ -5,12 +5,7 @@
     <table class="table">
         <tr class="table-titles">
             <th>ID</th>
-            <th>Name</th>
             <th>Email</th>
-            <th>Address</th>
-            <th>Age</th>
-            <th>Credit</th>
-            <th>Hiring Date</th>
             <th></th>
             <th></th>
         </tr>
@@ -18,12 +13,7 @@
         @foreach($clients as $client_element)
             <tr class="table-data">
                 <td>{{$client_element->id}}</td>
-                <td>{{$client_element->name}}</td>
                 <td>{{$client_element->email}}</td>
-                <td>{{$client_element->address}}</td>
-                <td>{{$client_element->age}}</td>
-                <td>{{$client_element->credit}}</td>
-                <td>{{$client_element->date}}</td>
                 
                <td class="table-edit" data-url="{{route('clients_edit', ['client' => $client_element->id])}}"> 
                     <svg style="width:24px;height:24px;cursor: pointer;" viewBox="0 0 24 24">
@@ -87,6 +77,20 @@
                 </div>
                 <div class="form-input">
                     <input type="number" class="input" min="1" max="99" name="age" value="{{isset($client->age) ? $client->age : ''}}" placeholder="Add an age">  
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-label">
+                    <label for="country" class="label">Country</label>
+                </div>
+                <div class="form-input">
+                    <select class="input country-select" name="country_id">
+
+                        @foreach ($countries as $country)
+                            <option value="{{$country->id}}" {{$client->country_id == $country->id ? 'selected':''}} class="country_id">{{ $country->name }}</option>        
+                        @endforeach
+
+                    </select>
                 </div>
             </div>
             <div class="form-group">

@@ -41,11 +41,12 @@ body {
 }
 
 .form-container form {
-  width: 100%;
+  width: 90%;
+  text-align: center;
 }
 
 .form-clients {
-  width: 90%;
+  width: 100%;
 }
 
 .form-group {
@@ -74,9 +75,15 @@ body {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
+  margin-left: 1em;
+  margin-left: 1em;
   width: 10%;
   border: 2px solid transparent;
   transition: width 0.35s ease-in-out;
+}
+
+textarea {
+  margin-left: 1em;
 }
 
 .form-input .input {
@@ -104,6 +111,10 @@ body {
   box-shadow: none;
   outline: 0 none;
   width: 90%;
+}
+
+.country-select {
+  margin-left: 1em;
 }
 
 .form-select {
@@ -136,7 +147,8 @@ body {
 
 .table {
   border-collapse: collapse;
-  width: 70%;
+  width: 50%;
+  margin-right: 1em;
 }
 
 @media screen and (max-width: 700px) {
@@ -188,9 +200,9 @@ td {
   font-family: Lato;
   font-size: 16px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 0.5em;
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: 1em 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 

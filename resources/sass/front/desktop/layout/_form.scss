@@ -62,7 +62,8 @@
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
-  width: 90%;
+  width: 300px;
+  margin: 0 auto;
   border: 2px solid transparent;
   -webkit-transition: width .35s ease-in-out;
   transition: width .35s ease-in-out;
@@ -72,7 +73,7 @@
   border: 2px solid #80d4a4;
   box-shadow: none;
   outline: 0 none;
-  width: 96%;
+  width: 60%;
 }
 
 .form-input input:focus{
@@ -109,7 +110,7 @@
 }
 
 .login-submit{
-  padding: 2em;
+  margin-top: 1em;
 }
 .login-submit button{
   font-family: Lato;

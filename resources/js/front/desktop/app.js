@@ -1,5 +1,6 @@
 require('../../bootstrap');
 require('./front');
+require('./fingerprint');
 
 /*let enviar = document.getElementById("sendButton");
 
