@@ -44,6 +44,10 @@ body {
   width: 100%;
 }
 
+.form-clients {
+  width: 90%;
+}
+
 .form-group {
   margin-bottom: 1em;
   width: 100%;
@@ -132,7 +136,7 @@ body {
 
 .table {
   border-collapse: collapse;
-  width: 50%;
+  width: 70%;
 }
 
 @media screen and (max-width: 700px) {

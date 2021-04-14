@@ -9,6 +9,7 @@
             <li class="sidebar-item" data-url="{{route("faqs")}}">FAQs</li>
             <li class="sidebar-item" data-url="{{route("faqs_categories")}}">FAQs Categories</li>
             <li class="sidebar-item" data-url="{{route("users")}}">Users</li>
+            <li class="sidebar-item" data-url="{{route("clients")}}">Clients</li>
         </ul>
     </div>
     
