@@ -503,9 +503,22 @@ body {
   padding: 0;
 }
 
+.master-title {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.master-title h3 {
+  text-align: center;
+  font-family: Poppins;
+  margin-top: -3em;
+  margin-left: 0em;
+}
+
 .form {
   width: 100%;
   height: auto;
+  text-align: center;
 }
 
 .form-title {
@@ -554,6 +567,7 @@ body {
   padding: 10px 10px 10px 5px;
   display: block;
   width: 70%;
+  margin: 0 auto;
   border: 2px solid transparent;
   transition: width 0.35s ease-in-out;
 }
@@ -578,6 +592,44 @@ body {
 
 #send-button:hover {
   cursor: pointer;
+}
+
+.second-menu-form {
+  width: 100%;
+  background-color: white;
+  height: auto;
+}
+
+.second-menu-nav a {
+  margin-right: 1em;
+  width: 100%;
+  font-family: Poppins;
+  font-weight: bold;
+  color: black;
+  display: block;
+  text-decoration: none;
+  height: auto;
+  cursor: pointer;
+}
+
+.second-menu-nav a:hover {
+  color: #ffffff;
+  background-color: black;
+}
+
+.second-menu-nav ul, .second-menu-nav ul .sub-menu-parent {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.second-menu-nav > ul {
+  background: #80d4a4;
+  text-align: center;
+}
+
+.second-menu-nav > ul > .sub-menu-parent {
+  display: inline-block;
 }
 
 .table {
@@ -610,9 +662,9 @@ body {
 }
 
 th {
-  padding: 20px 15px;
+  padding: 1em 1em;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 12px;
   color: #fff;
   text-transform: uppercase;
   text-align: center;
@@ -627,9 +679,8 @@ td {
   display: center;
   text-align: center;
   font-family: Lato;
-  font-size: 1;
+  font-size: 12px;
   border-collapse: collapse;
-  padding: 0.5em 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -641,4 +692,147 @@ td {
 .table-delete:hover {
   color: #cf0000;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.content {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.swipe-element {
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+
+.swipe-front {
+  border-bottom-style: solid;
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  color: #ecf0f1;
+  line-height: 44px;
+  vertical-align: center;
+  background-color: #80d4a4;
+  z-index: 2;
+  /* // [START touch-action-example] */
+  /* Pass all touches to javascript */
+  touch-action: none;
+  /* // [END touch-action-example] */
+}
+
+.swipe-title {
+  margin-top: -10px;
+  font-size: 18px;
+}
+
+.swipe-description {
+  margin-top: -28px;
+  font-size: 12px;
+}
+
+.swipe-back {
+  background-color: #e3faed;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  top: 0;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.swipe-back button {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #4285f4;
+  border-radius: 10%;
+  border-style: none;
+}
+
+.swipe-back button:nth-child(2) {
+  background-color: #0f9d58;
+  visibility: hidden;
+}
+
+.swipe-back button:nth-child(3) {
+  background-color: #cb4437;
+  visibility: hidden;
+}
+
+.swipe-back button:nth-child(4) {
+  background-color: #cb4437;
+}
+
+.promote-layer {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  background-color: black;
+  background-color: #105a30b6;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sidebar-title {
+  background-color: #80d4a4;
+  width: 100%;
+}
+
+.sidebar-title svg:hover {
+  background-color: #00d35b;
+}
+
+.sidebar-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+  cursor: pointer;
+  font-family: Poppins;
+}
+
+.sidebar li:hover {
+  background-color: rgba(0, 0, 0, 0.815);
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 60px;
+  color: #f1f1f1;
+  padding: 0;
 }

@@ -29,9 +29,9 @@
 }
 
 th{
-    padding: 20px 15px;
+    padding: 1em 1em;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 12px;
     color: #fff;
     text-transform: uppercase;
     text-align:center;
@@ -46,10 +46,8 @@ td {
     display: center;
     text-align:center;
     font-family: Lato;
-    font-size: 1;
+    font-size: 12px;
     border-collapse: collapse;
-    
-    padding: 0.5em 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -65,3 +63,120 @@ td {
  
     
 }
+
+//swipe left or right
+
+
+.content {
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+  }
+
+  .swipe-element {
+    position: relative;
+
+    width: 100%;
+    height: 60px;
+  }
+
+  .swipe-front {
+    border-bottom-style:solid ;
+    position: absolute;
+
+    width: 100%;
+    height: 60px;
+
+    left: 0;
+    top: 0;
+
+    margin: 0;
+    padding: 0.5em;
+    box-sizing: border-box;
+
+    text-align: center;
+
+    color: #ecf0f1;
+    line-height: 44px;
+    vertical-align: center;
+
+    background-color: #80d4a4;
+
+    z-index: 2;
+
+    -ms-touch-action: none;
+    /* // [START touch-action-example] */
+    /* Pass all touches to javascript */
+    touch-action: none;
+    /* // [END touch-action-example] */
+  }
+
+  .swipe-title{
+    margin-top: -10px;
+    font-size: 18px;
+  }
+  .swipe-description{
+    margin-top: -28px;
+    font-size: 12px;
+  }
+
+  .swipe-back {
+    background-color:#e3faed;
+    position: absolute;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    width: 100%;
+    height: 60px;
+
+    left: 0;
+    top: 0;
+
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  .swipe-back button {
+    display: inline-block;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: #4285f4;
+
+    border-radius: 10%;
+    border-style: none;
+  }
+
+  .swipe-back button:nth-child(2) {
+    background-color: #0f9d58;
+    visibility: hidden;
+  }
+
+  .swipe-back button:nth-child(3) {
+    background-color: #cb4437;
+    visibility: hidden;
+  }
+
+  .swipe-back button:nth-child(4) {
+    background-color: #cb4437;
+  }
+
+  .promote-layer {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }

@@ -1963,6 +1963,17 @@ var renderForm = function renderForm() {
   var labels = document.getElementsByTagName('label');
   var inputs = document.querySelectorAll('.input');
   var sendButton = document.getElementById("send-button");
+  var secondMenu = document.querySelectorAll(".second-menu-form");
+  var secondMenuLi = document.querySelectorAll(".sub-menu-parent");
+  secondMenu.forEach(function (secondMenuLi) {
+    secondMenuLi.addEventListener('click', function () {
+      for (var i = 0; i < labels.length; i++) {
+        if (labels[i].htmlFor == secondMenuLi.name) {
+          labels[i].classList.add("active");
+        }
+      }
+    });
+  });
   inputs.forEach(function (input) {
     input.addEventListener('focusin', function () {
       for (var i = 0; i < labels.length; i++) {
@@ -2139,6 +2150,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var sidebarItems = document.querySelectorAll(".sidebar-item");
+var openSidebar = document.querySelectorAll(".sidebar-title");
+var closeSidebar = document.querySelectorAll(".sidebar");
 var form = document.getElementById("form");
 var table = document.getElementById("table");
 sidebarItems.forEach(function (sidebarItem) {
@@ -2158,7 +2171,7 @@ sidebarItems.forEach(function (sidebarItem) {
                     table.innerHTML = response.data.table;
                     window.history.pushState('', '', url); //introducir con la clase active en el css
 
-                    document.getElementById("menu").style.height = "0%";
+                    document.getElementById("menu").style.width = "0%";
                     document.getElementById("main").style.filter = "blur(0px)";
                     document.getElementById("lang-faqs").style.filter = "blur(0px)";
                     (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderForm)();
@@ -2183,7 +2196,11 @@ sidebarItems.forEach(function (sidebarItem) {
 
     refreshRequest();
   });
-});
+}); // openSidebar.addEventListener("click", () => {
+//     document.getElementById("menu").style.height = "100%";
+//     document.getElementById("main").style.filter = "blur(10px)";
+//     document.getElementById("lang-faqs").style.filter = "blur(10px)";
+// });
 
 /***/ }),
 

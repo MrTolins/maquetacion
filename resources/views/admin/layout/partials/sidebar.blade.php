@@ -16,9 +16,9 @@
 </div>
 
 
-<div class="sidebar-title">
+<div class="sidebar-title" onclick="openMenu()">
 
-    <span onclick="openMenu()">
+    <span >
         
         <svg style="width:48px;height:48px;cursor:pointer; padding:1em;" viewBox="0 0 24 24" href="javascript:void(0)" class="closebtn" onclick="closeMenu()">
             <path fill="currentColor" d="M3,15H21V13H3V15M3,19H21V17H3V19M3,11H21V9H3V11M3,5V7H21V5H3Z" />
@@ -31,13 +31,13 @@
 
 <script>    
     function openMenu() {
-      document.getElementById("menu").style.height = "100%";
+      document.getElementById("menu").style.width = "100%";
       document.getElementById("main").style.filter = "blur(10px)";
       document.getElementById("lang-faqs").style.filter = "blur(10px)";
     }
     
     function closeMenu() {
-      document.getElementById("menu").style.height = "0%";
+      document.getElementById("menu").style.width = "0%";
       document.getElementById("main").style.filter = "blur(0px)";
       document.getElementById("lang-faqs").style.filter = "blur(0px)";
     }

@@ -33,11 +33,14 @@
 
 @section('form')
 
+
+
+
     <div class="form-title">
         <h1>Clients</h1>
-    </div>
-
+    </div>    
     
+
     <div class="form-container form-clients">
         <form class="admin-form" id="form-faqs" action="{{route("clients_store")}}" autocomplete="off">
 
@@ -116,6 +119,7 @@
             </div>
         </form>   
     </div>
+
 
 @endsection
 

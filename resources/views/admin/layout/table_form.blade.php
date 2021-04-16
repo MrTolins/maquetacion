@@ -6,19 +6,9 @@
         @yield('form')    
     </div>
 
+    <div class="table-container" id="table">
 
-    <div class="table">
-
-        <div class="table-title">
-            <h1>Table</h1>
-        </div>
-
-        <div class="table-container" id="table">
-
-            @yield('table')
-        </div>
+        @yield('table')
     </div>
-
     
-
 @endsection

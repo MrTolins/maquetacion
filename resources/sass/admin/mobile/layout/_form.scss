@@ -1,7 +1,7 @@
 .form{
     width: 100%;
     height: auto;
-    
+    text-align: center;
 }
 
 .form-title{
@@ -51,6 +51,7 @@
     padding: 10px 10px 10px 5px;
     display: block;
     width: 70%;
+    margin: 0 auto;
     border: 2px solid transparent;
     -webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;  
@@ -79,4 +80,48 @@
   
 #send-button:hover {
     cursor: pointer;
+}
+
+
+.second-menu-form{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    height: auto;
+}
+
+.second-menu-nav a { 
+    
+    margin-right:1em ;
+    width: 100%;
+    font-family:Poppins;
+    font-weight:bold;
+    color:black; 
+    display: block; 
+    text-decoration: none;
+    height: auto; 
+    cursor: pointer;
+}
+
+.second-menu-nav a:hover { 
+    color: #ffffff; 
+    background-color: black;
+}
+
+.second-menu-nav ul,.second-menu-nav ul .sub-menu-parent { 
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+.second-menu-nav > ul { 
+    background:#80d4a4; 
+    text-align: center; 
+}
+.second-menu-nav > ul > .sub-menu-parent { 
+    display: inline-block;
+
+}
+
+.active{
+
 }

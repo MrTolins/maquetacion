@@ -2,6 +2,40 @@
 
 @section('table')
 
+<div class="table">
+
+    <div class="table-title">
+        <h1>Table</h1>
+    </div>
+</div>
+
+@foreach($faqs as $faq_element)
+    
+    <section class="content">
+        <div class="swipe-element">
+        <div class="swipe-back">
+            <button class="edit-swipe" data-url="{{route('faqs_show', ['faq' => $faq_element->id])}}">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                </svg>
+            </button>
+            <button></button>
+            <button></button>
+            <button class="delete-swipe" data-url="{{route('faqs_destroy', ['faq' => $faq_element->id])}}">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                </svg>
+            </button>
+        </div>
+            <div class="swipe-front promote-layer">
+                <div class="swipe-title">{{$faq_element->title}}</div>
+                <div class="swipe-description">{{$faq_element->description}}</div>
+            </div>
+        </div>
+    </section>
+
+    @endforeach
+
     <table class="table">
         <tr class="table-titles">
             <th>ID</th>
@@ -48,41 +82,57 @@
 
             {{ csrf_field() }}
             
-            <div class="form-group">
-                <div class="form-label">
-                    <label for="pregunta" class="label">Title</label>
-                </div>
-                <div class="form-input">
-                    <input type="text" class="input" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="Add a title">  
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="form-label">
-                    <label for="respuesta">Description</label>
-                </div>
-                <div class="form-input">
-                    <textarea class="ckeditor input" name="description" value="{{isset($faq->description) ? $faq->description : ''}}">{{isset($faq->description) ? $faq->description : ''}}</textarea>  
-                </div>
-            </div>
+            <div class="second-menu-form">
+                <nav class="second-menu-nav">
+                    <ul class="second-menu-ul">
+                        <li class="sub-menu-parent active"><a data-toggle="tab" >Home</a></li>
+                        <li class="sub-menu-parent"><a data-toggle="tab" >Description</a></li>
+                        <li class="sub-menu-parent"><a data-toggle="tab" >Pictures</a></li>
+                        <li class="sub-menu-parent"><a data-toggle="tab" >Save</a></li>
+                    </ul>
+                </nav>
             
-            <div class="form-group">
-                <div class="form-label">
-                    <label for="select">Select Category</label>
+                <div class="home active">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="pregunta" class="label">Title</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" class="input" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="Add a title">  
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="respuesta">Description</label>
+                        </div>
+                        <div class="form-input">
+                            <textarea class="ckeditor input" name="description" value="{{isset($faq->description) ? $faq->description : ''}}">{{isset($faq->description) ? $faq->description : ''}}</textarea>  
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="select">Select Category</label>
+                        </div>
+                        <div class="form-input">
+                            <select class="form-select" name="category_id" value="" id="categories">
+
+                                @foreach($faqs_categories as $faq_category)
+                                    <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>                
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-submit">
+                        <input type="submit" value="Enviar" id="send-button">
+                    </div>
                 </div>
-                <div class="form-input">
-                    <select class="form-select" name="category_id" value="" id="categories">
-
-                        @foreach($faqs_categories as $faq_category)
-                            <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>                
-                        @endforeach
-
-                    </select>
+                <div class="description">
+                    <h3></h3>
                 </div>
-            </div>
-
-            <div class="form-submit">
-                <input type="submit" value="Enviar" id="send-button">
             </div>
         </form>   
     </div>
