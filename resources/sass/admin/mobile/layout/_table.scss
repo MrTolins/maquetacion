@@ -6,6 +6,7 @@
 .table-title{
     width: 100%;
     text-align: center;
+    visibility: visible;
 }
 
 .table-titles{
@@ -66,117 +67,102 @@ td {
 
 //swipe left or right
 
+.table-row {
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px solid hsl(0, 0%, 73%);
+  border-top: 1px solid hsl(0, 0%, 73%);
+  min-height: 10vh;
+  position: relative;    
+}
 
-.content {
+.table-field-container{
+  background-color: #e3faed;
+  min-height: 10vh;
+  position: absolute;
+  -ms-touch-action: none;
+  touch-action: none;
+  width: 100%;
+  z-index: 999;
+}
 
-    box-sizing: border-box;
+.table-field{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
+  text-align: center;
 
-    overflow: hidden;
+  p{
+      font-weight: 600;
+      font-family: Lato;
+      font-size: 16px;
+      margin: 0;
+      margin-left: 0.5em;
+      margin-top: 0.5em;
+
+      span{
+          color:#80d4a4;
+          margin-right: 0.5em;
+          font-family: Poppins;
+          font-size: 18px;
+          
+      }
+  }
+ 
+}
+
+.table-icons-container{
+
+  position: absolute;
+  width: 100%;
+  z-index: 997;
+
+  .table-icons{
+
+      display: none;
+      min-height: 10vh;
+
+      svg{
+          height: 1.5em;
+          width: 1.5em;
+  
+          path{
+              fill: hsl(0, 0%, 100%);
+          }
+      }
   }
 
-  .swipe-element {
-    position: relative;
-
-    width: 100%;
-    height: 60px;
+  .table-icons#swipe-active{
+      display: block;
   }
 
-  .swipe-front {
-    border-bottom-style:solid ;
-    position: absolute;
+  .table-icons.edit-button{
 
-    width: 100%;
-    height: 60px;
+     background-color: hsl(183, 98%, 35%);
+     text-align: left;
 
-    left: 0;
-    top: 0;
+      svg{
+          margin-left: 1em;
+          margin-top: 1.5em;
+      }
 
-    margin: 0;
-    padding: 0.5em;
-    box-sizing: border-box;
-
-    text-align: center;
-
-    color: #ecf0f1;
-    line-height: 44px;
-    vertical-align: center;
-
-    background-color: #80d4a4;
-
-    z-index: 2;
-
-    -ms-touch-action: none;
-    /* // [START touch-action-example] */
-    /* Pass all touches to javascript */
-    touch-action: none;
-    /* // [END touch-action-example] */
   }
+  
+  .table-icons.delete-button{
 
-  .swipe-title{
-    margin-top: -10px;
-    font-size: 18px;
+      background-color: hsl(0, 65%, 55%);
+      text-align: right;
+
+      svg{
+          margin-right: 1em;
+          margin-top: 1.5em;
+      }
   }
-  .swipe-description{
-    margin-top: -28px;
-    font-size: 12px;
-  }
+}
 
-  .swipe-back {
-    background-color:#e3faed;
-    position: absolute;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-
-    width: 100%;
-    height: 60px;
-
-    left: 0;
-    top: 0;
-
-    -ms-flex-direction: row;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-
-    -ms-flex-pack: justify;
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
-
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
-
-  .swipe-back button {
-    display: inline-block;
-
-    width: 40px;
-    height: 40px;
-
-    background-color: #4285f4;
-
-    border-radius: 10%;
-    border-style: none;
-  }
-
-  .swipe-back button:nth-child(2) {
-    background-color: #0f9d58;
-    visibility: hidden;
-  }
-
-  .swipe-back button:nth-child(3) {
-    background-color: #cb4437;
-    visibility: hidden;
-  }
-
-  .swipe-back button:nth-child(4) {
-    background-color: #cb4437;
-  }
-
-  .promote-layer {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+#buscar {
+    width: 90%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
   }

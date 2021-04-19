@@ -3,6 +3,7 @@ require('./form');
 require('./ckeditor');
 require('./sidebar');
 require('./swipe');
+require('./modalDelete');
 
 /*let enviar = document.getElementById("sendButton");
 

@@ -17,7 +17,7 @@
     </head>
 
     <body>
-
+        @include('admin.components.modal_delete')
         @include("admin.layout.partials.sidebar")
         <div class="master-title">
             <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>

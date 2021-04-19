@@ -1916,11 +1916,14 @@ var renderCkeditor = function renderCkeditor() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "renderForm": () => (/* binding */ renderForm),
-/* harmony export */   "renderTable": () => (/* binding */ renderTable)
+/* harmony export */   "renderTable": () => (/* binding */ renderTable),
+/* harmony export */   "editElement": () => (/* binding */ editElement),
+/* harmony export */   "deleteElement": () => (/* binding */ deleteElement)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ckeditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor */ "./resources/js/admin/mobile/ckeditor.js");
+/* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./swipe */ "./resources/js/admin/mobile/swipe.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -1938,6 +1941,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var table = document.getElementById("table");
@@ -2033,22 +2037,21 @@ var renderForm = function renderForm() {
   (0,_ckeditor__WEBPACK_IMPORTED_MODULE_1__.renderCkeditor)();
 };
 var renderTable = function renderTable() {
-  var editButtons = document.querySelectorAll(".table-edit");
-  var deleteButtons = document.querySelectorAll(".table-delete");
+  var editButtons = document.querySelectorAll(".edit-button");
+  var deleteButtons = document.querySelectorAll(".delete-button");
   var formContainer = document.getElementById("form");
-  var editSwipes = document.querySelectorAll(".edit-swipe");
-  var deleteSwipes = document.querySelectorAll(".delete-swipe");
-  editSwipes.forEach(function (editSwipe) {
+  var swipeRevealItemElements = document.querySelectorAll('.swipe-element');
+  editButtons.forEach(function (editButton) {
     var sendGetRequest = /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                editSwipe.addEventListener("click", function (event) {
+                editButton.addEventListener("click", function (event) {
                   //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
                   //para obtener todos los atributos de datos personalizados (data-*) de cada uno de los elementos. 
-                  var url = editSwipe.dataset.url;
+                  var url = editButton.dataset.url;
 
                   try {
                     axios.get(url).then(function (response) {
@@ -2076,85 +2079,12 @@ var renderTable = function renderTable() {
 
     sendGetRequest();
   });
-  editButtons.forEach(function (editButton) {
-    var sendGetRequest = /*#__PURE__*/function () {
+  deleteButtons.forEach(function (deleteButton) {
+    var sendDeleteRequest = /*#__PURE__*/function () {
       var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
-              case 0:
-                editButton.addEventListener("click", function (event) {
-                  //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
-                  //para obtener todos los atributos de datos personalizados (data-*) de cada uno de los elementos. 
-                  var url = editButton.dataset.url;
-
-                  try {
-                    axios.get(url).then(function (response) {
-                      console.log(response.data.form);
-                      formContainer.innerHTML = response.data.form;
-                      renderForm();
-                    });
-                  } catch (error) {
-                    console.error(error);
-                  }
-                });
-
-              case 1:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      return function sendGetRequest() {
-        return _ref5.apply(this, arguments);
-      };
-    }();
-
-    sendGetRequest();
-  });
-  deleteSwipes.forEach(function (deleteSwipe) {
-    var sendDeleteRequest = /*#__PURE__*/function () {
-      var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                deleteSwipe.addEventListener("click", function (event) {
-                  var url = deleteSwipe.dataset.url;
-
-                  try {
-                    axios["delete"](url).then(function (response) {
-                      table.innerHTML = response.data.table;
-                      renderTable();
-                    });
-                  } catch (error) {
-                    console.error(error);
-                  }
-                });
-
-              case 1:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }));
-
-      return function sendDeleteRequest() {
-        return _ref6.apply(this, arguments);
-      };
-    }();
-
-    sendDeleteRequest();
-  });
-  deleteButtons.forEach(function (deleteButton) {
-    var sendDeleteRequest = /*#__PURE__*/function () {
-      var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
               case 0:
                 deleteButton.addEventListener("click", function (event) {
                   var url = deleteButton.dataset.url;
@@ -2171,22 +2101,137 @@ var renderTable = function renderTable() {
 
               case 1:
               case "end":
-                return _context5.stop();
+                return _context3.stop();
             }
           }
-        }, _callee5);
+        }, _callee3);
       }));
 
       return function sendDeleteRequest() {
-        return _ref7.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       };
     }();
 
     sendDeleteRequest();
   });
+  swipeRevealItemElements.forEach(function (swipeRevealItemElement) {
+    new _swipe__WEBPACK_IMPORTED_MODULE_2__.swipeRevealItem(swipeRevealItemElement);
+  });
+};
+var editElement = function editElement(url) {
+  var sendEditRequest = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios.get(url).then(function (response) {
+                form.innerHTML = response.data.form;
+                renderForm();
+              });
+
+            case 3:
+              _context4.next = 8;
+              break;
+
+            case 5:
+              _context4.prev = 5;
+              _context4.t0 = _context4["catch"](0);
+              console.error(_context4.t0);
+
+            case 8:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 5]]);
+    }));
+
+    return function sendEditRequest() {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  sendEditRequest();
+};
+var deleteElement = function deleteElement(url) {
+  var modalDelete = document.getElementById('modal-delete');
+  var deleteConfirm = document.getElementById('delete-confirm');
+  deleteConfirm.dataset.url = url;
+  modalDelete.classList.add('open');
 };
 renderForm();
 renderTable();
+
+/***/ }),
+
+/***/ "./resources/js/admin/mobile/modalDelete.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/mobile/modalDelete.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var modalDelete = document.getElementById('modal-delete');
+var deleteConfirm = document.getElementById('delete-confirm');
+var deleteCancel = document.getElementById('delete-cancel');
+deleteCancel.addEventListener("click", function () {
+  modalDelete.classList.remove('open');
+});
+deleteConfirm.addEventListener("click", function () {
+  var url = deleteConfirm.dataset.url;
+
+  var sendDeleteRequest = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios["delete"](url).then(function (response) {
+                table.innerHTML = response.data.table;
+                modalDelete.classList.remove('open');
+                (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
+              });
+
+            case 3:
+              _context.next = 8;
+              break;
+
+            case 5:
+              _context.prev = 5;
+              _context.t0 = _context["catch"](0);
+              console.error(_context.t0);
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 5]]);
+    }));
+
+    return function sendDeleteRequest() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  sendDeleteRequest();
+});
 
 /***/ }),
 
@@ -2267,41 +2312,17 @@ sidebarItems.forEach(function (sidebarItem) {
 /*!********************************************!*\
   !*** ./resources/js/admin/mobile/swipe.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// Shim for requestAnimationFrame from Paul Irishpaul ir
-// http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
-window.requestAnimFrame = function () {
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "swipeRevealItem": () => (/* binding */ swipeRevealItem)
+/* harmony export */ });
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
+
+function swipeRevealItem(element) {
   'use strict';
-
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
-    window.setTimeout(callback, 1000 / 60);
-  };
-}();
-/* // [START pointereventsupport] */
-
-
-var pointerDownName = 'pointerdown';
-var pointerUpName = 'pointerup';
-var pointerMoveName = 'pointermove';
-
-if (window.navigator.msPointerEnabled) {
-  pointerDownName = 'MSPointerDown';
-  pointerUpName = 'MSPointerUp';
-  pointerMoveName = 'MSPointerMove';
-} // Simple way to check if some form of pointerevents is enabled or not
-
-
-window.PointerEventsSupport = false;
-
-if (window.PointerEvent || window.navigator.msPointerEnabled) {
-  window.PointerEventsSupport = true;
-}
-/* // [END pointereventsupport] */
-
-
-function SwipeRevealItem(element) {
-  'use strict'; // Gloabl state variables
 
   var STATE_DEFAULT = 1;
   var STATE_LEFT_SIDE = 2;
@@ -2312,32 +2333,27 @@ function SwipeRevealItem(element) {
   var lastTouchPos = null;
   var currentXPosition = 0;
   var currentState = STATE_DEFAULT;
-  var handleSize = 260; // Perform client width here as this can be expensive and doens't
-  // change until window.onresize
-
+  var handleSize = 10;
+  var leftSwipeVisible = 0;
+  var rightSwipeVisible = 0;
   var itemWidth = swipeFrontElement.clientWidth;
-  var slopValue = itemWidth * (1 / 4); // On resize, change the slop value
+  var slopValue = itemWidth * (2 / 4);
 
   this.resize = function () {
     itemWidth = swipeFrontElement.clientWidth;
-    slopValue = itemWidth * (1 / 4);
+    slopValue = itemWidth * (2 / 4);
   };
-  /* // [START handle-start-gesture] */
-  // Handle the start of gestures
-
 
   this.handleGestureStart = function (evt) {
     evt.preventDefault();
 
     if (evt.touches && evt.touches.length > 1) {
       return;
-    } // Add the move and end listeners
-
+    }
 
     if (window.PointerEvent) {
       evt.target.setPointerCapture(evt.pointerId);
     } else {
-      // Add Mouse Listeners
       document.addEventListener('mousemove', this.handleGestureMove, true);
       document.addEventListener('mouseup', this.handleGestureEnd, true);
     }
@@ -2345,12 +2361,6 @@ function SwipeRevealItem(element) {
     initialTouchPos = getGesturePointFromEvent(evt);
     swipeFrontElement.style.transition = 'initial';
   }.bind(this);
-  /* // [END handle-start-gesture] */
-  // Handle move gestures
-  //
-
-  /* // [START handle-move] */
-
 
   this.handleGestureMove = function (evt) {
     evt.preventDefault();
@@ -2368,11 +2378,6 @@ function SwipeRevealItem(element) {
     rafPending = true;
     window.requestAnimFrame(onAnimFrame);
   }.bind(this);
-  /* // [END handle-move] */
-
-  /* // [START handle-end-gesture] */
-  // Handle end gestures
-
 
   this.handleGestureEnd = function (evt) {
     evt.preventDefault();
@@ -2381,27 +2386,25 @@ function SwipeRevealItem(element) {
       return;
     }
 
-    rafPending = false; // Remove Event Listeners
+    rafPending = false;
 
     if (window.PointerEvent) {
       evt.target.releasePointerCapture(evt.pointerId);
     } else {
-      // Remove Mouse Listeners
       document.removeEventListener('mousemove', this.handleGestureMove, true);
       document.removeEventListener('mouseup', this.handleGestureEnd, true);
     }
 
     updateSwipeRestPosition();
+    leftSwipeVisible = 0;
+    rightSwipeVisible = 0;
     initialTouchPos = null;
   }.bind(this);
-  /* // [END handle-end-gesture] */
-
 
   function updateSwipeRestPosition() {
     var differenceInX = initialTouchPos.x - lastTouchPos.x;
-    currentXPosition = currentXPosition - differenceInX; // Go to the default state and change
-
-    var newState = STATE_DEFAULT; // Check if we need to change state to left or right based on slop value
+    currentXPosition = currentXPosition - differenceInX;
+    var newState = STATE_DEFAULT;
 
     if (Math.abs(differenceInX) > slopValue) {
       if (currentState === STATE_DEFAULT) {
@@ -2442,6 +2445,12 @@ function SwipeRevealItem(element) {
         break;
     }
 
+    if (currentXPosition > 1) {
+      (0,_form__WEBPACK_IMPORTED_MODULE_0__.editElement)(element.querySelector('.right-swipe').dataset.url);
+    } else if (currentXPosition < -1) {
+      (0,_form__WEBPACK_IMPORTED_MODULE_0__.deleteElement)(element.querySelector('.left-swipe').dataset.url);
+    }
+
     transformStyle = 'translateX(' + currentXPosition + 'px)';
     swipeFrontElement.style.msTransform = transformStyle;
     swipeFrontElement.style.MozTransform = transformStyle;
@@ -2457,113 +2466,65 @@ function SwipeRevealItem(element) {
       point.x = evt.targetTouches[0].clientX;
       point.y = evt.targetTouches[0].clientY;
     } else {
-      // Either Mouse event or Pointer Event
       point.x = evt.clientX;
       point.y = evt.clientY;
     }
 
     return point;
   }
-  /* // [START on-anim-frame] */
-
 
   function onAnimFrame() {
     if (!rafPending) {
       return;
     }
 
-    var limit = "20px";
-    var differenceInX = initialTouchPos.x - lastTouchPos.limit;
+    var differenceInX = initialTouchPos.x - lastTouchPos.x;
     var newXTransform = currentXPosition - differenceInX + 'px';
     var transformStyle = 'translateX(' + newXTransform + ')';
+
+    if (Math.sign(differenceInX) == 1 && leftSwipeVisible == 0) {
+      var swipeActive = document.getElementById('swipe-active');
+
+      if (swipeActive !== null) {
+        swipeActive.removeAttribute('id');
+      }
+
+      element.querySelector('.left-swipe').id = 'swipe-active';
+      leftSwipeVisible = 1;
+      rightSwipeVisible = 0;
+    } else if (Math.sign(differenceInX) == -1 && rightSwipeVisible == 0) {
+      var _swipeActive = document.getElementById('swipe-active');
+
+      if (_swipeActive !== null) {
+        _swipeActive.removeAttribute('id');
+      }
+
+      element.querySelector('.right-swipe').id = 'swipe-active';
+      leftSwipeVisible = 0;
+      rightSwipeVisible = 1;
+    }
+
     swipeFrontElement.style.webkitTransform = transformStyle;
     swipeFrontElement.style.MozTransform = transformStyle;
     swipeFrontElement.style.msTransform = transformStyle;
     swipeFrontElement.style.transform = transformStyle;
     rafPending = false;
   }
-  /* // [END on-anim-frame] */
-
-  /* // [START addlisteners] */
-  // Check if pointer events are supported.
-
 
   if (window.PointerEvent) {
-    // Add Pointer Event Listener
     swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, true);
     swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, true);
     swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, true);
     swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, true);
   } else {
-    // Add Touch Listener
     swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, true);
     swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, true);
     swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, true); // Add Mouse Listener
-
+    swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, true);
     swipeFrontElement.addEventListener('mousedown', this.handleGestureStart, true);
   }
-  /* // [END addlisteners] */
-
 }
-
-var swipeRevealItems = [];
-
-window.onload = function () {
-  'use strict';
-
-  var swipeRevealItemElements = document.querySelectorAll('.swipe-element');
-
-  for (var i = 0; i < swipeRevealItemElements.length; i++) {
-    swipeRevealItems.push(new SwipeRevealItem(swipeRevealItemElements[i]));
-  } // We do this so :active pseudo classes are applied.
-
-
-  window.onload = function () {
-    if (/iP(hone|ad)/.test(window.navigator.userAgent)) {
-      document.body.addEventListener('touchstart', function () {}, false);
-    }
-  };
-};
-
-window.onresize = function () {
-  'use strict';
-
-  for (var i = 0; i < swipeRevealItems.length; i++) {
-    swipeRevealItems[i].resize();
-  }
-};
-
-var registerInteraction = function registerInteraction() {
-  'use strict'; // window.sampleCompleted('touch-demo-1.html-SwipeFrontTouch');
-};
-
-var swipeFronts = document.querySelectorAll('.swipe-front');
-
-for (var i = 0; i < swipeFronts.length; i++) {
-  swipeFronts[i].addEventListener('touchstart', registerInteraction);
-}
-
-(function (b, o, i, l, e, r) {
-  b.GoogleAnalyticsObject = l;
-  b[l] || (b[l] = function () {
-    (b[l].q = b[l].q || []).push(arguments);
-  });
-  b[l].l = +new Date();
-  e = o.createElement(i);
-  r = o.getElementsByTagName(i)[0];
-  e.src = '//www.google-analytics.com/analytics.js';
-  r.parentNode.insertBefore(e, r);
-})(window, document, 'script', 'ga');
-
-ga('create', 'UA-52746336-1');
-ga('send', 'pageview'); //   var isCompleted = {};
-//   function sampleCompleted(sampleName){
-//     if (ga && !isCompleted.hasOwnProperty(sampleName)) {
-//       ga('send', 'event', 'WebCentralSample', sampleName, 'completed');
-//       isCompleted[sampleName] = true;
-//     }
-//   }
+;
 
 /***/ }),
 
@@ -2582,6 +2543,20 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.onload = function () {
+  if (/iP(hone|ad)/.test(window.navigator.userAgent)) {
+    document.body.addEventListener('touchstart', function () {}, false);
+  }
+};
+
+window.requestAnimFrame = function () {
+  'use strict';
+
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) {
+    window.setTimeout(callback, 1000 / 60);
+  };
+}();
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -20869,6 +20844,8 @@ __webpack_require__(/*! ./ckeditor */ "./resources/js/admin/mobile/ckeditor.js")
 __webpack_require__(/*! ./sidebar */ "./resources/js/admin/mobile/sidebar.js");
 
 __webpack_require__(/*! ./swipe */ "./resources/js/admin/mobile/swipe.js");
+
+__webpack_require__(/*! ./modalDelete */ "./resources/js/admin/mobile/modalDelete.js");
 /*let enviar = document.getElementById("sendButton");
 
 enviar.addEventListener('click', (event) =>{

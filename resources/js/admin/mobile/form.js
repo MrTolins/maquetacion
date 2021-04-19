@@ -1,4 +1,6 @@
 import {renderCkeditor} from './ckeditor'
+import {swipeRevealItem} from './swipe';
+
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -92,37 +94,10 @@ export let renderForm = () => {
 
 export let renderTable = () => {
 
-    let editButtons = document.querySelectorAll(".table-edit");
-    let deleteButtons = document.querySelectorAll(".table-delete");
+    let editButtons = document.querySelectorAll(".edit-button");
+    let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
-    let editSwipes = document.querySelectorAll(".edit-swipe");
-    let deleteSwipes = document.querySelectorAll(".delete-swipe");
-
-    editSwipes.forEach(editSwipe => {
-    
-        let sendGetRequest = async () => {
-    
-            editSwipe.addEventListener("click", (event) =>{
-            //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
-            //para obtener todos los atributos de datos personalizados (data-*) de cada uno de los elementos. 
-        
-                let url = editSwipe.dataset.url;
-                
-                try {
-                    axios.get(url).then(response => {
-                        console.log(response.data.form);
-                        formContainer.innerHTML = response.data.form;
-                        renderForm();
-                    });
-                } catch (error) {   
-                    console.error(error);
-                }
-            });
-        }
-    
-        sendGetRequest();
-    });
-
+    let swipeRevealItemElements = document.querySelectorAll('.swipe-element');
     
     editButtons.forEach(editButton => {
     
@@ -149,27 +124,6 @@ export let renderTable = () => {
         sendGetRequest();
     });
     
-    deleteSwipes.forEach(deleteSwipe => {
-    
-        let sendDeleteRequest = async () => {
-    
-            deleteSwipe.addEventListener("click", (event) =>{
-    
-                let url = deleteSwipe.dataset.url;
-            
-                try {
-                    axios.delete(url).then(response => {
-                        table.innerHTML = response.data.table;
-                        renderTable();
-                    });
-                } catch (error) {
-                    console.error(error);
-                }
-            });
-        }
-    
-        sendDeleteRequest();
-    });
     
     
     deleteButtons.forEach(deleteButton => {
@@ -194,8 +148,44 @@ export let renderTable = () => {
         sendDeleteRequest();
     });
 
+
+    swipeRevealItemElements.forEach(swipeRevealItemElement => {
+
+        new swipeRevealItem(swipeRevealItemElement);
+
+    });
+
     
 }
+
+export let editElement = (url) => {
+    
+
+    let sendEditRequest = async () => {
+
+        try {
+            await axios.get(url).then(response => {
+                form.innerHTML = response.data.form;
+                renderForm();
+            });
+            
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    sendEditRequest();
+}
+
+export let deleteElement = (url) => {
+
+    let modalDelete = document.getElementById('modal-delete');
+    let deleteConfirm = document.getElementById('delete-confirm');
+
+    deleteConfirm.dataset.url = url;
+    modalDelete.classList.add('open');
+}
+
 
 renderForm();
 renderTable();

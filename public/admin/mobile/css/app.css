@@ -640,6 +640,7 @@ body {
 .table-title {
   width: 100%;
   text-align: center;
+  visibility: visible;
 }
 
 .table-titles {
@@ -694,90 +695,86 @@ td {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.content {
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.swipe-element {
+.table-row {
+  background-color: white;
+  border-bottom: 1px solid #bababa;
+  border-top: 1px solid #bababa;
+  min-height: 10vh;
   position: relative;
-  width: 100%;
-  height: 60px;
 }
 
-.swipe-front {
-  border-bottom-style: solid;
+.table-field-container {
+  background-color: #e3faed;
+  min-height: 10vh;
   position: absolute;
-  width: 100%;
-  height: 60px;
-  left: 0;
-  top: 0;
-  margin: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-  color: #ecf0f1;
-  line-height: 44px;
-  vertical-align: center;
-  background-color: #80d4a4;
-  z-index: 2;
-  /* // [START touch-action-example] */
-  /* Pass all touches to javascript */
   touch-action: none;
-  /* // [END touch-action-example] */
+  width: 100%;
+  z-index: 999;
 }
 
-.swipe-title {
-  margin-top: -10px;
+.table-field {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+.table-field p {
+  font-weight: 600;
+  font-family: Lato;
+  font-size: 16px;
+  margin: 0;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+}
+.table-field p span {
+  color: #80d4a4;
+  margin-right: 0.5em;
+  font-family: Poppins;
   font-size: 18px;
 }
 
-.swipe-description {
-  margin-top: -28px;
-  font-size: 12px;
-}
-
-.swipe-back {
-  background-color: #e3faed;
+.table-icons-container {
   position: absolute;
-  display: flex;
   width: 100%;
-  height: 60px;
-  left: 0;
-  top: 0;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 10px;
-  box-sizing: border-box;
+  z-index: 997;
+}
+.table-icons-container .table-icons {
+  display: none;
+  min-height: 10vh;
+}
+.table-icons-container .table-icons svg {
+  height: 1.5em;
+  width: 1.5em;
+}
+.table-icons-container .table-icons svg path {
+  fill: white;
+}
+.table-icons-container .table-icons#swipe-active {
+  display: block;
+}
+.table-icons-container .table-icons.edit-button {
+  background-color: #02a8b1;
+  text-align: left;
+}
+.table-icons-container .table-icons.edit-button svg {
+  margin-left: 1em;
+  margin-top: 1.5em;
+}
+.table-icons-container .table-icons.delete-button {
+  background-color: #d74242;
+  text-align: right;
+}
+.table-icons-container .table-icons.delete-button svg {
+  margin-right: 1em;
+  margin-top: 1.5em;
 }
 
-.swipe-back button {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  background-color: #4285f4;
-  border-radius: 10%;
-  border-style: none;
-}
-
-.swipe-back button:nth-child(2) {
-  background-color: #0f9d58;
-  visibility: hidden;
-}
-
-.swipe-back button:nth-child(3) {
-  background-color: #cb4437;
-  visibility: hidden;
-}
-
-.swipe-back button:nth-child(4) {
-  background-color: #cb4437;
-}
-
-.promote-layer {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+#buscar {
+  width: 90%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
 }
 
 .sidebar {
@@ -835,4 +832,48 @@ td {
   font-size: 60px;
   color: #f1f1f1;
   padding: 0;
+}
+
+.modal-delete {
+  background-color: white;
+  transform: translateY(-200%);
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: -10%;
+  transition: transform 0.5s;
+  width: 70%;
+  z-index: 3000;
+}
+.modal-delete.open {
+  top: 30%;
+  transform: translateY(0);
+}
+.modal-delete .modal-delete-header {
+  background-color: #d9d9d9;
+  border-bottom: 1px solid #e9ecef;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+.modal-delete .modal-delete-header h4 {
+  font-size: 1.2em;
+  margin: 0;
+}
+.modal-delete .modal-delete-footer {
+  display: flex;
+}
+.modal-delete .modal-delete-footer .modal-delete-option {
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  width: 50%;
+}
+.modal-delete .modal-delete-footer .modal-delete-option#delete-cancel {
+  background-color: #02a8b1;
+}
+.modal-delete .modal-delete-footer .modal-delete-option#delete-confirm {
+  background-color: #d74242;
 }

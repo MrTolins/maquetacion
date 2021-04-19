@@ -1,6 +1,6 @@
 .table{
     border-collapse: collapse;
-    width: 50%;
+    width: 90%;
     margin-right: 1em;
 }
 
@@ -27,6 +27,7 @@
     color: #80d4a4;
     font-family: Poppins;
     font-size: 1.2em;
+    margin-left: 11em;
 }
 
 .table-container{
@@ -84,3 +85,77 @@ td {
     color: #cf0000;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
+
+
+
+.table-row {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid hsl(0, 0%, 73%);
+    border-top: 1px solid hsl(0, 0%, 73%);
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    width: 100%;
+    //enseñar otra tabla
+    // visibility: hidden;
+    // display: none;
+}
+
+.table-field-container{
+    width: 100%;
+}
+
+.table-field{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+     
+
+    p{
+        margin: 0;
+        font-family: Lato;
+        
+
+        span{
+            color:#80d4a4;
+            font-weight: 600;
+            font-family: Poppins;
+        }
+    }
+}
+
+
+.table-icons-container{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.table-icons{ 
+
+    &:hover{
+
+        cursor: pointer;
+    
+        path {
+            fill:  hsl(0, 100%, 50%);
+        }
+    }
+
+    svg {
+
+        width: 100%;
+    
+        path{
+            fill: hsl(0, 0%, 50%);
+        }
+    }    
+}
+
+#buscar {
+    width: 90%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
