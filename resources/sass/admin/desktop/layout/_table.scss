@@ -1,9 +1,12 @@
 .table{
     border-collapse: collapse;
-    width: 90%;
-    margin-right: 1em;
+    width: 100%;
+    margin-top: 4em;
 }
 
+.table-container{
+    width: 100%;
+}
 
 @media screen and (max-width: 700px) {
 
@@ -27,41 +30,7 @@
     color: #80d4a4;
     font-family: Poppins;
     font-size: 1.2em;
-    margin-left: 11em;
-}
 
-.table-container{
-    width: 100%;
-}
-
-.table-container table{
-    width: 100%;
-}
-
-th{
-    padding: 20px 15px;
-    font-weight: 500;
-    font-size: 18px;
-    color: #fff;
-    text-transform: uppercase;
-    text-align:center;
-    width: 100%;
-}
-
-td {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 3px 3px 0 0;
-    border-collapse: collapse;
-    display: center;
-    text-align:center;
-    font-family: Lato;
-    font-size: 16px;
-    margin: 0 auto;
-    padding: 0.5em;  
-    border-collapse: collapse;
-    margin: 1em 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .table-edit svg{
@@ -89,13 +58,14 @@ td {
 
 
 .table-row {
-    background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid hsl(0, 0%, 73%);
-    border-top: 1px solid hsl(0, 0%, 73%);
+    color: white;
+    background-color:#34495E;
+    border-bottom: 1px solid #e3faed;
+    border-top: 1px solid #e3faed;
     display: flex;
     justify-content: space-between;
     padding: 1em;
-    width: 100%;
+    width: 92%;
     //enseñar otra tabla
     // visibility: hidden;
     // display: none;
@@ -128,10 +98,18 @@ td {
 .table-icons-container{
     display: flex;
     justify-content: space-around;
-    width: 30%;
+    width: 20%;
 }
 
 .table-icons{ 
+
+    margin-top: 0.8em;
+  
+    path{
+        fill:white;
+    }
+        
+    
 
     &:hover{
 
@@ -147,7 +125,7 @@ td {
         width: 100%;
     
         path{
-            fill: hsl(0, 0%, 50%);
+            fill: hsl(0, 0%, 100%);
         }
     }    
 }

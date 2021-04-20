@@ -781,7 +781,7 @@ td {
   height: 100%;
   width: 0%;
   position: fixed;
-  z-index: 1;
+  z-index: 1100;
   background-color: black;
   background-color: #105a30b6;
   overflow-x: hidden;
@@ -876,4 +876,56 @@ td {
 }
 .modal-delete .modal-delete-footer .modal-delete-option#delete-confirm {
   background-color: #d74242;
+}
+
+.table-filter {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  position: relative;
+  top: 10vh;
+  width: 100%;
+  z-index: 1003;
+}
+.table-filter.filter-active .table-filter-container {
+  max-height: 70vh;
+}
+.table-filter .table-filter-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  width: 100%;
+}
+.table-filter .table-filter-container form {
+  padding: 1em;
+}
+.table-filter .table-filter-buttons {
+  width: 100%;
+}
+.table-filter .table-filter-buttons .table-filter-button {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  width: 100%;
+  text-align: center;
+}
+.table-filter .table-filter-buttons .table-filter-button.button-active {
+  max-height: 10vh;
+}
+.table-filter .table-filter-buttons .table-filter-button.open-filter {
+  background-color: #b0b0b0;
+}
+.table-filter .table-filter-buttons .table-filter-button.apply-filter {
+  background-color: #297f62;
+}
+.table-filter .table-filter-buttons .table-filter-button.remove-filter {
+  background-color: #d74242;
+}
+.table-filter .table-filter-buttons .table-filter-button svg {
+  height: 1.5em;
+  padding: 0.5em;
+  width: 1.5em;
+}
+.table-filter .table-filter-buttons .table-filter-button svg path {
+  fill: white;
 }

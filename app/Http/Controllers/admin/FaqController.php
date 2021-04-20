@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Models\DB\Faq;
-use Debugbar;
 
 class FaqController extends Controller
 {
@@ -88,7 +87,7 @@ class FaqController extends Controller
 
     public function show(Faq $faq)
     {
-        Debugbar::info($faq);
+       
 
         $view = View::make('admin.faqs.index')
         ->with('faq', $faq)
@@ -121,6 +120,61 @@ class FaqController extends Controller
         return response()->json([
             'table' => $view['table'],
             'form' => $view['form']
+        ]);
+    }
+
+    public function filter(Request $request){
+
+        $query = $this->faq->query();
+
+        $query->when(request('category_id'), function ($q, $category_id) {
+
+            if($category_id == 'all'){
+                return $q;
+            }
+            else {
+                return $q->where('category_id', $category_id);
+            }
+        });
+
+        $query->when(request('search'), function ($q, $search) {
+
+            if($search == null){
+                return $q;
+            }
+            else {
+                return $q->where('title', 'like', "%$search%");
+            }
+        });
+
+        $query->when(request('date'), function ($q, $date) {
+
+            if($date == null){
+                return $q;
+            }
+            else {
+                return $q->whereDate('created_at', '>=', $date);
+            }
+        });
+
+        $query->when(request('datesince'), function ($q, $datesince) {
+
+            if($datesince == null){
+                return $q;
+            }
+            else {
+                return $q->whereDate('created_at', '<=', $datesince);
+            }
+        });
+        
+        $faqs = $query->where('active', 1)->get();
+
+        $view = View::make('admin.faqs.index')
+            ->with('faqs', $faqs)
+            ->renderSections();
+
+        return response()->json([
+            'table' => $view['table'],
         ]);
     }
 }

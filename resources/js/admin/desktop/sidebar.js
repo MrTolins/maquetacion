@@ -28,6 +28,7 @@ sidebarItems.forEach(sidebarItem => {
                     document.getElementById("menu").style.width = "0%";
                     document.getElementById("main").style.filter = "blur(0px)";
                     document.getElementById("lang-faqs").style.filter = "blur(0px)";
+                    document.getElementById("table-filter").style.filter = "blur(0px)";
 
                     renderForm();
                     renderTable();

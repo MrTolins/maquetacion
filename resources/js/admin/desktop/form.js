@@ -90,8 +90,8 @@ export let renderForm = () => {
 
 export let renderTable = () => {
 
-    let editButtons = document.querySelectorAll(".table-edit");
-    let deleteButtons = document.querySelectorAll(".table-delete");
+    let editButtons = document.querySelectorAll(".edit-button");
+    let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
     
     editButtons.forEach(editButton => {

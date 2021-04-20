@@ -1,6 +1,9 @@
 .form{
     width: 90%;
     height: 90vh;
+    margin-top: 3.1em;
+    margin-left: 1em;
+    
 }
 
 .form-title{
@@ -14,13 +17,15 @@
     font-size: 1.2em;
 }
 
-.form-container form{
+.form-container{
+    
     width: 90%;
     text-align: center;
 }
 
 .form-clients{
     width: 100%;
+    
 }
 
 .form-group {
@@ -49,8 +54,7 @@
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
-    margin-left:1em ;margin-left:1em ;
-    width: 10%;
+    width: 90%;
     border: 2px solid transparent;
     -webkit-transition: width .35s ease-in-out;
     transition: width .35s ease-in-out;
@@ -61,6 +65,7 @@ textarea{
 }
 
 .form-input .input{
+    margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); 
     font-family: Lato;
     font-size: 1.2em;
@@ -128,6 +133,7 @@ textarea{
     width: 100%;
     background-color: rgb(255, 255, 255);
     height: auto;
+    border: 2px solid #80d4a4;
 }
 
 .second-menu-nav a { 

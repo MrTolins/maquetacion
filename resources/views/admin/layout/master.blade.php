@@ -17,17 +17,24 @@
     </head>
 
     <body>
-        @include('admin.components.modal_delete')
-        @include("admin.layout.partials.sidebar")
-        <div class="master-title">
-            <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
-        </div>
-        <div class="main" id="main">
-           
 
-            @yield('content')
-        </div>
-        
+        <div class="wrapper" id="app">
+            @include('admin.components.modal_delete')
+            @include("admin.layout.partials.sidebar")
+
+            @if(isset($filters))
+                @include('admin.components.table_filters', $filters)
+            @endif
+
+            <div class="master-title">
+                <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
+            </div>
+            <div class="main" id="main">
+            
+
+                @yield('content')
+            </div>
+        </div>  
         @include("admin.layout.partials.js")  
     </body>
 </html>
