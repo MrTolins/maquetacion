@@ -1,0 +1,32 @@
+.container {
+
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+
+
+.order-button{
+
+    cursor: pointer;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    
+    input{
+        cursor: pointer;
+
+    }
+
+    label{
+        font-family: Lato;
+    }
+
+}
+
+

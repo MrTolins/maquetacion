@@ -26,6 +26,8 @@
                 @include('admin.components.table_filters', $filters)
             @endif
 
+           
+
             <div class="master-title">
                 <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
             </div>

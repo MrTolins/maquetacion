@@ -1,7 +1,8 @@
 .table-filter{
-
+    margin-top: -0.2em;
+    background-color: hsl(0, 0%, 100%);
     height: max-content;
-    position: relative;
+    position: absolute;
     top: 10vh;
     width: 100%;
     z-index: 1003;
@@ -9,18 +10,20 @@
     &.filter-active{
 
         .table-filter-container{
-            max-height: 70vh;
+            max-height: 80vh;
         }
     }
 
     .table-filter-container{
         max-height: 0;
+        margin: 0 auto;
         overflow: hidden;
         transition: max-height 0.5s;
-        width: 100%;
+        width: 30%;
 
         form{
             padding: 1em;
+            text-align: center;
         }
     }
 
@@ -30,26 +33,29 @@
 
     .table-filter-buttons .table-filter-button{
 
+        cursor: pointer;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.5s;
         width: 100%;
         text-align: center;
 
+        &:hover{
+            svg path{
+                fill: hsl(0, 100%, 50%);
+            }
+        }
+
         &.button-active{
             max-height: 10vh;
         }
 
         &.open-filter{
-            background-color: hsl(0, 0%, 69%);
+            background-color: #80d4a4;
         }
 
         &.apply-filter{
             background-color: hsl(160, 51%, 33%);
-        }
-
-        &.remove-filter{
-            background-color: hsl(0, 65%, 55%);
         }
 
         svg{
@@ -63,4 +69,15 @@
         }
     }
 }
-    
+
+.filter-select{
+    font-family: Lato;
+    width: 90%; 
+    height: 34px; 
+    overflow: hidden; 
+    border: 1px solid #80d4a4; 
+}
+
+#view-select{
+    margin-top: 1em;
+}

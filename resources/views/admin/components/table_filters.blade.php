@@ -32,7 +32,7 @@
                                 <label for="category_id" class="label-highlight">Filtrar por categoría</label>
                             </div>
                             <div class="form-input">
-                                <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight" id="filter-select">
+                                <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight" class="filter-select">
                                     <option value="all"}}>Todas</option>
                                     @foreach($items as $item)
                                         <option value="{{$item->id}}"}}>{{ $item->name }}</option>
@@ -70,22 +70,47 @@
                 @endif
 
                 @if($key == 'datesince')
-                <div class="one-column">
-                    <div class="form-group">
-                        <div class="form-label">
-                            <label for="datesince" class="label-highlight">Hasta</label>
+                    <div class="one-column">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label for="datesince" class="label-highlight">Hasta</label>
+                            </div>
+                            <div class="form-input" id="search">
+                                <input type="date" name="datesince" class="input-highlight" value="">
+                            </div>
                         </div>
-                        <div class="form-input" id="search">
-                            <input type="date" name="datesince" class="input-highlight" value="">
-                        </div>
-                    </div>
-                </div>    
-            @endif
-
+                    </div>    
+                @endif  
+                                         
             @endforeach
-                 
+
+            <div class="form-group">
+                <div class="form-label">
+                    <label for="order" class="label-highlight">Ordenar por</label>
+                </div>
+                <div class="form-input">
+                    <select name="order" data-placeholder="Seleccione una categoría" class="input-highlight">
+                        @foreach($order as $key => $item)
+                            <option value="{{$item}}">{{ucfirst($key)}}</option>
+                        @endforeach
+                    </select>                   
+                </div>
+            </div>
+                
+            <div class="form-group">
+                <div class="form-label">
+                    <label for="direction" class="label-highlight hidden">Dirección</label>
+                </div>
+                <div class="form-input">
+                    <select name="direction" class="input-highlight">
+                        <option value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
+                    </select>                        
+                </div>
+            </div>
         </form>
     </div>
+
     <div class="table-filter-buttons">
         <div class="table-filter-button open-filter button-active" id="open-filter">
             <svg viewBox="0 0 24 24">

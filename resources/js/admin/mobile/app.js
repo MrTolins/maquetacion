@@ -4,6 +4,7 @@ require('./ckeditor');
 require('./sidebar');
 require('./swipe');
 require('./modalDelete');
+require('./filterTable');
 
 /*let enviar = document.getElementById("sendButton");
 

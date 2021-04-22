@@ -1888,6 +1888,8 @@ __webpack_require__(/*! ./modalDelete */ "./resources/js/admin/desktop/modalDele
 
 __webpack_require__(/*! ./filterTable */ "./resources/js/admin/desktop/filterTable.js");
 
+__webpack_require__(/*! ./pagination */ "./resources/js/admin/desktop/pagination.js");
+
 /***/ }),
 
 /***/ "./resources/js/admin/desktop/ckeditor.js":
@@ -2290,6 +2292,27 @@ deleteConfirm.addEventListener("click", function () {
 
   sendDeleteRequest();
 });
+
+/***/ }),
+
+/***/ "./resources/js/admin/desktop/pagination.js":
+/*!**************************************************!*\
+  !*** ./resources/js/admin/desktop/pagination.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./resources/js/admin/desktop/form.js");
+
+var next = document.querySelectorAll(".next");
+var previous = document.querySelectorAll(".previous");
+var first = document.querySelectorAll(".first");
+var last = document.querySelectorAll(".last");
+first.addEventListener("click", function () {});
+last.addEventListener("click", function () {});
+next.addEventListener("click", function () {});
+last.addEventListener("click", function () {});
 
 /***/ }),
 

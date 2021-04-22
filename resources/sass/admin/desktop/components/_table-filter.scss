@@ -70,10 +70,14 @@
     }
 }
 
-#filter-select{
+.filter-select{
     font-family: Lato;
     width: 90%; 
     height: 34px; 
     overflow: hidden; 
     border: 1px solid #80d4a4; 
+}
+
+#view-select{
+    margin-top: 1em;
 }

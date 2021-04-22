@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Models\DB\Faq;
+use Debugbar;
 
 class FaqController extends Controller
 {
@@ -22,8 +23,8 @@ class FaqController extends Controller
     {
 
         $view = View::make('admin.faqs.index')
-                ->with('faq', $this->faq)
-                ->with('faqs', $this->faq->get());
+            ->with('faq', $this->faq)
+            ->with('faqs', $this->faq->where('active', 1)->paginate(5));
 
         if(request()->ajax()) {
 
@@ -36,19 +37,6 @@ class FaqController extends Controller
         }
 
         return $view;
-    }
-
-    public function indexJson()
-    {
-        if (! Auth::guard('web')->user()->canAtLeast(['faqs'])){
-            return Auth::guard('web')->user()->redirectPermittedSection();
-        }
-
-        $query = $this->faq
-        ->with('category')
-        ->select('t_faq.*');
-
-        return $this->datatables->of($query)->toJson();   
     }
 
     public function create()
@@ -74,7 +62,7 @@ class FaqController extends Controller
         ]);
 
         $view = View::make('admin.faqs.index')
-        ->with('faqs', $this->faq->get())
+        ->with('faqs', $this->faq->paginate(5))
         ->with('faq', $faq)
         ->renderSections();        
 
@@ -91,7 +79,7 @@ class FaqController extends Controller
 
         $view = View::make('admin.faqs.index')
         ->with('faq', $faq)
-        ->with('faqs', $this->faq->where('active', 1)->get());   
+        ->with('faqs', $this->faq->where('active', 1)->paginate(5));   
         
         if(request()->ajax()) {
 
@@ -101,7 +89,8 @@ class FaqController extends Controller
                 'form' => $sections['form'],
             ]); 
         }
-                
+        
+        
         return $view;
     }
 
@@ -114,7 +103,7 @@ class FaqController extends Controller
 
         $view = View::make('admin.faqs.index')
             ->with('faq', $this->faq)
-            ->with('faqs', $this->faq->where('active', 1)->get())
+            ->with('faqs', $this->faq->where('active', 1)->paginate(5))
             ->renderSections();
         
         return response()->json([
@@ -166,8 +155,14 @@ class FaqController extends Controller
                 return $q->whereDate('created_at', '<=', $datesince);
             }
         });
-        
-        $faqs = $query->where('active', 1)->get();
+
+        $query->when(request('order'), function ($q, $order) use ($request) {
+
+            $q->orderBy($order, $request->direction);
+        });
+
+        $faqs = $query->join('t_faqs_categories', 't_faqs.category_id', '=', 't_faqs_categories.id')
+        ->where('t_faqs.active', 1)->paginate(5);
 
         $view = View::make('admin.faqs.index')
             ->with('faqs', $faqs)
@@ -177,4 +172,6 @@ class FaqController extends Controller
             'table' => $view['table'],
         ]);
     }
+
+    
 }

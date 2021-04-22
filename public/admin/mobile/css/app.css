@@ -519,6 +519,7 @@ body {
   width: 100%;
   height: auto;
   text-align: center;
+  margin-top: 4em;
 }
 
 .form-title {
@@ -879,47 +880,52 @@ td {
 }
 
 .table-filter {
+  margin-top: -0.2em;
+  background-color: white;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  position: relative;
+  position: absolute;
   top: 10vh;
   width: 100%;
   z-index: 1003;
 }
 .table-filter.filter-active .table-filter-container {
-  max-height: 70vh;
+  max-height: 80vh;
 }
 .table-filter .table-filter-container {
   max-height: 0;
+  margin: 0 auto;
   overflow: hidden;
   transition: max-height 0.5s;
-  width: 100%;
+  width: 30%;
 }
 .table-filter .table-filter-container form {
   padding: 1em;
+  text-align: center;
 }
 .table-filter .table-filter-buttons {
   width: 100%;
 }
 .table-filter .table-filter-buttons .table-filter-button {
+  cursor: pointer;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s;
   width: 100%;
   text-align: center;
 }
+.table-filter .table-filter-buttons .table-filter-button:hover svg path {
+  fill: red;
+}
 .table-filter .table-filter-buttons .table-filter-button.button-active {
   max-height: 10vh;
 }
 .table-filter .table-filter-buttons .table-filter-button.open-filter {
-  background-color: #b0b0b0;
+  background-color: #80d4a4;
 }
 .table-filter .table-filter-buttons .table-filter-button.apply-filter {
   background-color: #297f62;
-}
-.table-filter .table-filter-buttons .table-filter-button.remove-filter {
-  background-color: #d74242;
 }
 .table-filter .table-filter-buttons .table-filter-button svg {
   height: 1.5em;
@@ -928,4 +934,39 @@ td {
 }
 .table-filter .table-filter-buttons .table-filter-button svg path {
   fill: white;
+}
+
+.filter-select {
+  font-family: Lato;
+  width: 90%;
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid #80d4a4;
+}
+
+#view-select {
+  margin-top: 1em;
+}
+
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.order-button {
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+.order-button input {
+  cursor: pointer;
+}
+.order-button label {
+  font-family: Lato;
 }

@@ -27,7 +27,7 @@ body {
 .form {
   width: 90%;
   height: 90vh;
-  margin-top: 3.1em;
+  margin-top: 2.1em;
   margin-left: 1em;
 }
 
@@ -191,7 +191,7 @@ textarea {
 .table {
   border-collapse: collapse;
   width: 100%;
-  margin-top: 4em;
+  margin-top: 3em;
 }
 
 .table-container {
@@ -302,6 +302,16 @@ textarea {
   padding: 12px 20px 12px 40px;
   border: 1px solid #ddd;
   margin-bottom: 12px;
+}
+
+.pagination {
+  text-align: center;
+  font-family: Poppins;
+  text-decoration: none;
+}
+
+.w-5 {
+  display: none;
 }
 
 .sidebar {
@@ -461,10 +471,54 @@ textarea {
   fill: white;
 }
 
-#filter-select {
+.filter-select {
   font-family: Lato;
   width: 90%;
   height: 34px;
   overflow: hidden;
   border: 1px solid #80d4a4;
+}
+
+#view-select {
+  margin-top: 1em;
+}
+
+.container {
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.order-button {
+  cursor: pointer;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+.order-button input {
+  cursor: pointer;
+}
+.order-button label {
+  font-family: Lato;
+}
+
+.table-pagination {
+  font-family: Poppins;
+}
+.table-pagination .table-pagination-info {
+  display: flex;
+  justify-content: space-between;
+}
+.table-pagination .table-pagination-info .table-pagination-pages {
+  margin-right: 2em;
+}
+.table-pagination .table-pagination-buttons .table-pagination-button {
+  cursor: pointer;
+}
+.table-pagination .table-pagination-buttons .table-pagination-button:hover {
+  color: #33d378;
 }

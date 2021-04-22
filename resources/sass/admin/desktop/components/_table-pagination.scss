@@ -1,0 +1,31 @@
+.table-pagination{
+
+    font-family: Poppins;
+
+    .table-pagination-info{
+
+        display: flex;
+        justify-content: space-between;
+
+        .table-pagination-total{
+
+        }
+
+        .table-pagination-pages{
+            margin-right: 2em;
+        }
+    }
+
+    .table-pagination-buttons{
+        
+        .table-pagination-button{
+
+            cursor: pointer;
+            &:hover{
+                color:#33d378;
+            }
+
+        }
+    }
+}
+ 

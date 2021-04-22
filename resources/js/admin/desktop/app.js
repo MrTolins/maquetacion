@@ -4,3 +4,4 @@ require('./ckeditor');
 require('./sidebar');
 require('./modalDelete');
 require('./filterTable');
+require('./pagination');

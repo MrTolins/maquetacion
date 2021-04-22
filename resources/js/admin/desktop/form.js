@@ -11,6 +11,9 @@ export let renderForm = () => {
     let sendButton = document.getElementById("send-button");
     let secondMenu = document.querySelectorAll(".second-menu-form");
     let secondMenuLi = document.querySelectorAll(".sub-menu-parent");
+    
+
+
 
     secondMenu.forEach(secondMenuLi => {
 
@@ -93,6 +96,7 @@ export let renderTable = () => {
     let editButtons = document.querySelectorAll(".edit-button");
     let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
+ 
     
     editButtons.forEach(editButton => {
     
