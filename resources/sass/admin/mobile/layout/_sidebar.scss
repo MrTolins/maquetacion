@@ -8,11 +8,18 @@
     background-color: #105a30b6;
     overflow-x: hidden;
     transition: 0.5s;
+    z-index: 2001;
+   
 }
 
 .sidebar-title{
     background-color: #80d4a4;
     width: 100%;
+    position: fixed;
+    margin-top: 3em;
+    display: inline-block;
+    z-index: 2000;
+    height: 10vh;
 }
 
 .sidebar-title svg:hover{

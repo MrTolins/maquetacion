@@ -2014,6 +2014,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ckeditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor */ "./resources/js/admin/mobile/ckeditor.js");
 /* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./swipe */ "./resources/js/admin/mobile/swipe.js");
+/* harmony import */ var _verticalScroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2031,6 +2032,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2131,6 +2133,7 @@ var renderTable = function renderTable() {
   var deleteButtons = document.querySelectorAll(".delete-button");
   var formContainer = document.getElementById("form");
   var swipeRevealItemElements = document.querySelectorAll('.swipe-element');
+  var tableContainer = document.getElementById("table-container");
   editButtons.forEach(function (editButton) {
     var sendGetRequest = /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
@@ -2207,6 +2210,7 @@ var renderTable = function renderTable() {
   swipeRevealItemElements.forEach(function (swipeRevealItemElement) {
     new _swipe__WEBPACK_IMPORTED_MODULE_2__.swipeRevealItem(swipeRevealItemElement);
   });
+  new _verticalScroll__WEBPACK_IMPORTED_MODULE_3__.scrollWindowElement(tableContainer);
 };
 var editElement = function editElement(url) {
   var sendEditRequest = /*#__PURE__*/function () {
@@ -2410,14 +2414,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "swipeRevealItem": () => (/* binding */ swipeRevealItem)
 /* harmony export */ });
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
+/* harmony import */ var _verticalScroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
+
 
 function swipeRevealItem(element) {
   'use strict';
 
+  var swipeFrontElement = element.querySelector('.swipe-front');
   var STATE_DEFAULT = 1;
   var STATE_LEFT_SIDE = 2;
   var STATE_RIGHT_SIDE = 3;
-  var swipeFrontElement = element.querySelector('.swipe-front');
   var rafPending = false;
   var initialTouchPos = null;
   var lastTouchPos = null;
@@ -2528,19 +2534,18 @@ function swipeRevealItem(element) {
 
       case STATE_LEFT_SIDE:
         currentXPosition = -(itemWidth - handleSize);
+        (0,_form__WEBPACK_IMPORTED_MODULE_0__.deleteElement)(element.querySelector('.left-swipe').dataset.url);
+        newState = STATE_DEFAULT;
         break;
 
       case STATE_RIGHT_SIDE:
         currentXPosition = itemWidth - handleSize;
+        (0,_form__WEBPACK_IMPORTED_MODULE_0__.editElement)(element.querySelector('.right-swipe').dataset.url);
+        newState = STATE_DEFAULT;
         break;
     }
 
-    if (currentXPosition > 1) {
-      (0,_form__WEBPACK_IMPORTED_MODULE_0__.editElement)(element.querySelector('.right-swipe').dataset.url);
-    } else if (currentXPosition < -1) {
-      (0,_form__WEBPACK_IMPORTED_MODULE_0__.deleteElement)(element.querySelector('.left-swipe').dataset.url);
-    }
-
+    currentXPosition = 0;
     transformStyle = 'translateX(' + currentXPosition + 'px)';
     swipeFrontElement.style.msTransform = transformStyle;
     swipeFrontElement.style.MozTransform = transformStyle;
@@ -2602,17 +2607,139 @@ function swipeRevealItem(element) {
   }
 
   if (window.PointerEvent) {
-    swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, true);
-    swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, true);
-    swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, true);
+    swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, false);
+    swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, false);
+    swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, false);
+    swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, false);
   } else {
-    swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, true);
-    swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, true);
-    swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, true);
-    swipeFrontElement.addEventListener('mousedown', this.handleGestureStart, true);
+    swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, false);
+    swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, false);
+    swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, false);
+    swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, false);
+    swipeFrontElement.addEventListener('mousedown', this.handleGestureStart, false);
   }
+}
+;
+
+/***/ }),
+
+/***/ "./resources/js/admin/mobile/verticalScroll.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/admin/mobile/verticalScroll.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "scrollWindowElement": () => (/* binding */ scrollWindowElement)
+/* harmony export */ });
+function scrollWindowElement(element) {
+  'use strict';
+
+  var scrollWindowElement = element;
+  var STATE_DEFAULT = 1;
+  var STATE_TOP_SIDE = 2;
+  var STATE_BOTTOM_SIDE = 3;
+  var rafPending = false;
+  var initialTouchPos = null;
+  var lastTouchPos = null;
+  var currentYPosition = 0;
+  var currentState = STATE_DEFAULT;
+  var handleSize = 10;
+
+  this.handleGestureStart = function (evt) {
+    if (evt.touches && evt.touches.length > 1) {
+      return;
+    }
+
+    if (scrollWindowElement.PointerEvent) {
+      evt.target.setPointerCapture(evt.pointerId);
+    } else {
+      document.addEventListener('mousemove', this.handleGestureMove, true);
+      document.addEventListener('mouseup', this.handleGestureEnd, true);
+    }
+
+    initialTouchPos = getGesturePointFromEvent(evt);
+  }.bind(this);
+
+  this.handleGestureMove = function (evt) {
+    if (!initialTouchPos) {
+      return;
+    }
+
+    lastTouchPos = getGesturePointFromEvent(evt);
+
+    if (rafPending) {
+      return;
+    }
+
+    rafPending = true;
+    window.requestAnimFrame(onAnimFrame);
+  }.bind(this);
+
+  this.handleGestureEnd = function (evt) {
+    evt.preventDefault();
+
+    if (evt.touches && evt.touches.length > 0) {
+      return;
+    }
+
+    rafPending = false;
+
+    if (scrollWindowElement.PointerEvent) {
+      evt.target.releasePointerCapture(evt.pointerId);
+    } else {
+      document.removeEventListener('mousemove', this.handleGestureMove, true);
+      document.removeEventListener('mouseup', this.handleGestureEnd, true);
+    }
+
+    updateScrollRestPosition();
+    initialTouchPos = null;
+  }.bind(this);
+
+  function updateScrollRestPosition() {
+    var transformStyle;
+    var differenceInY = initialTouchPos.y - lastTouchPos.y;
+    currentYPosition = currentYPosition - differenceInY;
+    transformStyle = currentYPosition + 'px';
+    scrollWindowElement.style.top = transformStyle;
+    scrollWindowElement.style.transition = 'all 300ms ease-out';
+    console.log(scrollWindowElement.offsetTop);
+    console.log(scrollWindowElement.getBoundingClientRect());
+  }
+
+  function getGesturePointFromEvent(evt) {
+    var point = {};
+
+    if (evt.targetTouches) {
+      point.y = evt.targetTouches[0].clientY;
+    } else {
+      point.y = evt.clientY;
+    }
+
+    return point;
+  }
+
+  function onAnimFrame() {
+    if (!rafPending) {
+      return;
+    }
+
+    var differenceInY = initialTouchPos.y - lastTouchPos.y;
+    var transformStyle = currentYPosition - differenceInY + 'px';
+    scrollWindowElement.style.top = transformStyle;
+    rafPending = false;
+  }
+
+  scrollWindowElement.addEventListener('touchstart', this.handleGestureStart, {
+    passive: true
+  });
+  scrollWindowElement.addEventListener('touchmove', this.handleGestureMove, {
+    passive: true
+  });
+  scrollWindowElement.addEventListener('touchend', this.handleGestureEnd, true);
+  scrollWindowElement.addEventListener('touchcancel', this.handleGestureEnd, true);
 }
 ;
 
@@ -20938,12 +21065,8 @@ __webpack_require__(/*! ./swipe */ "./resources/js/admin/mobile/swipe.js");
 __webpack_require__(/*! ./modalDelete */ "./resources/js/admin/mobile/modalDelete.js");
 
 __webpack_require__(/*! ./filterTable */ "./resources/js/admin/mobile/filterTable.js");
-/*let enviar = document.getElementById("sendButton");
 
-enviar.addEventListener('click', (event) =>{
-    event.preventDefault();
-    console.log('Hola');
-})*/
+__webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
 })();
 
 /******/ })()

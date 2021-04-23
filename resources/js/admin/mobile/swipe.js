@@ -1,14 +1,15 @@
-import {deleteElement,editElement} from './form';
+import {deleteElement, editElement} from './form';
+import {scrollWindowElement} from './verticalScroll';
 
 export function swipeRevealItem (element){
 
     'use strict';
 
+    let swipeFrontElement = element.querySelector('.swipe-front');
+
     let STATE_DEFAULT = 1;
     let STATE_LEFT_SIDE = 2;
     let STATE_RIGHT_SIDE = 3;
-
-    let swipeFrontElement = element.querySelector('.swipe-front');
 
     let rafPending = false;
     let initialTouchPos = null;
@@ -20,6 +21,9 @@ export function swipeRevealItem (element){
     let rightSwipeVisible = 0;
     let itemWidth = swipeFrontElement.clientWidth;
     let slopValue = itemWidth * (2/4);
+
+
+    
 
     this.resize = function() {
         itemWidth = swipeFrontElement.clientWidth;
@@ -99,6 +103,8 @@ export function swipeRevealItem (element){
 
         let newState = STATE_DEFAULT;
 
+       
+
         if(Math.abs(differenceInX) > slopValue) {
             
             if(currentState === STATE_DEFAULT) {
@@ -121,6 +127,8 @@ export function swipeRevealItem (element){
         changeState(newState);
 
         swipeFrontElement.style.transition = 'all 150ms ease-out';
+
+        
     }
 
     function changeState(newState) {
@@ -131,23 +139,22 @@ export function swipeRevealItem (element){
 
             case STATE_DEFAULT:
                 currentXPosition = 0;
-                break;
+            break;
+
             case STATE_LEFT_SIDE:
                 currentXPosition = -(itemWidth - handleSize);
-                break;
+                deleteElement(element.querySelector('.left-swipe').dataset.url);
+                newState = STATE_DEFAULT;
+            break;
+
             case STATE_RIGHT_SIDE:
                 currentXPosition = itemWidth - handleSize;
-                break;
+                editElement(element.querySelector('.right-swipe').dataset.url);          
+                newState = STATE_DEFAULT;
+            break;
         }
-
-        if(currentXPosition > 1){
-
-            editElement(element.querySelector('.right-swipe').dataset.url);          
-
-        }else if(currentXPosition < -1){
-            
-           deleteElement(element.querySelector('.left-swipe').dataset.url);
-        }
+        
+        currentXPosition = 0;
 
         transformStyle = 'translateX('+currentXPosition+'px)';
 
@@ -156,7 +163,9 @@ export function swipeRevealItem (element){
         swipeFrontElement.style.webkitTransform = transformStyle;
         swipeFrontElement.style.transform = transformStyle;
 
-        currentState = newState;    
+        currentState = newState; 
+        
+        
     }
 
     function getGesturePointFromEvent(evt) {
@@ -216,19 +225,23 @@ export function swipeRevealItem (element){
         swipeFrontElement.style.msTransform = transformStyle;
         swipeFrontElement.style.transform = transformStyle;
 
+
+       
+
         rafPending = false;
     }
     
     if (window.PointerEvent) {
-        swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, true);
-        swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, true);
-        swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, true);
-        swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, true);
+        swipeFrontElement.addEventListener('pointerdown', this.handleGestureStart, false);
+        swipeFrontElement.addEventListener('pointermove', this.handleGestureMove, false);
+        swipeFrontElement.addEventListener('pointerup', this.handleGestureEnd, false);
+        swipeFrontElement.addEventListener('pointercancel', this.handleGestureEnd, false);
     } else {
-        swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, true);
-        swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, true);
-        swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, true);
-        swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, true);
-        swipeFrontElement.addEventListener('mousedown', this.handleGestureStart, true);
+        swipeFrontElement.addEventListener('touchstart', this.handleGestureStart, false);
+        swipeFrontElement.addEventListener('touchmove', this.handleGestureMove, false);
+        swipeFrontElement.addEventListener('touchend', this.handleGestureEnd, false);
+        swipeFrontElement.addEventListener('touchcancel', this.handleGestureEnd, false);
+        swipeFrontElement.addEventListener('mousedown', this.handleGestureStart, false);
     }    
+    
 };   

@@ -34,14 +34,14 @@
       document.getElementById("menu").style.width = "100%";
       document.getElementById("main").style.filter = "blur(10px)";
       document.getElementById("lang-faqs").style.filter = "blur(10px)";
-      document.getElementById("table-filter").style.filter = "blur(10px)";
+     
     }
     
     function closeMenu() {
       document.getElementById("menu").style.width = "0%";
       document.getElementById("main").style.filter = "blur(0px)";
       document.getElementById("lang-faqs").style.filter = "blur(0px)";
-      document.getElementById("table-filter").style.filter = "blur(0px)";
+      
     }
     
 </script>

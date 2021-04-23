@@ -1,6 +1,6 @@
 import {renderCkeditor} from './ckeditor'
 import {swipeRevealItem} from './swipe';
-
+import {scrollWindowElement} from './verticalScroll';
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -98,6 +98,7 @@ export let renderTable = () => {
     let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
     let swipeRevealItemElements = document.querySelectorAll('.swipe-element');
+    let tableContainer = document.getElementById("table-container");
     
     editButtons.forEach(editButton => {
     
@@ -155,6 +156,7 @@ export let renderTable = () => {
 
     });
 
+    new scrollWindowElement(tableContainer);
     
 }
 

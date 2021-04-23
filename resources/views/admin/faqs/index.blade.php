@@ -71,7 +71,9 @@
                         <li class="sub-menu-parent active"><a data-toggle="tab" >Home</a></li>
                         <li class="sub-menu-parent"><a data-toggle="tab" >Description</a></li>
                         <li class="sub-menu-parent"><a data-toggle="tab" >Pictures</a></li>
-                        <li class="sub-menu-parent"><a data-toggle="tab" >Save</a></li>
+                        <li class="sub-menu-parent"><div class="form-submit">
+                            <input type="submit" value="Enviar" id="send-button">
+                        </div></li>
                     </ul>
                 </nav>
             
@@ -81,7 +83,7 @@
                             <label for="pregunta" class="label">Title</label>
                         </div>
                         <div class="form-input">
-                            <input type="text" class="input" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="Add a title">  
+                            <input type="text" class="input" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="Add a title" >  
                         </div>
                     </div>
 
@@ -109,9 +111,9 @@
                         </div>
                     </div>
 
-                    <div class="form-submit">
+                    {{-- <div class="form-submit">
                         <input type="submit" value="Enviar" id="send-button">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="description">
                     <h3></h3>

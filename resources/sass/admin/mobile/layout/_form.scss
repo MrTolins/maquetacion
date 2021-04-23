@@ -2,7 +2,7 @@
     width: 100%;
     height: auto;
     text-align: center;
-    margin-top: 4em;
+    margin-top: 9em;
 }
 
 .form-title{
@@ -13,7 +13,7 @@
 .form-title h1{
     color:#80d4a4;
     font-family: Poppins;
-    font-size: 1.2em;
+    font-size: 16px;
 }
 
 .form-container{
@@ -26,7 +26,8 @@
 
 .form-group {
     margin-bottom: 1em;
-    width: 100%;
+    width: 70%;
+    margin: 0 auto;
 }
 
 .form-label, .form-input{
@@ -34,12 +35,13 @@
 }
 
 .form-label{
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
+    padding-top: 0.2em;
 }
 
 .form-label label{
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 15px;
     
 }
 
@@ -48,8 +50,7 @@
     font-family: Lato;
     font-size: 1.2em;
     padding: 0.5em;
-    font-size: 18px;
-    padding: 10px 10px 10px 5px;
+    font-size: 15px;
     display: block;
     width: 70%;
     margin: 0 auto;
@@ -67,16 +68,23 @@
 }
 
 .form-submit input{
-    font-family: Lato;
-    font-size: 1.2em;
     border: solid;
     border: none;
-    height: 40px;
-    color: white;
-    background-color: #80d4a4; 
-    width: 20%;  
+    background-color: black;
+    margin-right: 1em;
+    width: 100%;
+    font-family: Poppins;
+    font-weight: bold;
+    color:white;
+    display: block;
+    text-decoration: none;
+    height: auto;
+    cursor: pointer;
+}
 
-    
+.form-submit input:hover{
+    color:black;
+    background-color:#80d4a4 ;
 }
   
 #send-button:hover {
@@ -86,8 +94,9 @@
 
 .second-menu-form{
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color:#e3faed;
     height: auto;
+    border-bottom: 8px solid #80d4a4;
 }
 
 .second-menu-nav a { 
@@ -123,6 +132,9 @@
 
 }
 
-.active{
-
+.home{
+    width: 90%;
+    margin: 0 auto;
+    background-color: white;
+    
 }

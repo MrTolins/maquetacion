@@ -513,13 +513,18 @@ body {
   font-family: Poppins;
   margin-top: -3em;
   margin-left: 0em;
+  position: relative;
+}
+
+.wrapper {
+  background-color: #e3faed;
 }
 
 .form {
   width: 100%;
   height: auto;
   text-align: center;
-  margin-top: 4em;
+  margin-top: 9em;
 }
 
 .form-title {
@@ -530,7 +535,7 @@ body {
 .form-title h1 {
   color: #80d4a4;
   font-family: Poppins;
-  font-size: 1.2em;
+  font-size: 16px;
 }
 
 .form-container {
@@ -543,7 +548,8 @@ body {
 
 .form-group {
   margin-bottom: 1em;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
 }
 
 .form-label, .form-input {
@@ -551,12 +557,13 @@ body {
 }
 
 .form-label {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
+  padding-top: 0.2em;
 }
 
 .form-label label {
   font-family: Poppins;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .form-input input {
@@ -564,8 +571,7 @@ body {
   font-family: Lato;
   font-size: 1.2em;
   padding: 0.5em;
-  font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  font-size: 15px;
   display: block;
   width: 70%;
   margin: 0 auto;
@@ -581,14 +587,23 @@ body {
 }
 
 .form-submit input {
-  font-family: Lato;
-  font-size: 1.2em;
   border: solid;
   border: none;
-  height: 40px;
+  background-color: black;
+  margin-right: 1em;
+  width: 100%;
+  font-family: Poppins;
+  font-weight: bold;
   color: white;
+  display: block;
+  text-decoration: none;
+  height: auto;
+  cursor: pointer;
+}
+
+.form-submit input:hover {
+  color: black;
   background-color: #80d4a4;
-  width: 20%;
 }
 
 #send-button:hover {
@@ -597,8 +612,9 @@ body {
 
 .second-menu-form {
   width: 100%;
-  background-color: white;
+  background-color: #e3faed;
   height: auto;
+  border-bottom: 8px solid #80d4a4;
 }
 
 .second-menu-nav a {
@@ -633,6 +649,12 @@ body {
   display: inline-block;
 }
 
+.home {
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+}
+
 .table {
   width: 100%;
   height: auto;
@@ -652,11 +674,17 @@ body {
 .table-title h1 {
   color: #80d4a4;
   font-family: Poppins;
-  font-size: 1.2em;
+  font-size: 16px;
 }
 
 .table-container {
+  height: 40vh;
+  overflow: hidden;
   width: 100%;
+}
+
+.table-container .table {
+  position: relative;
 }
 
 .table-container table {
@@ -722,16 +750,16 @@ td {
 .table-field p {
   font-weight: 600;
   font-family: Lato;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   margin-left: 0.5em;
-  margin-top: 0.5em;
+  margin-top: 0.2em;
 }
 .table-field p span {
   color: #80d4a4;
   margin-right: 0.5em;
   font-family: Poppins;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .table-icons-container {
@@ -787,11 +815,17 @@ td {
   background-color: #105a30b6;
   overflow-x: hidden;
   transition: 0.5s;
+  z-index: 2001;
 }
 
 .sidebar-title {
   background-color: #80d4a4;
   width: 100%;
+  position: fixed;
+  margin-top: 3em;
+  display: inline-block;
+  z-index: 2000;
+  height: 10vh;
 }
 
 .sidebar-title svg:hover {
@@ -880,12 +914,12 @@ td {
 }
 
 .table-filter {
-  margin-top: -0.2em;
+  margin-top: -0.5em;
   background-color: white;
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-  position: absolute;
+  position: fixed;
   top: 10vh;
   width: 100%;
   z-index: 1003;
@@ -898,7 +932,7 @@ td {
   margin: 0 auto;
   overflow: hidden;
   transition: max-height 0.5s;
-  width: 30%;
+  width: 100%;
 }
 .table-filter .table-filter-container form {
   padding: 1em;

@@ -130,12 +130,23 @@ textarea {
 }
 
 .form-submit input {
-  font-family: Lato;
-  font-size: 1.2em;
   border: solid;
   border: none;
-  height: 40px;
+  background-color: black;
+  margin-right: 1em;
+  width: 100%;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 16px;
   color: white;
+  display: block;
+  text-decoration: none;
+  height: 4vh;
+  cursor: pointer;
+}
+
+.form-submit input:hover {
+  color: black;
   background-color: #80d4a4;
 }
 

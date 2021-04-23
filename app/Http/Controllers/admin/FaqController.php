@@ -24,7 +24,7 @@ class FaqController extends Controller
 
         $view = View::make('admin.faqs.index')
             ->with('faq', $this->faq)
-            ->with('faqs', $this->faq->where('active', 1)->paginate(5));
+            ->with('faqs', $this->faq->where('active', 1)->paginate(15));
 
         if(request()->ajax()) {
 

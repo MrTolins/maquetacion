@@ -1,8 +1,8 @@
 .table-filter{
-    margin-top: -0.2em;
+    margin-top: -0.5em;
     background-color: hsl(0, 0%, 100%);
     height: max-content;
-    position: absolute;
+    position: fixed;
     top: 10vh;
     width: 100%;
     z-index: 1003;
@@ -19,7 +19,7 @@
         margin: 0 auto;
         overflow: hidden;
         transition: max-height 0.5s;
-        width: 30%;
+        width: 100%;
 
         form{
             padding: 1em;
