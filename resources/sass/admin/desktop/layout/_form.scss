@@ -131,8 +131,14 @@ textarea{
     background-color:#80d4a4 ;
 }
 
-#send-button{
-    margin-bottom: 1em;
+
+
+#clear-button{
+ 
+}
+
+#clear-button:hover{
+    background-color:#00d35b ;
 }
 
 #send-button:hover {
@@ -148,7 +154,6 @@ textarea{
 }
 
 .second-menu-nav a { 
-    
     width: 100%;
     font-family:Poppins;
     font-weight:bold;

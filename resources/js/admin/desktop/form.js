@@ -7,8 +7,9 @@ export let renderForm = () => {
 
     let forms = document.querySelectorAll(".admin-form");
     let labels = document.getElementsByTagName('label');
-    let inputs = document.querySelectorAll('.input')
+    let inputs = document.querySelectorAll('.input');
     let sendButton = document.getElementById("send-button");
+    let clearButton = document.getElementById("clear-button");
     let secondMenu = document.querySelectorAll(".second-menu-form");
     let secondMenuLi = document.querySelectorAll(".sub-menu-parent");
     
@@ -71,7 +72,7 @@ export let renderForm = () => {
                         form.id.value = response.data.id;
                         table.innerHTML = response.data.table;
                         renderTable();
-                        console.log('2');
+                        
                     });
                      
                 } catch (error) {
@@ -81,11 +82,37 @@ export let renderForm = () => {
     
             sendPostRequest();
     
-            console.log('1');
+          
         });
     });
 
+    clearButton.addEventListener("click", (event) => {
 
+        event.preventDefault();
+
+        forms.forEach(form => { 
+            
+            let url = clearButton.dataset.url;
+    
+            let cleanForm = async () => {
+    
+                try {
+                        axios.get(url).then(response => {
+                        form.innerHTML = response.data.form;
+                        renderForm();
+                    });
+                     
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+    
+            cleanForm();
+    
+            console.log('1');
+        });
+
+    });
 
 
     renderCkeditor();

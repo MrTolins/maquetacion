@@ -2649,38 +2649,48 @@ function scrollWindowElement(element) {
   var handleSize = 10;
 
   this.handleGestureStart = function (evt) {
+    //el evt esta recogiendo el evento de tocar
+    //solo hay un evento de touch
     if (evt.touches && evt.touches.length > 1) {
       return;
-    }
+    } //para poder utilizar desde ordenador
+
 
     if (scrollWindowElement.PointerEvent) {
       evt.target.setPointerCapture(evt.pointerId);
     } else {
       document.addEventListener('mousemove', this.handleGestureMove, true);
       document.addEventListener('mouseup', this.handleGestureEnd, true);
-    }
+    } //valor en el eje vertical donde has pulsado
+
 
     initialTouchPos = getGesturePointFromEvent(evt);
-  }.bind(this);
+  }.bind(this); //ffuncion que gestionará el movimiento del dedo
+
 
   this.handleGestureMove = function (evt) {
+    //si no se tocado initial touch
     if (!initialTouchPos) {
       return;
-    }
+    } //captura donde te estás moviendo
 
-    lastTouchPos = getGesturePointFromEvent(evt);
+
+    lastTouchPos = getGesturePointFromEvent(evt); //si rafPending vale falso no es verdadero
 
     if (rafPending) {
       return;
-    }
+    } //cuando lo conviertes a true ya no puede volver atrás
 
-    rafPending = true;
+
+    rafPending = true; //la ventana(html) Hacer mas fluidas la animaciones gracias a la función AnimFrame
+    //esta función está localizada en bootstrap
+    //onAnimeFrame es una función recogida dentro de otra función
+    //AnimFrameRequest lo va a cargar lo primero
+
     window.requestAnimFrame(onAnimFrame);
   }.bind(this);
 
   this.handleGestureEnd = function (evt) {
-    evt.preventDefault();
-
     if (evt.touches && evt.touches.length > 0) {
       return;
     }
@@ -2710,11 +2720,14 @@ function scrollWindowElement(element) {
   }
 
   function getGesturePointFromEvent(evt) {
-    var point = {};
+    var point = {}; //json
+    //dentro del json point hay una clave que será "y"
+    //"y" tiene como valor el evento de tocar, para saber donde he tocado
 
     if (evt.targetTouches) {
       point.y = evt.targetTouches[0].clientY;
     } else {
+      //coges la posicion de y
       point.y = evt.clientY;
     }
 
@@ -2722,15 +2735,26 @@ function scrollWindowElement(element) {
   }
 
   function onAnimFrame() {
+    //si es falso no seguirá con el código
     if (!rafPending) {
       return;
-    }
+    } //mira la diferencia entra la posición inicial y la posición final
 
-    var differenceInY = initialTouchPos.y - lastTouchPos.y;
-    var transformStyle = currentYPosition - differenceInY + 'px';
+
+    var differenceInY = initialTouchPos.y - lastTouchPos.y; //el movimiento que voy a hacer en pixeles
+
+    var transformStyle = currentYPosition - differenceInY + 'px'; //codigo para limitar que puedas subir más de la cuenta la tabla de mobil
+    //si differenceInY es menor que 1, pregunta si en tu css el atributo top es mayor que 0 px
+    //si es mayor, se quedará en 0 px, si es menor, seguirá hacia arriba
+    //limitar el bottom de la tabla cuando se acaben los productos
+    //cuando llegas al limite de los productos llamas a pagination() PaginationVisible=true para evitar que lance muchas veces
+    //
+
     scrollWindowElement.style.top = transformStyle;
     rafPending = false;
-  }
+  } //Cuatro eventos son llamados por la tabla (scrollWindowElement)
+  //passive:true para evitar que vaya a tirones el scroll
+
 
   scrollWindowElement.addEventListener('touchstart', this.handleGestureStart, {
     passive: true

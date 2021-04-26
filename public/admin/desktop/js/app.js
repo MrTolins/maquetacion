@@ -2059,6 +2059,7 @@ var renderForm = function renderForm() {
   var labels = document.getElementsByTagName('label');
   var inputs = document.querySelectorAll('.input');
   var sendButton = document.getElementById("send-button");
+  var clearButton = document.getElementById("clear-button");
   var secondMenu = document.querySelectorAll(".second-menu-form");
   var secondMenuLi = document.querySelectorAll(".sub-menu-parent");
   secondMenu.forEach(function (secondMenuLi) {
@@ -2113,7 +2114,6 @@ var renderForm = function renderForm() {
                     form.id.value = response.data.id;
                     table.innerHTML = response.data.table;
                     renderTable();
-                    console.log('2');
                   });
 
                 case 3:
@@ -2139,6 +2139,42 @@ var renderForm = function renderForm() {
       }();
 
       sendPostRequest();
+    });
+  });
+  clearButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    forms.forEach(function (form) {
+      var url = clearButton.dataset.url;
+
+      var cleanForm = /*#__PURE__*/function () {
+        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  try {
+                    axios.get(url).then(function (response) {
+                      form.innerHTML = response.data.form;
+                      renderForm();
+                    });
+                  } catch (error) {
+                    console.error(error);
+                  }
+
+                case 1:
+                case "end":
+                  return _context2.stop();
+              }
+            }
+          }, _callee2);
+        }));
+
+        return function cleanForm() {
+          return _ref4.apply(this, arguments);
+        };
+      }();
+
+      cleanForm();
       console.log('1');
     });
   });
@@ -2150,10 +2186,10 @@ var renderTable = function renderTable() {
   var formContainer = document.getElementById("form");
   editButtons.forEach(function (editButton) {
     var sendGetRequest = /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 editButton.addEventListener("click", function (event) {
                   //Dataset: La propiedad dataset en HTMLElement proporciona una interfaz lectura/escritura 
@@ -2173,14 +2209,14 @@ var renderTable = function renderTable() {
 
               case 1:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }));
 
       return function sendGetRequest() {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       };
     }();
 
@@ -2188,10 +2224,10 @@ var renderTable = function renderTable() {
   });
   deleteButtons.forEach(function (deleteButton) {
     var sendDeleteRequest = /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 deleteButton.addEventListener("click", function (event) {
                   var url = deleteButton.dataset.url;
@@ -2208,14 +2244,14 @@ var renderTable = function renderTable() {
 
               case 1:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3);
+        }, _callee4);
       }));
 
       return function sendDeleteRequest() {
-        return _ref5.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       };
     }();
 
@@ -2299,20 +2335,21 @@ deleteConfirm.addEventListener("click", function () {
 /*!**************************************************!*\
   !*** ./resources/js/admin/desktop/pagination.js ***!
   \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./resources/js/admin/desktop/form.js");
-
-var next = document.querySelectorAll(".next");
-var previous = document.querySelectorAll(".previous");
-var first = document.querySelectorAll(".first");
-var last = document.querySelectorAll(".last");
-first.addEventListener("click", function () {});
-last.addEventListener("click", function () {});
-next.addEventListener("click", function () {});
-last.addEventListener("click", function () {});
+// import {renderTable} from './form';
+// let next = document.querySelectorAll(".next");
+// let previous = document.querySelectorAll(".previous");
+// let first = document.querySelectorAll(".first");
+// let last = document.querySelectorAll(".last");
+// first.addEventListener("click", () => {
+// });
+// last.addEventListener("click", () => {
+// });
+// next.addEventListener("click", () => {
+// });
+// last.addEventListener("click", () => {
+// });
 
 /***/ }),
 

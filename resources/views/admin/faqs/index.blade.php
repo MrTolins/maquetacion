@@ -70,10 +70,19 @@
                     <ul class="second-menu-ul">
                         <li class="sub-menu-parent active"><a data-toggle="tab" >Home</a></li>
                         <li class="sub-menu-parent"><a data-toggle="tab" >Description</a></li>
-                        <li class="sub-menu-parent"><a data-toggle="tab" >Pictures</a></li>
-                        <li class="sub-menu-parent"><div class="form-submit">
-                            <input type="submit" value="Enviar" id="send-button">
-                        </div></li>
+                        <li class="sub-menu-parent">
+                            <div class="form-submit">
+                                <input type="submit" value="Send" id="send-button">
+                            </div>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <div id="clear-button" data-url="{{route('faqs_create')}}">
+                                <svg style="width:35px;height:35px;cursor: pointer;" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.57 4.46,15.03 5.24,16.26L6.7,14.8C6.25,13.97 6,13 6,12A6,6 0 0,1 12,6M18.76,7.74L17.3,9.2C17.74,10.04 18,11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.43 19.54,8.97 18.76,7.74Z" />
+                                </svg>
+                            </div>
+                        </li>
+                        
                     </ul>
                 </nav>
             
@@ -119,6 +128,7 @@
                     <h3></h3>
                 </div>
             </div>
+           
         </form>   
     </div>
 @endif
