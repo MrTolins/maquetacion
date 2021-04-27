@@ -1,39 +1,38 @@
 .messages-container{
 
     position: fixed;
-    top: 1em;
-	right: 2em;
+    bottom: 5vh;
+	left: 3%;
 	width: 30%;
-	z-index: 3;
+	z-index: 4000;
 	
 	&.show{
-		@include translateYInScreen(0, 0.5s);
+		@include translateXInScreen(0, 0.5s);
 	}
 
 	.message {
 		display: none;
 		text-align:left;
-		padding: 0.5em 0;
+		padding: 2em 0;
 		background-color:hsl(0, 0%, 100%);
-		border-radius: 4px;
 		max-width: 100%;
 		top: 0px;
 		position:relative;
 		box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
 
-		&.success.active{
-			// display: block;
-		}
-
-		&.info.active{
+		&.success.message-active{
 			display: block;
 		}
 
-		&.error.active{
+		&.info.message-active{
 			display: block;
 		}
 
-		&.reorder.active{
+		&.error.message-active{
+			display: block;
+		}
+
+		&.reorder.message-active{
 			display: block;
 		}
 
@@ -44,7 +43,7 @@
 			left: 0;
 			width: 4px;
 			height: 100%;
-		
+			
     	}
 
 		&.success .message-icon{
@@ -100,13 +99,15 @@
 			padding: 0 4em;
 			
 			.message-type {
+				font-family: Poppins;
 				color: hsl(0, 0%, 24%);
 				font-weight: 700;
 				margin-top: 0;
-				margin-bottom: 0;
+				margin-bottom: 0.5em;
 			}
 	
 			.message-description {
+				font-family: Lato;
 				font-size: 0.9em;
 				margin-top: 0;
 				margin-bottom: 0;

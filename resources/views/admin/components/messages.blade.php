@@ -1,12 +1,13 @@
-<div class="messages-container show">
+<div class="messages-container" id="messages-container">
     
-    <div class="message success active">
+    <div class="message success">
 
-        <div class="message-icon"></div>
+        <div class="message-icon">
+        </div>
         
         <div class="message-content">
             <p class="message-type">@lang('admin/messages.message-type-success')</p>
-            <p class="message-description message-description-success"></p>
+            <p class="message-description message-description-success" id="message-description-success">@lang('admin/faqs.faq-create')</p>
         </div>
 
         <div class="message-close">
@@ -22,7 +23,7 @@
         
         <div class="message-content">
             <p class="message-type">@lang('admin/messages.message-type-info')</p>
-            <p class="message-description message-description-info"></p>
+            <p class="message-description message-description-info" id="message-description-info"></p>
         </div>
 
         <div class="message-close">
@@ -38,7 +39,7 @@
         
         <div class="message-content">
             <p class="message-type">@lang('admin/messages.message-type-error')</p>
-            <p class="message-description message-description-error">@lang('admin/messages.message-description-error')</p>
+            <p class="message-description message-description-error" id="message-description-error">@lang('admin/messages.message-description-error')</p>
         </div>
 
         <div class="message-close">

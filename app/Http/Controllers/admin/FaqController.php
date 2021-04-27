@@ -24,7 +24,7 @@ class FaqController extends Controller
 
         $view = View::make('admin.faqs.index')
             ->with('faq', $this->faq)
-            ->with('faqs', $this->faq->where('active', 1)->paginate(15));
+            ->with('faqs', $this->faq->where('active', 1)->paginate(5));
 
         if(request()->ajax()) {
 
@@ -61,6 +61,12 @@ class FaqController extends Controller
             'active' => 1,
         ]);
 
+        if (request('id')){
+            $message = \Lang::get('admin/faqs.faq-update');
+        }else{
+            $message = \Lang::get('admin/faqs.faq-create');
+        }
+
         $view = View::make('admin.faqs.index')
         ->with('faqs', $this->faq->paginate(5))
         ->with('faq', $faq)
@@ -70,6 +76,7 @@ class FaqController extends Controller
             'table' => $view['table'],
             'form' => $view['form'],
             'id' => $faq->id,
+            'message' => $message
         ]);
     }
 
@@ -87,6 +94,7 @@ class FaqController extends Controller
     
             return response()->json([
                 'form' => $sections['form'],
+                
             ]); 
         }
         
@@ -101,6 +109,8 @@ class FaqController extends Controller
 
         $faq->delete();
 
+        $message = \Lang::get('admin/faqs.faq-delete');
+
         $view = View::make('admin.faqs.index')
             ->with('faq', $this->faq)
             ->with('faqs', $this->faq->where('active', 1)->paginate(5))
@@ -108,7 +118,8 @@ class FaqController extends Controller
         
         return response()->json([
             'table' => $view['table'],
-            'form' => $view['form']
+            'form' => $view['form'],
+            'message' => $message
         ]);
     }
 

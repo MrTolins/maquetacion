@@ -5,3 +5,5 @@ require('./sidebar');
 require('./modalDelete');
 require('./filterTable');
 require('./pagination');
+require('./messages');
+require('./wait');

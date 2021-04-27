@@ -1,4 +1,6 @@
-import {renderCkeditor} from './ckeditor'
+import {renderCkeditor} from './ckeditor';
+import {startWait, stopWait} from './wait';
+import {showMessage} from './messages';
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -67,16 +69,33 @@ export let renderForm = () => {
     
             let sendPostRequest = async () => {
     
+                startWait();
+
                 try {
                     await axios.post(url, data).then(response => {
                         form.id.value = response.data.id;
                         table.innerHTML = response.data.table;
+
+                        stopWait();
+                        showMessage('success', response.data.message);
                         renderTable();
                         
                     });
                      
                 } catch (error) {
-                    console.error(error);
+                    stopWait();
+
+                    if(error.response.status == '422'){
+    
+                        let errors = error.response.data.errors;      
+                        let errorMessage = '';
+    
+                        Object.keys(errors).forEach(function(key) {
+                            errorMessage += '<li>' + errors[key] + '</li>';
+                        })
+        
+                        showMessage('error', errorMessage);
+                    }
                 }
             };
     
@@ -89,28 +108,25 @@ export let renderForm = () => {
     clearButton.addEventListener("click", (event) => {
 
         event.preventDefault();
+        
+        let url = clearButton.dataset.url;
 
-        forms.forEach(form => { 
-            
-            let url = clearButton.dataset.url;
-    
-            let cleanForm = async () => {
-    
-                try {
-                        axios.get(url).then(response => {
-                        form.innerHTML = response.data.form;
-                        renderForm();
-                    });
-                     
-                } catch (error) {
-                    console.error(error);
-                }
-            };
-    
-            cleanForm();
-    
-            console.log('1');
-        });
+        let cleanForm = async () => {
+
+            try {
+                axios.get(url).then(response => {
+                    form.innerHTML = response.data.form;
+                    renderForm();
+                });
+                    
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        cleanForm();
+
+        console.log('1');
 
     });
 
@@ -123,6 +139,7 @@ export let renderTable = () => {
     let editButtons = document.querySelectorAll(".edit-button");
     let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
+    let paginationButtons = document.querySelectorAll('.table-pagination-button');
  
     
     editButtons.forEach(editButton => {
@@ -172,6 +189,31 @@ export let renderTable = () => {
     
         sendDeleteRequest();
     });
+
+    paginationButtons.forEach(paginationButton => {
+
+        paginationButton.addEventListener("click", () => {
+
+            let url = paginationButton.dataset.pagination;
+
+            let sendPaginationRequest = async () => {
+
+                try {
+                    await axios.get(url).then(response => {
+                        table.innerHTML = response.data.table;
+                        renderTable();
+                    });
+                    
+                } catch (error) {
+                    console.error(error);
+                }
+            };
+
+            sendPaginationRequest();
+            
+        });
+    });
+
 }
 
 renderForm();

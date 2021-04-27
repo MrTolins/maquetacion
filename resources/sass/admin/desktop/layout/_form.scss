@@ -134,7 +134,7 @@ textarea{
 
 
 #clear-button{
- 
+    cursor: pointer;
 }
 
 #clear-button:hover{
@@ -175,6 +175,7 @@ textarea{
     padding: 0; 
     margin: 0; 
 }
+
 
 .second-menu-nav > ul { 
     background:#80d4a4; 
