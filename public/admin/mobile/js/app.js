@@ -2634,63 +2634,61 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "scrollWindowElement": () => (/* binding */ scrollWindowElement)
 /* harmony export */ });
-function scrollWindowElement(element) {
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wait__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+ // import {trackingScroll, trackingPagination} from "./tracking";
+
+
+function scrollWindowElement(scrollWindowElement) {
   'use strict';
 
-  var scrollWindowElement = element;
-  var STATE_DEFAULT = 1;
-  var STATE_TOP_SIDE = 2;
-  var STATE_BOTTOM_SIDE = 3;
   var rafPending = false;
   var initialTouchPos = null;
   var lastTouchPos = null;
   var currentYPosition = 0;
-  var currentState = STATE_DEFAULT;
-  var handleSize = 10;
+  var paginationVisible = false;
 
   this.handleGestureStart = function (evt) {
-    //el evt esta recogiendo el evento de tocar
-    //solo hay un evento de touch
     if (evt.touches && evt.touches.length > 1) {
       return;
-    } //para poder utilizar desde ordenador
-
+    }
 
     if (scrollWindowElement.PointerEvent) {
       evt.target.setPointerCapture(evt.pointerId);
     } else {
       document.addEventListener('mousemove', this.handleGestureMove, true);
       document.addEventListener('mouseup', this.handleGestureEnd, true);
-    } //valor en el eje vertical donde has pulsado
-
+    }
 
     initialTouchPos = getGesturePointFromEvent(evt);
-  }.bind(this); //ffuncion que gestionará el movimiento del dedo
-
+  }.bind(this);
 
   this.handleGestureMove = function (evt) {
-    //si no se tocado initial touch
     if (!initialTouchPos) {
       return;
-    } //captura donde te estás moviendo
+    }
 
-
-    lastTouchPos = getGesturePointFromEvent(evt); //si rafPending vale falso no es verdadero
+    lastTouchPos = getGesturePointFromEvent(evt);
 
     if (rafPending) {
       return;
-    } //cuando lo conviertes a true ya no puede volver atrás
+    }
 
-
-    rafPending = true; //la ventana(html) Hacer mas fluidas la animaciones gracias a la función AnimFrame
-    //esta función está localizada en bootstrap
-    //onAnimeFrame es una función recogida dentro de otra función
-    //AnimFrameRequest lo va a cargar lo primero
-
+    rafPending = true;
     window.requestAnimFrame(onAnimFrame);
   }.bind(this);
 
   this.handleGestureEnd = function (evt) {
+    evt.preventDefault();
+
     if (evt.touches && evt.touches.length > 0) {
       return;
     }
@@ -2708,26 +2706,12 @@ function scrollWindowElement(element) {
     initialTouchPos = null;
   }.bind(this);
 
-  function updateScrollRestPosition() {
-    var transformStyle;
-    var differenceInY = initialTouchPos.y - lastTouchPos.y;
-    currentYPosition = currentYPosition - differenceInY;
-    transformStyle = currentYPosition + 'px';
-    scrollWindowElement.style.top = transformStyle;
-    scrollWindowElement.style.transition = 'all 300ms ease-out';
-    console.log(scrollWindowElement.offsetTop);
-    console.log(scrollWindowElement.getBoundingClientRect());
-  }
-
   function getGesturePointFromEvent(evt) {
-    var point = {}; //json
-    //dentro del json point hay una clave que será "y"
-    //"y" tiene como valor el evento de tocar, para saber donde he tocado
+    var point = {};
 
     if (evt.targetTouches) {
       point.y = evt.targetTouches[0].clientY;
     } else {
-      //coges la posicion de y
       point.y = evt.clientY;
     }
 
@@ -2735,26 +2719,131 @@ function scrollWindowElement(element) {
   }
 
   function onAnimFrame() {
-    //si es falso no seguirá con el código
     if (!rafPending) {
       return;
-    } //mira la diferencia entra la posición inicial y la posición final
+    }
 
+    var differenceInY = initialTouchPos.y - lastTouchPos.y;
+    var newYTransform = currentYPosition - differenceInY;
+    var transformStyle = newYTransform + 'px';
 
-    var differenceInY = initialTouchPos.y - lastTouchPos.y; //el movimiento que voy a hacer en pixeles
+    if (differenceInY < 1) {
+      if (scrollWindowElement.style.top > 0 + 'px') {
+        transformStyle = '0px';
+        scrollWindowElement.style.top = transformStyle;
+      }
 
-    var transformStyle = currentYPosition - differenceInY + 'px'; //codigo para limitar que puedas subir más de la cuenta la tabla de mobil
-    //si differenceInY es menor que 1, pregunta si en tu css el atributo top es mayor que 0 px
-    //si es mayor, se quedará en 0 px, si es menor, seguirá hacia arriba
-    //limitar el bottom de la tabla cuando se acaben los productos
-    //cuando llegas al limite de los productos llamas a pagination() PaginationVisible=true para evitar que lance muchas veces
-    //
+      if (scrollWindowElement.style.top < 0 + 'px') {
+        scrollWindowElement.style.top = transformStyle;
+      }
+    } else {
+      scrollWindowElement.style.top = transformStyle;
+    }
 
-    scrollWindowElement.style.top = transformStyle;
+    if (scrollWindowElement.getBoundingClientRect().bottom < window.innerHeight) {
+      if (!paginationVisible) {
+        pagination();
+        paginationVisible = true;
+      }
+    }
+
+    ;
     rafPending = false;
-  } //Cuatro eventos son llamados por la tabla (scrollWindowElement)
-  //passive:true para evitar que vaya a tirones el scroll
+  }
 
+  function updateScrollRestPosition() {
+    if (scrollWindowElement.style.top < 0 + 'px') {
+      var differenceInY = initialTouchPos.y - lastTouchPos.y;
+      currentYPosition = currentYPosition - differenceInY;
+
+      if (differenceInY > 0) {
+        var updateMove = {
+          "difference_in_y": differenceInY,
+          "current_y_position": currentYPosition,
+          "origin": "mobile",
+          "route": window.location.pathname,
+          "move": "toBottom",
+          "entity": scrollWindowElement.id
+        }; // trackingScroll(updateMove);
+      } else if (differenceInY < 0) {
+        var _updateMove = {
+          "difference_in_y": differenceInY,
+          "current_y_position": currentYPosition,
+          "origin": "mobile",
+          "route": window.location.pathname,
+          "move": "toTop",
+          "entity": scrollWindowElement.id
+        }; // trackingScroll(updateMove); 
+      }
+
+      ;
+      paginationVisible = false;
+    }
+  }
+
+  function pagination() {
+    var paginationRequest = /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var url, lastPage, urlParams, nextPage, updateMove;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                url = scrollWindowElement.dataset.pagination;
+                lastPage = scrollWindowElement.dataset.lastpage;
+                urlParams = new URL(url);
+                nextPage = parseInt(urlParams.searchParams.get('page'));
+
+                if (!(nextPage <= lastPage)) {
+                  _context.next = 10;
+                  break;
+                }
+
+                (0,_wait__WEBPACK_IMPORTED_MODULE_1__.startWait)();
+                updateMove = {
+                  "origin": "mobile",
+                  "route": window.location.pathname,
+                  "move": "next_elements",
+                  "entity": scrollWindowElement.id,
+                  "page": nextPage
+                };
+                _context.next = 10;
+                return axios.get(url).then(function (response) {
+                  if (updateMove.entity = 'table') {
+                    scrollWindowElement.insertAdjacentHTML('beforeend', response.data.table);
+                    ++nextPage;
+                    urlParams.searchParams.set('page', nextPage);
+                    scrollWindowElement.dataset.pagination = urlParams.toString();
+                    (0,_form__WEBPACK_IMPORTED_MODULE_2__.renderTable)();
+                    (0,_wait__WEBPACK_IMPORTED_MODULE_1__.stopWait)(); // trackingPagination(updateMove);
+                  }
+                });
+
+              case 10:
+                _context.next = 15;
+                break;
+
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](0);
+                console.error(_context.t0);
+
+              case 15:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 12]]);
+      }));
+
+      return function paginationRequest() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+
+    paginationRequest();
+  }
 
   scrollWindowElement.addEventListener('touchstart', this.handleGestureStart, {
     passive: true
@@ -2766,6 +2855,31 @@ function scrollWindowElement(element) {
   scrollWindowElement.addEventListener('touchcancel', this.handleGestureEnd, true);
 }
 ;
+
+/***/ }),
+
+/***/ "./resources/js/admin/mobile/wait.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/mobile/wait.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "startWait": () => (/* binding */ startWait),
+/* harmony export */   "stopWait": () => (/* binding */ stopWait)
+/* harmony export */ });
+var spinner = document.getElementById('spinner');
+var overlay = document.getElementById('overlay');
+var startWait = function startWait() {
+  spinner.classList.add('spinner-active');
+  overlay.classList.add('overlay-active');
+};
+var stopWait = function stopWait() {
+  spinner.classList.remove('spinner-active');
+  overlay.classList.remove('overlay-active');
+};
 
 /***/ }),
 
@@ -21091,6 +21205,8 @@ __webpack_require__(/*! ./modalDelete */ "./resources/js/admin/mobile/modalDelet
 __webpack_require__(/*! ./filterTable */ "./resources/js/admin/mobile/filterTable.js");
 
 __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
+
+__webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
 })();
 
 /******/ })()

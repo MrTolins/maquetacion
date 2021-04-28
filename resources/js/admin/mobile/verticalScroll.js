@@ -1,67 +1,55 @@
-export function scrollWindowElement(element){
+import {startWait, stopWait} from "./wait";
+// import {trackingScroll, trackingPagination} from "./tracking";
+import {renderTable} from './form';
+
+export function scrollWindowElement (scrollWindowElement){
 
     'use strict';
-
-    let scrollWindowElement = element;
-
-    let STATE_DEFAULT = 1;
-    let STATE_TOP_SIDE = 2;
-    let STATE_BOTTOM_SIDE = 3;
 
     let rafPending = false;
     let initialTouchPos = null;
     let lastTouchPos = null;
     let currentYPosition = 0;
-    let currentState = STATE_DEFAULT;
-    let handleSize = 10;
+    let paginationVisible = false;
 
-    this.handleGestureStart = function(evt) { //el evt esta recogiendo el evento de tocar
+    this.handleGestureStart = function(evt) {
 
-        //solo hay un evento de touch
         if(evt.touches && evt.touches.length > 1) {
             return;
         }
-        //para poder utilizar desde ordenador
+
         if (scrollWindowElement.PointerEvent) {
             evt.target.setPointerCapture(evt.pointerId);
         } else {
             document.addEventListener('mousemove', this.handleGestureMove, true);
             document.addEventListener('mouseup', this.handleGestureEnd, true);
         }
-        //valor en el eje vertical donde has pulsado
+
         initialTouchPos = getGesturePointFromEvent(evt);
 
     }.bind(this);
 
-    //ffuncion que gestionará el movimiento del dedo
     this.handleGestureMove = function (evt) {
 
-        //si no se tocado initial touch
         if(!initialTouchPos) {
             return;
         }
 
-        //captura donde te estás moviendo
         lastTouchPos = getGesturePointFromEvent(evt);
 
-        //si rafPending vale falso no es verdadero
         if(rafPending) {
             return;
         }
-        //cuando lo conviertes a true ya no puede volver atrás
+
         rafPending = true;
 
-        //la ventana(html) Hacer mas fluidas la animaciones gracias a la función AnimFrame
-        //esta función está localizada en bootstrap
-        //onAnimeFrame es una función recogida dentro de otra función
-        //AnimFrameRequest lo va a cargar lo primero
         window.requestAnimFrame(onAnimFrame);
 
     }.bind(this);
 
     this.handleGestureEnd = function(evt) {
 
-        
+        evt.preventDefault();
 
         if(evt.touches && evt.touches.length > 0) {
             return;
@@ -78,36 +66,18 @@ export function scrollWindowElement(element){
 
         updateScrollRestPosition();
 
-        
         initialTouchPos = null;
 
     }.bind(this);
 
-
-    function updateScrollRestPosition() {
-
-        let transformStyle;
-        let differenceInY = initialTouchPos.y - lastTouchPos.y;
-        
-        currentYPosition = currentYPosition - differenceInY;
-
-        transformStyle = currentYPosition+'px';
-        scrollWindowElement.style.top = transformStyle;
-        scrollWindowElement.style.transition = 'all 300ms ease-out';
-
-        console.log(scrollWindowElement.offsetTop);
-        console.log(scrollWindowElement.getBoundingClientRect());
-    }
-
+    
     function getGesturePointFromEvent(evt) {
 
-        let point = {}; //json
-        //dentro del json point hay una clave que será "y"
-        //"y" tiene como valor el evento de tocar, para saber donde he tocado
+        let point = {};
 
         if(evt.targetTouches) {
             point.y = evt.targetTouches[0].clientY;
-        } else { //coges la posicion de y
+        } else {
             point.y = evt.clientY;
         }
 
@@ -117,36 +87,126 @@ export function scrollWindowElement(element){
 
     function onAnimFrame() {
 
-        //si es falso no seguirá con el código
-
         if(!rafPending) {
             return;
         }
 
-        //mira la diferencia entra la posición inicial y la posición final
-
         let differenceInY = initialTouchPos.y - lastTouchPos.y;
-        //el movimiento que voy a hacer en pixeles
-        let transformStyle  = (currentYPosition - differenceInY)+'px';
-        //codigo para limitar que puedas subir más de la cuenta la tabla de mobil
-        //si differenceInY es menor que 1, pregunta si en tu css el atributo top es mayor que 0 px
-        //si es mayor, se quedará en 0 px, si es menor, seguirá hacia arriba
+        let newYTransform  = currentYPosition - differenceInY;
+        let transformStyle  = newYTransform +'px';
 
+        if(differenceInY < 1){
 
-        //limitar el bottom de la tabla cuando se acaben los productos
-        //cuando llegas al limite de los productos llamas a pagination() PaginationVisible=true para evitar que lance muchas veces
-        //
+            if(scrollWindowElement.style.top > 0+'px'){
+                transformStyle = '0px';
+                scrollWindowElement.style.top = transformStyle;
+            }
 
-        scrollWindowElement.style.top = transformStyle;
-        
-        
+            if(scrollWindowElement.style.top < 0+'px'){
+                scrollWindowElement.style.top = transformStyle;
+            }
+        }else{
+            scrollWindowElement.style.top = transformStyle;
+        }
+
+        if(scrollWindowElement.getBoundingClientRect().bottom < window.innerHeight ){
+            
+            if(!paginationVisible){
+                
+                pagination();
+                paginationVisible = true;
+            }
+        }; 
+      
         rafPending = false;
     }
 
-    
+    function updateScrollRestPosition() {
 
-    //Cuatro eventos son llamados por la tabla (scrollWindowElement)
-    //passive:true para evitar que vaya a tirones el scroll
+       
+        if(scrollWindowElement.style.top < 0+'px'){
+
+            let differenceInY = (initialTouchPos.y - lastTouchPos.y);
+            currentYPosition = (currentYPosition - differenceInY);
+
+            if(differenceInY > 0) {
+                
+                let updateMove = {
+                    "difference_in_y": differenceInY, 
+                    "current_y_position": currentYPosition,
+                    "origin": "mobile", 
+                    "route": window.location.pathname,
+                    "move": "toBottom",
+                    "entity": scrollWindowElement.id 
+                }
+
+                // trackingScroll(updateMove);
+
+            } else if(differenceInY < 0) {
+
+                let updateMove = {
+                    "difference_in_y": differenceInY, 
+                    "current_y_position": currentYPosition,
+                    "origin": "mobile", 
+                    "route": window.location.pathname,
+                    "move": "toTop",
+                    "entity": scrollWindowElement.id 
+                }
+
+                // trackingScroll(updateMove); 
+            };
+
+                paginationVisible = false;
+        }
+    }
+
+    function pagination() {
+
+        let paginationRequest = async () => {
+
+            try {
+
+                let url = scrollWindowElement.dataset.pagination;
+                let lastPage = scrollWindowElement.dataset.lastpage;
+                let urlParams = new URL(url);
+                let nextPage = parseInt(urlParams.searchParams.get('page'));
+
+                if(nextPage <= lastPage){
+
+                    startWait();
+
+                    let updateMove = {
+                        "origin": "mobile", 
+                        "route": window.location.pathname,
+                        "move": "next_elements",
+                        "entity": scrollWindowElement.id,
+                        "page":  nextPage
+                    }
+                    
+                    await axios.get(url).then(response => {
+                        
+                        if(updateMove.entity = 'table'){
+    
+                            scrollWindowElement.insertAdjacentHTML('beforeend', response.data.table);
+                            ++nextPage;
+                            urlParams.searchParams.set('page', nextPage);
+                            scrollWindowElement.dataset.pagination = urlParams.toString();
+
+                            renderTable();
+                            stopWait();
+                            // trackingPagination(updateMove);
+                        }
+                    });
+                }
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        paginationRequest();
+    }
+    
     scrollWindowElement.addEventListener('touchstart', this.handleGestureStart, {passive: true} );
     scrollWindowElement.addEventListener('touchmove', this.handleGestureMove, {passive: true} );
     scrollWindowElement.addEventListener('touchend', this.handleGestureEnd, true);

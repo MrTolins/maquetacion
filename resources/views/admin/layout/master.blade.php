@@ -25,12 +25,16 @@
             @include("admin.layout.partials.sidebar")
 
             @if(isset($filters))
-                @include('admin.components.table_filters', $filters)
+                @include('admin.components.table_filters', [
+                    'route' => $route, 
+                    'filters' => $filters, 
+                    'order' => $order
+                ])
             @endif
 
 
             <div class="master-title">
-                <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3>
+                <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3> 
             </div>
             <div class="main" id="main">
             

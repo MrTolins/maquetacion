@@ -6,4 +6,5 @@ require('./swipe');
 require('./modalDelete');
 require('./filterTable');
 require('./verticalScroll');
+require('./wait');
 

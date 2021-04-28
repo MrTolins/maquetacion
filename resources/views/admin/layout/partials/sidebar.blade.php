@@ -10,6 +10,7 @@
             <li class="sidebar-item" data-url="{{route("faqs_categories")}}">FAQs Categories</li>
             <li class="sidebar-item" data-url="{{route("users")}}">Users</li>
             <li class="sidebar-item" data-url="{{route("clients")}}">Clients</li>
+            <li class="sidebar-item" data-url="{{route("sliders")}}">Sliders</li>
         </ul>
     </div>
     
