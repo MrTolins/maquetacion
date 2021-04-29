@@ -1,7 +1,7 @@
 @php
     $route = 'faqs';
     $filters = ['category' => $faqs_categories, 'search' => true, 'date' => true, 'datesince' => true];
-    $order = ['fecha de creación' => 't_faqs.created_at', 'título' => 't_faqs.title', 'categoria' => 't_faqs_categories.name'];
+    $order = ['fecha de creación' => 't_faqs.created_at', 'título' => 't_faqs.title'];
 @endphp
 
 @extends('admin.layout.table_form')
@@ -70,7 +70,16 @@
                     <ul class="second-menu-ul">
                         <li class="sub-menu-parent active"><a data-toggle="tab" >Home</a></li>
                         <li class="sub-menu-parent"><a data-toggle="tab" >Description</a></li>
-                        
+                        <li class="sub-menu-parent">
+                            <section title=".switch-button">
+                                
+                                <div class="switch-button">  
+                                    <input type="checkbox" value="" id="switch-button" name="check" checked />
+                                    <label for="switch-button"></label>
+                                </div>
+                               
+                            </section>
+                        </li>
                         <div class="sub-menu-buttons">
                             <div id="clear-button" data-url="{{route('faqs_create')}}">
                                 <svg style="width:35px;height:35px;" viewBox="0 0 24 24">

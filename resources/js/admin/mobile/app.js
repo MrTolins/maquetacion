@@ -7,4 +7,5 @@ require('./modalDelete');
 require('./filterTable');
 require('./verticalScroll');
 require('./wait');
+require('./messages');
 

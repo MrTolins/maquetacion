@@ -1955,60 +1955,64 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var table = document.getElementById("table-container");
-var tableFilter = document.getElementById("table-filter");
-var filterForm = document.getElementById("filter-form");
 var renderFilterTable = function renderFilterTable() {
-  var openFilter = document.getElementById("open-filter");
-  var applyFilter = document.getElementById("apply-filter");
-  openFilter.addEventListener('click', function () {
-    openFilter.classList.remove('button-active');
-    tableFilter.classList.add('filter-active');
-    applyFilter.classList.add('button-active');
-  });
-  applyFilter.addEventListener('click', function () {
-    var data = new FormData(filterForm);
-    var url = filterForm.action;
+  var table = document.getElementById("table-container");
+  var tableFilter = document.getElementById("table-filter");
+  var filterForm = document.getElementById("filter-form");
 
-    var sendPostRequest = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios.post(url, data).then(function (response) {
-                  table.innerHTML = response.data.table;
-                  (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
-                  tableFilter.classList.remove('filter-active');
-                  applyFilter.classList.remove('button-active');
-                  openFilter.classList.add('button-active');
-                });
+  if (filterForm != null) {
+    var openFilter = document.getElementById("open-filter");
+    var applyFilter = document.getElementById("apply-filter");
+    openFilter.addEventListener('click', function () {
+      openFilter.classList.remove('button-active');
+      tableFilter.classList.add('filter-active');
+      applyFilter.classList.add('button-active');
+    });
+    applyFilter.addEventListener('click', function () {
+      var data = new FormData(filterForm);
+      var filters = {};
+      data.forEach(function (value, key) {
+        filters[key] = value;
+      });
+      var json = JSON.stringify(filters);
+      var url = filterForm.action;
 
-              case 3:
-                _context.next = 7;
-                break;
+      var sendPostRequest = /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  try {
+                    axios.get(url, {
+                      params: {
+                        filters: json
+                      }
+                    }).then(function (response) {
+                      table.innerHTML = response.data.table;
+                      (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
+                      tableFilter.classList.remove('filter-active');
+                      applyFilter.classList.remove('button-active');
+                      openFilter.classList.add('button-active');
+                    });
+                  } catch (error) {}
 
-              case 5:
-                _context.prev = 5;
-                _context.t0 = _context["catch"](0);
-
-              case 7:
-              case "end":
-                return _context.stop();
+                case 1:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee, null, [[0, 5]]);
-      }));
+          }, _callee);
+        }));
 
-      return function sendPostRequest() {
-        return _ref.apply(this, arguments);
-      };
-    }();
+        return function sendPostRequest() {
+          return _ref.apply(this, arguments);
+        };
+      }();
 
-    sendPostRequest();
-  });
+      sendPostRequest();
+    });
+  }
 };
 var hideFilterTable = function hideFilterTable() {
   var openFilter = document.getElementById("open-filter");

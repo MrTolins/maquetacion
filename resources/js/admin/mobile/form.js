@@ -1,6 +1,8 @@
 import {renderCkeditor} from './ckeditor'
 import {swipeRevealItem} from './swipe';
 import {scrollWindowElement} from './verticalScroll';
+import {showMessage} from './messages';
+import {startWait, stopWait} from './wait'
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -13,6 +15,7 @@ export let renderForm = () => {
     let sendButton = document.getElementById("send-button");
     let secondMenu = document.querySelectorAll(".second-menu-form");
     let secondMenuLi = document.querySelectorAll(".sub-menu-parent");
+    let onOffSwitch = document.getElementById('switch');
     
 
 
@@ -71,18 +74,29 @@ export let renderForm = () => {
                     await axios.post(url, data).then(response => {
                         form.id.value = response.data.id;
                         table.innerHTML = response.data.table;
+                        
+                        stopWait();
+                        showMessage('success', response.data.message);
                         renderTable();
-                        console.log('2');
                     });
-                     
+                    
                 } catch (error) {
-                    console.error(error);
+    
+                    if(error.response.status == '422'){
+    
+                        let errors = error.response.data.errors;      
+                        let errorMessage = '';
+    
+                        Object.keys(errors).forEach(function(key) {
+                            errorMessage += '<li>' + errors[key] + '</li>';
+                        })
+        
+                        showMessage('validation', errorMessage);
+                    }
                 }
             };
     
             sendPostRequest();
-    
-            console.log('1');
         });
     });
 

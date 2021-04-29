@@ -1933,56 +1933,59 @@ var table = document.getElementById("table-container");
 var tableFilter = document.getElementById("table-filter");
 var filterForm = document.getElementById("filter-form");
 var renderFilterTable = function renderFilterTable() {
-  var openFilter = document.getElementById("open-filter");
-  var applyFilter = document.getElementById("apply-filter");
-  openFilter.addEventListener('click', function () {
-    openFilter.classList.remove('button-active');
-    tableFilter.classList.add('filter-active');
-    applyFilter.classList.add('button-active');
-  });
-  applyFilter.addEventListener('click', function () {
-    var data = new FormData(filterForm);
-    var url = filterForm.action;
+  if (filterForm != null) {
+    var openFilter = document.getElementById("open-filter");
+    var applyFilter = document.getElementById("apply-filter");
+    openFilter.addEventListener('click', function () {
+      openFilter.classList.remove('button-active');
+      tableFilter.classList.add('filter-active');
+      applyFilter.classList.add('button-active');
+    });
+    applyFilter.addEventListener('click', function () {
+      var data = new FormData(filterForm);
+      var filters = {};
+      data.forEach(function (value, key) {
+        filters[key] = value;
+      });
+      var json = JSON.stringify(filters);
+      var url = filterForm.action;
 
-    var sendPostRequest = /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.prev = 0;
-                _context.next = 3;
-                return axios.post(url, data).then(function (response) {
-                  table.innerHTML = response.data.table;
-                  (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
-                  tableFilter.classList.remove('filter-active');
-                  applyFilter.classList.remove('button-active');
-                  openFilter.classList.add('button-active');
-                });
+      var sendPostRequest = /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  try {
+                    axios.get(url, {
+                      params: {
+                        filters: json
+                      }
+                    }).then(function (response) {
+                      table.innerHTML = response.data.table;
+                      (0,_form__WEBPACK_IMPORTED_MODULE_1__.renderTable)();
+                      tableFilter.classList.remove('filter-active');
+                      applyFilter.classList.remove('button-active');
+                      openFilter.classList.add('button-active');
+                    });
+                  } catch (error) {}
 
-              case 3:
-                _context.next = 7;
-                break;
-
-              case 5:
-                _context.prev = 5;
-                _context.t0 = _context["catch"](0);
-
-              case 7:
-              case "end":
-                return _context.stop();
+                case 1:
+                case "end":
+                  return _context.stop();
+              }
             }
-          }
-        }, _callee, null, [[0, 5]]);
-      }));
+          }, _callee);
+        }));
 
-      return function sendPostRequest() {
-        return _ref.apply(this, arguments);
-      };
-    }();
+        return function sendPostRequest() {
+          return _ref.apply(this, arguments);
+        };
+      }();
 
-    sendPostRequest();
-  });
+      sendPostRequest();
+    });
+  }
 };
 var hideFilterTable = function hideFilterTable() {
   var openFilter = document.getElementById("open-filter");
@@ -2015,6 +2018,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor */ "./resources/js/admin/mobile/ckeditor.js");
 /* harmony import */ var _swipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./swipe */ "./resources/js/admin/mobile/swipe.js");
 /* harmony import */ var _verticalScroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
+/* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./messages */ "./resources/js/admin/mobile/messages.js");
+/* harmony import */ var _wait__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2036,6 +2041,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var table = document.getElementById("table");
 var form = document.getElementById("form");
 var renderForm = function renderForm() {
@@ -2045,6 +2052,7 @@ var renderForm = function renderForm() {
   var sendButton = document.getElementById("send-button");
   var secondMenu = document.querySelectorAll(".second-menu-form");
   var secondMenuLi = document.querySelectorAll(".sub-menu-parent");
+  var onOffSwitch = document.getElementById('switch');
   secondMenu.forEach(function (secondMenuLi) {
     secondMenuLi.addEventListener('click', function () {
       for (var i = 0; i < labels.length; i++) {
@@ -2087,6 +2095,7 @@ var renderForm = function renderForm() {
 
       var sendPostRequest = /*#__PURE__*/function () {
         var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+          var errors, errorMessage;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
@@ -2096,8 +2105,9 @@ var renderForm = function renderForm() {
                   return axios.post(url, data).then(function (response) {
                     form.id.value = response.data.id;
                     table.innerHTML = response.data.table;
+                    (0,_wait__WEBPACK_IMPORTED_MODULE_5__.stopWait)();
+                    (0,_messages__WEBPACK_IMPORTED_MODULE_4__.showMessage)('success', response.data.message);
                     renderTable();
-                    console.log('2');
                   });
 
                 case 3:
@@ -2107,7 +2117,15 @@ var renderForm = function renderForm() {
                 case 5:
                   _context.prev = 5;
                   _context.t0 = _context["catch"](0);
-                  console.error(_context.t0);
+
+                  if (_context.t0.response.status == '422') {
+                    errors = _context.t0.response.data.errors;
+                    errorMessage = '';
+                    Object.keys(errors).forEach(function (key) {
+                      errorMessage += '<li>' + errors[key] + '</li>';
+                    });
+                    (0,_messages__WEBPACK_IMPORTED_MODULE_4__.showMessage)('validation', errorMessage);
+                  }
 
                 case 8:
                 case "end":
@@ -2123,7 +2141,6 @@ var renderForm = function renderForm() {
       }();
 
       sendPostRequest();
-      console.log('1');
     });
   });
   (0,_ckeditor__WEBPACK_IMPORTED_MODULE_1__.renderCkeditor)();
@@ -2258,6 +2275,48 @@ var deleteElement = function deleteElement(url) {
 };
 renderForm();
 renderTable();
+
+/***/ }),
+
+/***/ "./resources/js/admin/mobile/messages.js":
+/*!***********************************************!*\
+  !*** ./resources/js/admin/mobile/messages.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showMessage": () => (/* binding */ showMessage)
+/* harmony export */ });
+var closeButtons = document.querySelectorAll('.message-close');
+var messagesContainer = document.getElementById('messages-container');
+var messages = document.querySelectorAll('.message');
+var showMessage = function showMessage(state, messageText) {
+  messages.forEach(function (message) {
+    if (message.classList.contains(state)) {
+      var successMessage = document.getElementById('message-description-' + state);
+      messagesContainer.classList.add('show');
+      message.classList.add('message-active');
+      successMessage.innerHTML = messageText;
+      setTimeout(function () {
+        messagesContainer.classList.remove('show');
+        message.classList.remove('message-active');
+      }, 7000);
+    }
+
+    ;
+  });
+};
+closeButtons.forEach(function (closeButton) {
+  closeButton.addEventListener("click", function () {
+    messagesContainer.classList.remove('show');
+    var messagesActives = document.querySelectorAll('.message-active');
+    messagesActives.forEach(function (messageActive) {
+      messageActive.classList.remove('message-active');
+    });
+  });
+});
 
 /***/ }),
 
@@ -2655,6 +2714,7 @@ function scrollWindowElement(scrollWindowElement) {
   var lastTouchPos = null;
   var currentYPosition = 0;
   var paginationVisible = false;
+  var parentElementHeight = scrollWindowElement.parentElement.getBoundingClientRect().height;
 
   this.handleGestureStart = function (evt) {
     if (evt.touches && evt.touches.length > 1) {
@@ -2726,6 +2786,7 @@ function scrollWindowElement(scrollWindowElement) {
     var differenceInY = initialTouchPos.y - lastTouchPos.y;
     var newYTransform = currentYPosition - differenceInY;
     var transformStyle = newYTransform + 'px';
+    var offsetBottom = scrollWindowElement.getBoundingClientRect().height + scrollWindowElement.offsetTop;
 
     if (differenceInY < 1) {
       if (scrollWindowElement.style.top > 0 + 'px') {
@@ -2737,12 +2798,14 @@ function scrollWindowElement(scrollWindowElement) {
         scrollWindowElement.style.top = transformStyle;
       }
     } else {
-      scrollWindowElement.style.top = transformStyle;
+      if (offsetBottom > parentElementHeight) {
+        scrollWindowElement.style.top = transformStyle;
+      }
     }
 
     if (scrollWindowElement.getBoundingClientRect().bottom < window.innerHeight) {
       if (!paginationVisible) {
-        pagination();
+        scrollPagination();
         paginationVisible = true;
       }
     }
@@ -2752,9 +2815,19 @@ function scrollWindowElement(scrollWindowElement) {
   }
 
   function updateScrollRestPosition() {
+    var offsetBottom = scrollWindowElement.getBoundingClientRect().height + scrollWindowElement.offsetTop;
+
     if (scrollWindowElement.style.top < 0 + 'px') {
       var differenceInY = initialTouchPos.y - lastTouchPos.y;
-      currentYPosition = currentYPosition - differenceInY;
+
+      if (offsetBottom > parentElementHeight) {
+        currentYPosition = currentYPosition - differenceInY;
+      } else {
+        if (!paginationVisible) {
+          scrollPagination();
+          paginationVisible = true;
+        }
+      }
 
       if (differenceInY > 0) {
         var updateMove = {
@@ -2781,26 +2854,20 @@ function scrollWindowElement(scrollWindowElement) {
     }
   }
 
-  function pagination() {
-    var paginationRequest = /*#__PURE__*/function () {
+  function scrollPagination() {
+    var scrollPaginationRequest = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var url, lastPage, urlParams, nextPage, updateMove;
+        var pagination, url, lastPage, urlParams, nextPage, updateMove;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                url = scrollWindowElement.dataset.pagination;
-                lastPage = scrollWindowElement.dataset.lastpage;
+                pagination = scrollWindowElement.querySelector('.pagination');
+                url = pagination.dataset.pagination;
+                lastPage = pagination.dataset.lastpage;
                 urlParams = new URL(url);
                 nextPage = parseInt(urlParams.searchParams.get('page'));
-
-                if (!(nextPage <= lastPage)) {
-                  _context.next = 10;
-                  break;
-                }
-
-                (0,_wait__WEBPACK_IMPORTED_MODULE_1__.startWait)();
                 updateMove = {
                   "origin": "mobile",
                   "route": window.location.pathname,
@@ -2808,41 +2875,48 @@ function scrollWindowElement(scrollWindowElement) {
                   "entity": scrollWindowElement.id,
                   "page": nextPage
                 };
-                _context.next = 10;
+
+                if (!(nextPage <= lastPage)) {
+                  _context.next = 11;
+                  break;
+                }
+
+                (0,_wait__WEBPACK_IMPORTED_MODULE_1__.startWait)();
+                _context.next = 11;
                 return axios.get(url).then(function (response) {
                   if (updateMove.entity = 'table') {
                     scrollWindowElement.insertAdjacentHTML('beforeend', response.data.table);
                     ++nextPage;
                     urlParams.searchParams.set('page', nextPage);
-                    scrollWindowElement.dataset.pagination = urlParams.toString();
+                    pagination.dataset.pagination = urlParams.toString();
                     (0,_form__WEBPACK_IMPORTED_MODULE_2__.renderTable)();
                     (0,_wait__WEBPACK_IMPORTED_MODULE_1__.stopWait)(); // trackingPagination(updateMove);
                   }
                 });
 
-              case 10:
-                _context.next = 15;
+              case 11:
+                _context.next = 16;
                 break;
 
-              case 12:
-                _context.prev = 12;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 console.error(_context.t0);
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 13]]);
       }));
 
-      return function paginationRequest() {
+      return function scrollPaginationRequest() {
         return _ref.apply(this, arguments);
       };
     }();
 
-    paginationRequest();
+    return scrollPaginationRequest();
   }
 
   scrollWindowElement.addEventListener('touchstart', this.handleGestureStart, {
@@ -21207,6 +21281,8 @@ __webpack_require__(/*! ./filterTable */ "./resources/js/admin/mobile/filterTabl
 __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
 
 __webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
+
+__webpack_require__(/*! ./messages */ "./resources/js/admin/mobile/messages.js");
 })();
 
 /******/ })()
