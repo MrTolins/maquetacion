@@ -521,10 +521,14 @@ body {
 }
 
 .form {
+  display: none;
   width: 100%;
   height: auto;
   text-align: center;
-  margin-top: 9em;
+  margin-top: 6em;
+}
+.form.active {
+  display: block;
 }
 
 .form-title {
@@ -737,9 +741,18 @@ body {
 }
 
 .table-container {
-  height: 40vh;
+  margin-top: 8.5em;
   overflow: hidden;
+  display: none;
   width: 100%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  position: relative;
+  transition: all 300ms ease-out;
+}
+.table-container.active {
+  display: block;
 }
 
 .table-container .table {
@@ -926,6 +939,35 @@ td {
   font-size: 60px;
   color: #f1f1f1;
   padding: 0;
+}
+
+.bottombar {
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  position: fixed;
+  top: 90vh;
+  width: 100%;
+  z-index: 1001;
+}
+.bottombar .bottombar-item {
+  background-color: #6cca95;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+}
+.bottombar.bottombar-active {
+  background-color: black;
+}
+.bottombar svg {
+  height: 1.5em;
+  padding: 1em;
+  width: 1.5em;
+}
+.bottombar svg path {
+  fill: white;
 }
 
 .modal-delete {

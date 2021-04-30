@@ -36,11 +36,15 @@
             <div class="master-title">
                 <h3 id="lang-faqs">@lang('admin/faqs.parent_section')</h3> 
             </div>
-            <div class="main" id="main">
-            
 
+            <div class="main" id="main">
                 @yield('content')
             </div>
+
+            @if($agent->isMobile())
+                @include('admin.layout.partials.bottombar')
+            @endif
+            
         </div>  
         @include("admin.layout.partials.js")  
     </body>

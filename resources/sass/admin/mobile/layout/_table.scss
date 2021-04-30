@@ -1,6 +1,8 @@
 .table{
     width: 100%;
     height: auto;
+
+    
 }
 
 .table-title{
@@ -23,9 +25,17 @@
 }
 
 .table-container{
-    height: 40vh;
+    margin-top: 8.5em;
     overflow: hidden;
+    display: none;
     width: 100%;
+    height: max-content;
+    position: relative;
+    transition: all 300ms ease-out;
+
+    &.active{
+        display: block;
+    }
 }
 
 .table-container .table{

@@ -40,9 +40,9 @@
                 </div> 
             @endforeach 
 
-            @if($agent->isDesktop())
-                @include('admin.components.table_pagination', ['items' => $faqs])
-            @endif
+            
+            @include('admin.components.table_pagination', ['items' => $faqs])
+          
 
         </div>
     @endif

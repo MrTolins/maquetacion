@@ -1870,6 +1870,55 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/admin/mobile/bottombarMenu.js":
+/*!****************************************************!*\
+  !*** ./resources/js/admin/mobile/bottombarMenu.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showForm": () => (/* binding */ showForm),
+/* harmony export */   "showTable": () => (/* binding */ showTable)
+/* harmony export */ });
+/* harmony import */ var _filterTable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./filterTable */ "./resources/js/admin/mobile/filterTable.js");
+/* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
+
+
+var bottombarItems = document.querySelectorAll('.bottombar-item');
+var table = document.getElementById("table");
+var form = document.getElementById("form");
+bottombarItems.forEach(function (bottombarItem) {
+  bottombarItem.addEventListener("click", function () {
+    var activeElements = document.querySelectorAll(".bottombar-active");
+    activeElements.forEach(function (activeElement) {
+      activeElement.classList.remove("bottombar-active");
+    });
+    bottombarItem.classList.add('bottombar-active');
+
+    if (bottombarItem.dataset.option == 'form') {
+      showForm();
+    }
+
+    if (bottombarItem.dataset.option == 'table') {
+      showTable(bottombarItem.dataset.url);
+    }
+  });
+});
+var showForm = function showForm() {
+  form.classList.add('active');
+  table.classList.remove('active');
+  (0,_filterTable__WEBPACK_IMPORTED_MODULE_0__.hideFilterTable)();
+};
+var showTable = function showTable(url) {
+  table.classList.add('active');
+  form.classList.remove('active');
+  (0,_filterTable__WEBPACK_IMPORTED_MODULE_0__.showFilterTable)();
+};
+
+/***/ }),
+
 /***/ "./resources/js/admin/mobile/ckeditor.js":
 /*!***********************************************!*\
   !*** ./resources/js/admin/mobile/ckeditor.js ***!
@@ -2473,8 +2522,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "swipeRevealItem": () => (/* binding */ swipeRevealItem)
 /* harmony export */ });
 /* harmony import */ var _form__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form */ "./resources/js/admin/mobile/form.js");
-/* harmony import */ var _verticalScroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/verticalScroll.js");
-
 
 function swipeRevealItem(element) {
   'use strict';
@@ -21283,6 +21330,8 @@ __webpack_require__(/*! ./verticalScroll */ "./resources/js/admin/mobile/vertica
 __webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
 
 __webpack_require__(/*! ./messages */ "./resources/js/admin/mobile/messages.js");
+
+__webpack_require__(/*! ./bottombarMenu */ "./resources/js/admin/mobile/bottombarMenu.js");
 })();
 
 /******/ })()

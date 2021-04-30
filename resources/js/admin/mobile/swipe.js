@@ -1,5 +1,4 @@
 import {deleteElement, editElement} from './form';
-import {scrollWindowElement} from './verticalScroll';
 
 export function swipeRevealItem (element){
 
@@ -21,9 +20,6 @@ export function swipeRevealItem (element){
     let rightSwipeVisible = 0;
     let itemWidth = swipeFrontElement.clientWidth;
     let slopValue = itemWidth * (2/4);
-
-
-    
 
     this.resize = function() {
         itemWidth = swipeFrontElement.clientWidth;

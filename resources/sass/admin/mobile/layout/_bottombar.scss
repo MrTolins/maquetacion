@@ -1,0 +1,36 @@
+.bottombar{
+
+	display: flex;
+	height: 10vh;
+	justify-content: space-between;
+	position: fixed;
+	top: 90vh;
+	width: 100%;
+	z-index: 1001;
+
+	.bottombar-item{
+
+		background-color:#6cca95;
+		text-align: center;
+		margin: 0 auto;
+		border-radius: 100%;
+		width: 60px;
+		height: 60px;
+	}
+
+		&.bottombar-active{
+			background-color: black;
+			
+		}
+
+		svg{
+			height: 1.5em;
+			padding: 1em;
+			width: 1.5em;
+
+			path{
+				fill: hsl(0, 0%, 100%);
+			}
+		}
+	}
+

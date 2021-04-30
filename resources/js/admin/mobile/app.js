@@ -8,4 +8,6 @@ require('./filterTable');
 require('./verticalScroll');
 require('./wait');
 require('./messages');
+require('./bottombarMenu');
+
 
