@@ -18,6 +18,14 @@ class FaqController extends Controller
     {
         $this->faq = $faq;
         $this->agent = $agent;
+
+        if ($this->agent->isMobile()) {
+            $this->paginate = 10;
+        }
+
+        if ($this->agent->isDesktop()) {
+            $this->paginate = 6;
+        }
     }
 
     public function index()
@@ -97,30 +105,15 @@ class FaqController extends Controller
     {
        
 
-        if($this->agent->isMobile()){
-            $view = View::make('admin.faqs.index')
-            ->with('faq', $faq)
-            ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate(10));        
-        }
-        
-        if($this->agent->isDesktop()){
-            $view = View::make('admin.faqs.index')
-            ->with('faq', $faq)
-            ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate(6));        
-        }
-        
-        if(request()->ajax()) {
+        $view = View::make('admin.faqs.index')
+        ->with('faq', $faq)
+        ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
+        ->renderSections();        
 
-            $sections = $view->renderSections(); 
-    
-            return response()->json([
-                'form' => $sections['form'],
-                
-            ]); 
-        }
-        
-        
-        return $view;
+        return response()->json([
+            'table' => $view['table'],
+            'form' => $view['form'],
+        ]);
     }
 
     public function destroy(Faq $faq)

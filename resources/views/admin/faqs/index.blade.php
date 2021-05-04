@@ -65,76 +65,135 @@
 
             {{ csrf_field() }}
             
-            <div class="second-menu-form">
-                <nav class="second-menu-nav">
-                    <ul class="second-menu-ul">
-                        <li class="sub-menu-parent active"><a data-toggle="tab" >Home</a></li>
-                        <li class="sub-menu-parent"><a data-toggle="tab" >Description</a></li>
-                        <li class="sub-menu-parent">
-                            <section title=".switch-button">
-                                
-                                <div class="switch-button">  
-                                    <input type="checkbox" value="" id="switch-button" name="check" checked />
-                                    <label for="switch-button"></label>
-                                </div>
-                               
-                            </section>
-                        </li>
-                        <div class="sub-menu-buttons">
-                            <div id="clear-button" data-url="{{route('faqs_create')}}">
-                                <svg style="width:35px;height:35px;" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.57 4.46,15.03 5.24,16.26L6.7,14.8C6.25,13.97 6,13 6,12A6,6 0 0,1 12,6M18.76,7.74L17.3,9.2C17.74,10.04 18,11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.43 19.54,8.97 18.76,7.74Z" />
-                                </svg>
-                            </div>
-
-                            <div class="form-submit">
-                                <input type="submit" value="Send" id="send-button">
-                            </div>
-                        </div>
+            <div class="tabs-container">
+                <div class="tabs-container-menu">
+                    <ul>
+                        <li class="tab-item tab-active" data-tab="contenido">
+                            Contenido
+                        </li>  
+                        <li class="tab-item" data-tab="imagenes">
+                            Imágenes
+                        </li>     
                     </ul>
-                </nav>
-            
-                <div class="home active">
-                    <div class="form-group">
-                        <div class="form-label">
-                            <label for="pregunta" class="label">Title</label>
+                </div>
+                
+                <div class="tabs-container-buttons">
+                    
+                    <div class="sub-menu-buttons">
+                        <div id="clear-button" data-url="{{route('faqs_create')}}">
+                            <svg style="width:35px;height:35px;" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12,6V9L16,5L12,1V4A8,8 0 0,0 4,12C4,13.57 4.46,15.03 5.24,16.26L6.7,14.8C6.25,13.97 6,13 6,12A6,6 0 0,1 12,6M18.76,7.74L17.3,9.2C17.74,10.04 18,11 18,12A6,6 0 0,1 12,18V15L8,19L12,23V20A8,8 0 0,0 20,12C20,10.43 19.54,8.97 18.76,7.74Z" />
+                            </svg>
                         </div>
-                        <div class="form-input">
-                            <input type="text" class="input" name="title" value="{{isset($faq->title) ? $faq->title : ''}}" placeholder="Add a title" >  
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="form-label">
-                            <label for="respuesta">Description</label>
-                        </div>
-                        <div class="form-input">
-                            <textarea class="ckeditor input" name="description" value="{{isset($faq->description) ? $faq->description : ''}}">{{isset($faq->description) ? $faq->description : ''}}</textarea>  
+                        <div class="form-submit">
+                            <input type="submit" value="Enviar" id="send-button">
                         </div>
                     </div>
                     
+                </div>
+            </div>
+            
+            <div class="tab-panel tab-active" data-tab="contenido">
+                <div class="two-columns">
                     <div class="form-group">
                         <div class="form-label">
-                            <label for="select">Select Category</label>
+                            <label for="category_id" class="label-highlight">
+                                Categoría 
+                            </label>
                         </div>
                         <div class="form-input">
-                            <select class="form-select" name="category_id" value="" id="categories">
-
+                            <select name="category_id" data-placeholder="Seleccione una categoría" class="input-highlight" id="category-select">
+                                <option></option>
                                 @foreach($faqs_categories as $faq_category)
-                                    <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>                
+                                    <option value="{{$faq_category->id}}" {{$faq->category_id == $faq_category->id ? 'selected':''}} class="category_id">{{ $faq_category->name }}</option>
                                 @endforeach
+                            </select>                   
+                        </div>
+                    </div>
+                </div>
 
-                            </select>
+                @component('admin.components.locale')
+        
+                    <div class="locale-panel locale-active" data-tab="castellano">
+                        <div class="one-column">
+                
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label for="name" class="label-highlight">Título</label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="name" value="{{isset($faq->title) ? $faq->title : ''}}"  class="input-highlight"  />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="one-column">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label for="description" class="label-highlight">Descripción</label>
+                                </div>
+                                <div class="form-input">
+                                    <textarea class="ckeditor" name="description" class="input-highlight">{{isset($faq->description) ? $faq->description : ''}}</textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {{-- <div class="form-submit">
-                        <input type="submit" value="Enviar" id="send-button">
-                    </div> --}}
-                </div>
-                <div class="description">
-                    <h3></h3>
-                </div>
+                    <div class="locale-panel" data-tab="ingles">
+
+                        <div class="one-column">                
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label for="name" class="label-highlight">Title</label>
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="name" value="{{isset($faq->title) ? $faq->title : ''}}"  class="input-highlight"  />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="one-column">
+                            <div class="form-group">
+                                <div class="form-label">
+                                    <label for="description" class="label-highlight">Description</label>
+                                </div>
+                                <div class="form-input">
+                                    <textarea class="ckeditor" name="description" class="input-highlight">{{isset($faq->description) ? $faq->description : ''}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                @endcomponent
+            </div>
+
+            <div class="tab-panel" data-tab="imagenes">
+                
+                @component('admin.components.locale')
+        
+                    <div class="locale-panel locale-active" data-tab="castellano">
+                        
+                        <div class="one-column">
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt">Arrastra el archivo aquí o haz click para subirlo</span>
+                                <input type="file" name="myFile" class="drop-zone__input">
+                            </div>            
+                        </div>
+                    </div>
+
+                    <div class="locale-panel" data-tab="ingles">
+                        
+                        <div class="one-column">
+                            <div class="drop-zone">
+                                <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                                <input type="file" name="myFile" class="drop-zone__input">
+                            </div>            
+                        </div>
+                    </div>
+
+                @endcomponent
+                
             </div>
            
         </form>   

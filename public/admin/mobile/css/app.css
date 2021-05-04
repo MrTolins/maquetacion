@@ -3,13 +3,32 @@ img {
   max-width: 100%;
 }
 
-.btn-main {
-  background-color: #1074bc;
-  border-color: #1074bc;
-  border-radius: 50%;
-  color: #1074bc;
-  height: 3em;
-  margin: 0 2%;
+.one-column .form-group {
+  width: 100%;
+}
+
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.two-columns .form-group {
+  width: 47%;
+}
+
+.three-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.three-columns .form-group {
+  width: 32%;
+}
+
+.four-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.four-columns .form-group {
+  width: 23%;
 }
 
 .btn-main:hover {

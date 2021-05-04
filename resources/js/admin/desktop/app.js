@@ -7,3 +7,6 @@ require('./filterTable');
 require('./pagination');
 require('./messages');
 require('./wait');
+require('./tabs');
+require('./localeTabs');
+require('./images');
