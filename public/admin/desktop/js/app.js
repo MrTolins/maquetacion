@@ -2049,6 +2049,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ckeditor */ "./resources/js/admin/desktop/ckeditor.js");
 /* harmony import */ var _wait__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./wait */ "./resources/js/admin/desktop/wait.js");
 /* harmony import */ var _messages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./messages */ "./resources/js/admin/desktop/messages.js");
+/* harmony import */ var _tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tabs */ "./resources/js/admin/desktop/tabs.js");
+/* harmony import */ var _localeTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./localeTabs */ "./resources/js/admin/desktop/localeTabs.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2066,6 +2068,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -2208,6 +2212,8 @@ var renderForm = function renderForm() {
     console.log('1');
   });
   (0,_ckeditor__WEBPACK_IMPORTED_MODULE_1__.renderCkeditor)();
+  (0,_tabs__WEBPACK_IMPORTED_MODULE_4__.renderTabs)();
+  (0,_localeTabs__WEBPACK_IMPORTED_MODULE_5__.renderLocaleTabs)();
 };
 var renderTable = function renderTable() {
   var editButtons = document.querySelectorAll(".edit-button");
@@ -2412,24 +2418,36 @@ function updateThumbnail(dropZoneElement, file) {
 /*!**************************************************!*\
   !*** ./resources/js/admin/desktop/localeTabs.js ***!
   \**************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var localeItems = document.querySelectorAll('.locale-item');
-var localePanels = document.querySelectorAll(".locale-panel");
-localeItems.forEach(function (localeItem) {
-  localeItem.addEventListener("click", function () {
-    var activeLocale = document.querySelectorAll(".locale-active");
-    activeLocale.forEach(function (activeLocale) {
-      activeLocale.classList.remove("locale-active");
-    });
-    localeItem.classList.add("locale-active");
-    localePanels.forEach(function (localePanel) {
-      if (localePanel.dataset.tab == localeItem.dataset.tab) {
-        localePanel.classList.add("locale-active");
-      }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderLocaleTabs": () => (/* binding */ renderLocaleTabs)
+/* harmony export */ });
+var renderLocaleTabs = function renderLocaleTabs() {
+  var localeItems = document.querySelectorAll('.locale-item');
+  var localePanels = document.querySelectorAll(".locale-panel");
+  localeItems.forEach(function (localeItem) {
+    localeItem.addEventListener("click", function () {
+      var activeLocale = document.querySelectorAll(".locale-active");
+      var activeTab = localeItem.dataset.tab;
+      activeLocale.forEach(function (activeLocale) {
+        if (activeLocale.dataset.tab == activeTab) {
+          activeLocale.classList.remove("locale-active");
+        }
+      });
+      localeItem.classList.add("locale-active");
+      localePanels.forEach(function (localePanel) {
+        if (localePanel.dataset.tab == activeTab) {
+          if (localePanel.dataset.localetab == localeItem.dataset.localetab) {
+            localePanel.classList.add("locale-active");
+          }
+        }
+      });
     });
   });
-});
+};
 
 /***/ }),
 
@@ -2643,24 +2661,31 @@ sidebarItems.forEach(function (sidebarItem) {
 /*!********************************************!*\
   !*** ./resources/js/admin/desktop/tabs.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var tabsItems = document.querySelectorAll('.tab-item');
-var tabPanels = document.querySelectorAll(".tab-panel");
-tabsItems.forEach(function (tabItem) {
-  tabItem.addEventListener("click", function () {
-    var activeElements = document.querySelectorAll(".tab-active");
-    activeElements.forEach(function (activeElement) {
-      activeElement.classList.remove("tab-active");
-    });
-    tabItem.classList.add("tab-active");
-    tabPanels.forEach(function (tabPanel) {
-      if (tabPanel.dataset.tab == tabItem.dataset.tab) {
-        tabPanel.classList.add("tab-active");
-      }
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderTabs": () => (/* binding */ renderTabs)
+/* harmony export */ });
+var renderTabs = function renderTabs() {
+  var tabsItems = document.querySelectorAll('.tab-item');
+  var tabPanels = document.querySelectorAll(".tab-panel");
+  tabsItems.forEach(function (tabItem) {
+    tabItem.addEventListener("click", function () {
+      var activeElements = document.querySelectorAll(".tab-active");
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("tab-active");
+      });
+      tabItem.classList.add("tab-active");
+      tabPanels.forEach(function (tabPanel) {
+        if (tabPanel.dataset.tab == tabItem.dataset.tab) {
+          tabPanel.classList.add("tab-active");
+        }
+      });
     });
   });
-});
+};
 
 /***/ }),
 

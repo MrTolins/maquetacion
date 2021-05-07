@@ -1,6 +1,8 @@
 import {renderCkeditor} from './ckeditor';
 import {startWait, stopWait} from './wait';
 import {showMessage} from './messages';
+import {renderTabs} from './tabs';
+import {renderLocaleTabs} from './localeTabs';
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -14,9 +16,6 @@ export let renderForm = () => {
     let clearButton = document.getElementById("clear-button");
     let secondMenu = document.querySelectorAll(".second-menu-form");
     let secondMenuLi = document.querySelectorAll(".sub-menu-parent");
-    
-
-
 
     secondMenu.forEach(secondMenuLi => {
 
@@ -130,8 +129,9 @@ export let renderForm = () => {
 
     });
 
-
     renderCkeditor();
+    renderTabs();
+    renderLocaleTabs();
 }
 
 export let renderTable = () => {

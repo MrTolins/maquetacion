@@ -1,0 +1,92 @@
+.tabs{
+    background-color: #80d4a4;
+}
+
+.tabs-container{
+    background-color: #80d4a4;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -1em;
+}
+
+.tabs-container-menu{
+
+    width: 100%;
+
+    ul{
+        background-color: #80d4a4;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        font-family: Poppins;
+    }
+
+    li{
+        color: hsl(0, 0%, 0%);
+        cursor: pointer;
+        padding: 1em 0.5em;
+        text-align: center;
+    }
+
+    li.tab-active{
+        background-color: #80d4a4 ;
+        color: $white;
+    }
+}
+
+.tabs-container-buttons{
+
+    display: flex;
+    margin-top: 0.2em;
+    padding: 0 0.5em;
+}
+
+.tab-panel{
+    display: none;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #80d4a4;
+}
+
+.tab-panel.tab-active{
+    display: block;
+    padding: 2em;
+}
+
+
+.locale-container-menu{
+
+    width: 100%;
+    margin-top: 1em;
+
+    ul{
+        background-color: #80d4a4;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        font-family: Poppins;
+    }
+
+    li{
+        color: hsl(0, 0%, 0%);
+        cursor: pointer;
+        padding: 1em 0.5em;
+        text-align: center;
+    }
+
+    li.locale-active{
+        background-color: #80d4a4 ;
+        color: $white;
+    }
+}
+
+.locale-panel{
+    display: none;
+    background-color: rgb(245, 245, 245);
+    border: 1px solid #80d4a4;
+    
+}
+
+.locale-panel.locale-active{
+    display: block;
+    padding: 2em;
+}

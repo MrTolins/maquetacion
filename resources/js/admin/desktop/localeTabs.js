@@ -1,24 +1,33 @@
-const localeItems = document.querySelectorAll('.locale-item');
-const localePanels = document.querySelectorAll(".locale-panel");
 
+export let renderLocaleTabs = () => {
 
-localeItems.forEach(localeItem => { 
+    let localeItems = document.querySelectorAll('.locale-item');
+    let localePanels = document.querySelectorAll(".locale-panel");
+    
+    localeItems.forEach(localeItem => { 
+    
+        localeItem.addEventListener("click", () => {
+    
+            let activeLocale = document.querySelectorAll(".locale-active");
+            let activeTab = localeItem.dataset.tab;
+    
+            activeLocale.forEach(activeLocale => {
 
-    localeItem.addEventListener("click", () => {
-
-        let activeLocale = document.querySelectorAll(".locale-active");
-
-        activeLocale.forEach(activeLocale => {
-            activeLocale.classList.remove("locale-active");
-        });
-        
-        localeItem.classList.add("locale-active");
-
-        localePanels.forEach(localePanel => {
-
-            if(localePanel.dataset.tab == localeItem.dataset.tab){
-                localePanel.classList.add("locale-active"); 
-            }
+                if(activeLocale.dataset.tab == activeTab){
+                    activeLocale.classList.remove("locale-active");
+                }
+            });
+             
+            localeItem.classList.add("locale-active");
+    
+            localePanels.forEach(localePanel => {
+    
+                if(localePanel.dataset.tab == activeTab){
+                    if(localePanel.dataset.localetab == localeItem.dataset.localetab){
+                        localePanel.classList.add("locale-active"); 
+                    }
+                }      
+            });
         });
     });
-});
+}

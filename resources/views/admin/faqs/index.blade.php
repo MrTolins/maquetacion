@@ -19,7 +19,7 @@
             @foreach($faqs as $faq_element)
                 <div class="table-row swipe-element">
                     <div class="table-field-container swipe-front" data-swipe="{{$faq_element->id}}">
-                            <div class="table-field"><p><span>Title:</span> {{$faq_element->title}}</p></div>
+                            <div class="table-field"><p><span>Name:</span> {{$faq_element->name}}</p></div>
                             <div class="table-field"><p><span>Category:</span> {{$faq_element->category->name}}</p></div>
                             <div class="table-field"><p><span>Date:</span> {{$faq_element->created_at}}</p></div>
                     </div>
@@ -68,17 +68,17 @@
             <div class="tabs-container">
                 <div class="tabs-container-menu">
                     <ul>
-                        <li class="tab-item tab-active" data-tab="contenido">
+                        <li class="tab-item tab-active" data-tab="content">
                             Contenido
                         </li>  
-                        <li class="tab-item" data-tab="imagenes">
+                        <li class="tab-item" data-tab="images">
                             Imágenes
                         </li>     
                     </ul>
                 </div>
                 
                 <div class="tabs-container-buttons">
-                    
+                   
                     <div class="sub-menu-buttons">
                         <div id="clear-button" data-url="{{route('faqs_create')}}">
                             <svg style="width:35px;height:35px;" viewBox="0 0 24 24">
@@ -91,10 +91,11 @@
                         </div>
                     </div>
                     
+                    
                 </div>
             </div>
             
-            <div class="tab-panel tab-active" data-tab="contenido">
+            <div class="tab-panel tab-active" data-tab="content">
                 <div class="two-columns">
                     <div class="form-group">
                         <div class="form-label">
@@ -111,11 +112,20 @@
                             </select>                   
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="name" class="label-highlight">Nombre</label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" name="name" value="{{isset($faq->name) ? $faq->name : ''}}"  class="input-highlight"  />
+                        </div>
+                    </div>
                 </div>
 
-                @component('admin.components.locale')
+                @component('admin.components.locale', ['tab' => 'content'])
         
-                    <div class="locale-panel locale-active" data-tab="castellano">
+                    <div class="locale-panel locale-active" data-tab="content" data-localetab="es">
                         <div class="one-column">
                 
                             <div class="form-group">
@@ -123,7 +133,7 @@
                                     <label for="name" class="label-highlight">Título</label>
                                 </div>
                                 <div class="form-input">
-                                    <input type="text" name="name" value="{{isset($faq->title) ? $faq->title : ''}}"  class="input-highlight"  />
+                                    <input type="text" name="locale[title.es]" value=""  class="input-highlight"  />
                                 </div>
                             </div>
                         </div>
@@ -134,13 +144,13 @@
                                     <label for="description" class="label-highlight">Descripción</label>
                                 </div>
                                 <div class="form-input">
-                                    <textarea class="ckeditor" name="description" class="input-highlight">{{isset($faq->description) ? $faq->description : ''}}</textarea>
+                                    <textarea class="ckeditor" name="locale[description.es]" class="input-highlight"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="locale-panel" data-tab="ingles">
+                    <div class="locale-panel" data-tab="content" data-localetab="en">
 
                         <div class="one-column">                
                             <div class="form-group">
@@ -148,7 +158,7 @@
                                     <label for="name" class="label-highlight">Title</label>
                                 </div>
                                 <div class="form-input">
-                                    <input type="text" name="name" value="{{isset($faq->title) ? $faq->title : ''}}"  class="input-highlight"  />
+                                    <input type="text" name="locale[title.en]" value=""  class="input-highlight"  />
                                 </div>
                             </div>
                         </div>
@@ -159,7 +169,7 @@
                                     <label for="description" class="label-highlight">Description</label>
                                 </div>
                                 <div class="form-input">
-                                    <textarea class="ckeditor" name="description" class="input-highlight">{{isset($faq->description) ? $faq->description : ''}}</textarea>
+                                    <textarea class="ckeditor" name="locale[description.en]" class="input-highlight"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -168,11 +178,11 @@
                 @endcomponent
             </div>
 
-            <div class="tab-panel" data-tab="imagenes">
+            <div class="tab-panel" data-tab="images">
                 
-                @component('admin.components.locale')
+                @component('admin.components.locale', ['tab' => 'images'])
         
-                    <div class="locale-panel locale-active" data-tab="castellano">
+                    <div class="locale-panel locale-active" data-tab="images" data-localetab="es">
                         
                         <div class="one-column">
                             <div class="drop-zone">
@@ -182,7 +192,7 @@
                         </div>
                     </div>
 
-                    <div class="locale-panel" data-tab="ingles">
+                    <div class="locale-panel" data-tab="images" data-localetab="en">
                         
                         <div class="one-column">
                             <div class="drop-zone">

@@ -2,7 +2,7 @@
 
 @section('table')
 
-    <table class="table">
+    <div class="table category-table">
 
         @foreach($faqs_categories as $faq_category_element)
         <div class="table-row swipe-element" id="categories-table" >
@@ -52,7 +52,7 @@
             </tr>
         @endforeach --}}
         @endforeach
-    </table>
+        </div>
 
 @endsection
 
@@ -76,12 +76,12 @@
                     <label for="name" class="label">Name</label>
                 </div>
                 <div class="form-input">
-                    <input type="text" class="input" name="name" value="{{isset($faq_category->name) ? $faq_category->name : ''}}" placeholder="Add a name">  
+                    <input type="text" class="input input-name-category" name="name" value="{{isset($faq_category->name) ? $faq_category->name : ''}}" placeholder="Add a name">  
                 </div>
             </div>
 
 
-            <div class="form-submit">
+            <div class="form-submit category-submit">
                 <input type="submit" value="Send" id="send-button">
             </div>
         </form>   

@@ -573,6 +573,7 @@ body {
 }
 
 .form-label {
+  margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
 
@@ -581,17 +582,30 @@ body {
   font-size: 20px;
 }
 
+.category-table {
+  margin-top: 6em;
+}
+
 #category-select {
   width: 100%;
+  padding: 5px 5px 5px 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border: 2px solid transparent;
+  font-size: 18px;
+}
+
+#category-select:focus {
+  border: 2px solid #80d4a4;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 .form-input input {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   font-family: Lato;
   font-size: 1.2em;
-  padding: 0.5em;
   font-size: 18px;
-  padding: 10px 10px 10px 5px;
+  padding: 5px 5px 5px 5px;
   display: block;
   width: 94%;
   border: 2px solid transparent;
@@ -643,6 +657,16 @@ textarea {
 .category_id {
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.category-submit {
+  margin-top: 2em;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.input-name-category {
+  margin-bottom: 1em;
 }
 
 .form-submit input {
