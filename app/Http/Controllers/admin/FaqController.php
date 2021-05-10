@@ -8,17 +8,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
+use App\Vendor\Locale\Locale;
 use App\Models\DB\Faq;
 use Debugbar;
 
 class FaqController extends Controller
 {
+    protected $agent;
     protected $faq;
+    protected $locale;
 
-    function __construct(Faq $faq, Agent $agent)
+    function __construct(Faq $faq, Agent $agent, Locale $locale)
     {
         $this->faq = $faq;
         $this->agent = $agent;
+        $this->locale = $locale;
 
         if ($this->agent->isMobile()) {
             $this->paginate = 10;
@@ -27,6 +31,8 @@ class FaqController extends Controller
         if ($this->agent->isDesktop()) {
             $this->paginate = 6;
         }
+
+        $this->locale->setParent('faqs');
     }
 
     public function index()
@@ -84,6 +90,10 @@ class FaqController extends Controller
             'active' => 1,
         ]);
 
+        if(request('locale')){
+            $locale = $this->locale->store(request('locale'), $faq->id);
+        }
+
         if (request('id')){
             $message = \Lang::get('admin/faqs.faq-update');
         }else{
@@ -105,9 +115,10 @@ class FaqController extends Controller
 
     public function show(Faq $faq)
     {
-       
+        $locale = $this->locale->show($faq->id);
 
         $view = View::make('admin.faqs.index')
+        ->with('locale', $locale)
         ->with('faq', $faq)
         ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
         ->renderSections();        

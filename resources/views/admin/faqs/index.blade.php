@@ -124,56 +124,35 @@
                 </div>
 
                 @component('admin.components.locale', ['tab' => 'content'])
-        
-                    <div class="locale-panel locale-active" data-tab="content" data-localetab="es">
-                        <div class="one-column">
-                
-                            <div class="form-group">
-                                <div class="form-label">
-                                    <label for="name" class="label-highlight">Título</label>
-                                </div>
-                                <div class="form-input">
-                                    <input type="text" name="locale[title.es]" value=""  class="input-highlight"  />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="one-column">
-                            <div class="form-group">
-                                <div class="form-label">
-                                    <label for="description" class="label-highlight">Descripción</label>
-                                </div>
-                                <div class="form-input">
-                                    <textarea class="ckeditor" name="locale[description.es]" class="input-highlight"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="locale-panel" data-tab="content" data-localetab="en">
+                    @foreach ($localizations as $localization)
+            
+                        <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="content" data-localetab="{{$localization->alias}}">
+                            <div class="one-column">
+                    
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="name" class="label-highlight">Título</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <input type="text" name="locale[title.{{$localization->alias}}]" value="{{isset($locale["title.$localization->alias"]) ? $locale["title.$localization->alias"] : ''}}"  class="input-highlight"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="one-column">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="description" class="label-highlight">Descripción</label>
+                                    </div>
+                                    <div class="form-input">
+                                        <textarea class="ckeditor input-highlight" name="locale[description.{{$localization->alias}}]">{{isset($locale["description.$localization->alias"]) ? $locale["description.$localization->alias"] : ''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="one-column">                
-                            <div class="form-group">
-                                <div class="form-label">
-                                    <label for="name" class="label-highlight">Title</label>
-                                </div>
-                                <div class="form-input">
-                                    <input type="text" name="locale[title.en]" value=""  class="input-highlight"  />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="one-column">
-                            <div class="form-group">
-                                <div class="form-label">
-                                    <label for="description" class="label-highlight">Description</label>
-                                </div>
-                                <div class="form-input">
-                                    <textarea class="ckeditor" name="locale[description.en]" class="input-highlight"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 @endcomponent
             </div>
@@ -181,7 +160,9 @@
             <div class="tab-panel" data-tab="images">
                 
                 @component('admin.components.locale', ['tab' => 'images'])
-        
+
+                    
+            
                     <div class="locale-panel locale-active" data-tab="images" data-localetab="es">
                         
                         <div class="one-column">
@@ -201,6 +182,8 @@
                             </div>            
                         </div>
                     </div>
+
+                    
 
                 @endcomponent
                 

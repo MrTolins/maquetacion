@@ -2,12 +2,13 @@
 
     <div class="locale-container-menu">
         <ul>
-            <li class="locale-item locale-active" data-tab="{{$tab}}" data-localetab="es">
-                Castellano
-            </li>  
-            <li class="locale-item" data-tab="{{$tab}}" data-localetab="en">
-                Inglés
-            </li>     
+
+            @foreach ($localizations as $localization)
+                <li class="locale-item {{ $loop->first ? 'locale-active':'' }}" data-tab="{{$tab}}" data-localetab="{{$localization->alias}}">
+                    {{$localization->name}}
+                </li>    
+            @endforeach
+
         </ul>
     </div>
 
