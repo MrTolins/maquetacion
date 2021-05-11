@@ -1,5 +1,5 @@
-const plusButtons = document.querySelectorAll('.accordion');
-const faqElements = document.querySelectorAll(".admin-form");
+const plusButtons = document.querySelectorAll('.faq-plus-button');
+const faqElements = document.querySelectorAll(".faq");
 
 plusButtons.forEach(plusButton => { 
 

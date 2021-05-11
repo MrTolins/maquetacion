@@ -1890,6 +1890,39 @@ window.requestAnimFrame = function () {
 
 /***/ }),
 
+/***/ "./resources/js/front/desktop/faqs.js":
+/*!********************************************!*\
+  !*** ./resources/js/front/desktop/faqs.js ***!
+  \********************************************/
+/***/ (() => {
+
+var plusButtons = document.querySelectorAll('.faq-plus-button');
+var faqElements = document.querySelectorAll(".faq");
+plusButtons.forEach(function (plusButton) {
+  plusButton.addEventListener("click", function () {
+    var activeElements = document.querySelectorAll(".active");
+
+    if (plusButton.classList.contains("active")) {
+      plusButton.classList.remove("active");
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
+    } else {
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
+      plusButton.classList.add("active");
+      faqElements.forEach(function (faqElement) {
+        if (faqElement.dataset.content == plusButton.dataset.button) {
+          faqElement.classList.add("active");
+        } else {}
+      });
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/front/desktop/fingerprint.js":
 /*!***************************************************!*\
   !*** ./resources/js/front/desktop/fingerprint.js ***!
@@ -1961,39 +1994,6 @@ var sendFingerprintRequest = /*#__PURE__*/function () {
 }();
 
 sendFingerprintRequest();
-
-/***/ }),
-
-/***/ "./resources/js/front/desktop/front.js":
-/*!*********************************************!*\
-  !*** ./resources/js/front/desktop/front.js ***!
-  \*********************************************/
-/***/ (() => {
-
-var plusButtons = document.querySelectorAll('.accordion');
-var faqElements = document.querySelectorAll(".admin-form");
-plusButtons.forEach(function (plusButton) {
-  plusButton.addEventListener("click", function () {
-    var activeElements = document.querySelectorAll(".active");
-
-    if (plusButton.classList.contains("active")) {
-      plusButton.classList.remove("active");
-      activeElements.forEach(function (activeElement) {
-        activeElement.classList.remove("active");
-      });
-    } else {
-      activeElements.forEach(function (activeElement) {
-        activeElement.classList.remove("active");
-      });
-      plusButton.classList.add("active");
-      faqElements.forEach(function (faqElement) {
-        if (faqElement.dataset.content == plusButton.dataset.button) {
-          faqElement.classList.add("active");
-        } else {}
-      });
-    }
-  });
-});
 
 /***/ }),
 
@@ -20351,15 +20351,9 @@ var __webpack_exports__ = {};
   \*******************************************/
 __webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./front */ "./resources/js/front/desktop/front.js");
-
 __webpack_require__(/*! ./fingerprint */ "./resources/js/front/desktop/fingerprint.js");
-/*let enviar = document.getElementById("sendButton");
 
-enviar.addEventListener('click', (event) =>{
-    event.preventDefault();
-    console.log('Hola');
-})*/
+__webpack_require__(/*! ./faqs */ "./resources/js/front/desktop/faqs.js");
 })();
 
 /******/ })()
