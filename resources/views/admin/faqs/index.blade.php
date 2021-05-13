@@ -162,26 +162,29 @@
                 @component('admin.components.locale', ['tab' => 'images'])
 
                     
-            
-                    <div class="locale-panel locale-active" data-tab="images" data-localetab="es">
-                        
-                        <div class="one-column">
-                            <div class="drop-zone">
-                                <span class="drop-zone__prompt">Arrastra el archivo aquí o haz click para subirlo</span>
-                                <input type="file" name="myFile" class="drop-zone__input">
-                            </div>            
+                @foreach ($localizations as $localization)
+
+                <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="images" data-localetab="{{$localization->alias}}">
+
+                    <div class="two-columns">
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label for="name" class="label-highlight">Foto destacada</label>
+                            </div>
+                            <div class="form-input">
+                                @include('admin.components.upload', [
+                                    'type' => 'image', 
+                                    'content' => 'featured', 
+                                    'alias' => $localization->alias,
+                                    'files' => $faq->images_featured
+                                ])
+                            </div>
                         </div>
                     </div>
 
-                    <div class="locale-panel" data-tab="images" data-localetab="en">
-                        
-                        <div class="one-column">
-                            <div class="drop-zone">
-                                <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                                <input type="file" name="myFile" class="drop-zone__input">
-                            </div>            
-                        </div>
-                    </div>
+                </div>
+
+                @endforeach
 
                     
 

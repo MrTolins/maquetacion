@@ -1,31 +1,33 @@
 .faqs{
     
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+    
 
     .faq{
 
         width: 100%;
+        
 
         .faq-title-container{
             background-color:#80d4a4 ;
             border-bottom: 0.2em solid $white;
             display: flex;
-            height: 10vh;
+            height: max-content;
             width: 100%;
 
-            @include respond-to('lg') {
-                height: 6vh;
-            }
-
             .faq-title{
-                margin: 0 1em;
+                margin: 0 0.5em;
                 width: 90%;
+                
+                
             }
 
             .faq-title h3{
                 color: $white;
                 font-weight: 400;
+                
+                
             }
 
             .faq-plus-button {
@@ -46,11 +48,13 @@
             overflow: hidden;
             transition: max-height 0.5s;
             width: 100%;
+            
 
             p{
                 color: $black;
                 font-weight: 200;
                 margin: 1em;
+                font-family: Poppins;
             }
         }
     }
@@ -62,7 +66,7 @@
         }
 
         .faq-description{
-            max-height: 70vh;
+            max-height: 200vh;
         }
     }
     
@@ -73,5 +77,6 @@
     font-family: Poppins;
 
 }
+
 
 

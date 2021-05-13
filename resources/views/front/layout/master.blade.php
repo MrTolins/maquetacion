@@ -18,9 +18,6 @@
     <header>
         <nav>   
             <ul>   
-                <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59-1.41 1.41 5.59 5.59-5.59 5.59 1.41 1.41 5.59-5.59 5.59 5.59 1.41-1.41-5.59-5.59z" stroke="red" stroke-width="0.5"/>
-                </svg>
                 <li class="sub-menu-parent" tab-index="0">
                     <a href="#">Menu 1</a>              
                 </li>

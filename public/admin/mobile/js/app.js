@@ -2327,6 +2327,79 @@ renderTable();
 
 /***/ }),
 
+/***/ "./resources/js/admin/mobile/images.js":
+/*!*********************************************!*\
+  !*** ./resources/js/admin/mobile/images.js ***!
+  \*********************************************/
+/***/ (() => {
+
+document.querySelectorAll(".drop-zone__input").forEach(function (inputElement) {
+  var dropZoneElement = inputElement.closest(".drop-zone");
+  dropZoneElement.addEventListener("click", function (e) {
+    inputElement.click();
+  });
+  inputElement.addEventListener("change", function (e) {
+    if (inputElement.files.length) {
+      updateThumbnail(dropZoneElement, inputElement.files[0]);
+    }
+  });
+  dropZoneElement.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    dropZoneElement.classList.add("drop-zone--over");
+  });
+  ["dragleave", "dragend"].forEach(function (type) {
+    dropZoneElement.addEventListener(type, function (e) {
+      dropZoneElement.classList.remove("drop-zone--over");
+    });
+  });
+  dropZoneElement.addEventListener("drop", function (e) {
+    e.preventDefault();
+
+    if (e.dataTransfer.files.length) {
+      inputElement.files = e.dataTransfer.files;
+      updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+    }
+
+    dropZoneElement.classList.remove("drop-zone--over");
+  });
+});
+/**
+ * Updates the thumbnail on a drop zone element.
+ *
+ * @param {HTMLElement} dropZoneElement
+ * @param {File} file
+ */
+
+function updateThumbnail(dropZoneElement, file) {
+  var thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb"); // First time - remove the prompt
+
+  if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+    dropZoneElement.querySelector(".drop-zone__prompt").remove();
+  } // First time - there is no thumbnail element, so lets create it
+
+
+  if (!thumbnailElement) {
+    thumbnailElement = document.createElement("div");
+    thumbnailElement.classList.add("drop-zone__thumb");
+    dropZoneElement.appendChild(thumbnailElement);
+  }
+
+  thumbnailElement.dataset.label = file.name; // Show thumbnail for image files
+
+  if (file.type.startsWith("image/")) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      thumbnailElement.style.backgroundImage = "url('".concat(reader.result, "')");
+    };
+  } else {
+    thumbnailElement.style.backgroundImage = null;
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/admin/mobile/messages.js":
 /*!***********************************************!*\
   !*** ./resources/js/admin/mobile/messages.js ***!
@@ -2726,6 +2799,38 @@ function swipeRevealItem(element) {
   }
 }
 ;
+
+/***/ }),
+
+/***/ "./resources/js/admin/mobile/tabs.js":
+/*!*******************************************!*\
+  !*** ./resources/js/admin/mobile/tabs.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderTabs": () => (/* binding */ renderTabs)
+/* harmony export */ });
+var renderTabs = function renderTabs() {
+  var tabsItems = document.querySelectorAll('.tab-item');
+  var tabPanels = document.querySelectorAll(".tab-panel");
+  tabsItems.forEach(function (tabItem) {
+    tabItem.addEventListener("click", function () {
+      var activeElements = document.querySelectorAll(".tab-active");
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("tab-active");
+      });
+      tabItem.classList.add("tab-active");
+      tabPanels.forEach(function (tabPanel) {
+        if (tabPanel.dataset.tab == tabItem.dataset.tab) {
+          tabPanel.classList.add("tab-active");
+        }
+      });
+    });
+  });
+};
 
 /***/ }),
 
@@ -21332,6 +21437,10 @@ __webpack_require__(/*! ./wait */ "./resources/js/admin/mobile/wait.js");
 __webpack_require__(/*! ./messages */ "./resources/js/admin/mobile/messages.js");
 
 __webpack_require__(/*! ./bottombarMenu */ "./resources/js/admin/mobile/bottombarMenu.js");
+
+__webpack_require__(/*! ./images */ "./resources/js/admin/mobile/images.js");
+
+__webpack_require__(/*! ./tabs */ "./resources/js/admin/mobile/tabs.js");
 })();
 
 /******/ })()

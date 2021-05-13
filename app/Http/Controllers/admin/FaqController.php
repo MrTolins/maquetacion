@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Vendor\Locale\Locale;
+use App\Vendor\Image\Image;
 use App\Models\DB\Faq;
 use Debugbar;
 
@@ -17,12 +18,14 @@ class FaqController extends Controller
     protected $agent;
     protected $faq;
     protected $locale;
+    protected $image;
 
-    function __construct(Faq $faq, Agent $agent, Locale $locale)
+    function __construct(Faq $faq, Agent $agent, Locale $locale, Image $image)
     {
         $this->faq = $faq;
         $this->agent = $agent;
         $this->locale = $locale;
+        $this->image = $image;
 
         if ($this->agent->isMobile()) {
             $this->paginate = 10;
@@ -33,6 +36,7 @@ class FaqController extends Controller
         }
 
         $this->locale->setParent('faqs');
+        $this->image->setEntity('faqs');
     }
 
     public function index()
@@ -81,7 +85,7 @@ class FaqController extends Controller
 
     public function store(FaqRequest $request)
     {          
-        Debugbar::info(request('locale'));
+        Debugbar::info(request('images'));
 
         $faq = $this->faq->updateOrCreate([
             'id' => request('id')],[
@@ -92,6 +96,10 @@ class FaqController extends Controller
 
         if(request('locale')){
             $locale = $this->locale->store(request('locale'), $faq->id);
+        }
+
+         if(request('images')){
+            $images = $this->image->storeRequest(request('images'), 'webp', $faq->id);
         }
 
         if (request('id')){

@@ -1,5 +1,6 @@
 import {renderCkeditor} from './ckeditor';
 import {startWait, stopWait} from './wait';
+import {renderUpload} from './upload';
 import {showMessage} from './messages';
 import {renderTabs} from './tabs';
 import {renderLocaleTabs} from './localeTabs';
@@ -132,6 +133,7 @@ export let renderForm = () => {
     renderCkeditor();
     renderTabs();
     renderLocaleTabs();
+    renderUpload();
 }
 
 export let renderTable = () => {

@@ -9,4 +9,4 @@ require('./messages');
 require('./wait');
 require('./tabs');
 require('./localeTabs');
-require('./images');
+require('./upload');

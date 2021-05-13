@@ -9,5 +9,6 @@ require('./verticalScroll');
 require('./wait');
 require('./messages');
 require('./bottombarMenu');
-
+require('./images');
+require('./tabs');
 
