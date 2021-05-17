@@ -180,6 +180,19 @@
                                 ])
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="form-label">
+                                <label for="name" class="label-highlight">Seleccionar varias</label>
+                            </div>
+                            <div class="form-input form-images">
+                                @include('admin.components.upload', [
+                                    'type' => 'images', 
+                                    'content' => 'featured', 
+                                    'alias' => $localization->alias,
+                                    'files' => $faq->images_featured
+                                ])
+                            </div>
+                        </div>
                     </div>
 
                 </div>

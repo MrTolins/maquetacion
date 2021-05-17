@@ -193,7 +193,7 @@ class Image
 					$value->quality,
 					$original_path, 
 					$value->id
-				//nombre que va a tener la cola
+				//nombre que va a tener la cola, a que cola se va a ir, si hay otra cola la pones en Horizon.php en config
 				)->onQueue('process_image');
 			}
 
