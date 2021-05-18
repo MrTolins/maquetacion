@@ -9,4 +9,6 @@ require('./messages');
 require('./wait');
 require('./tabs');
 require('./localeTabs');
-require('./upload');
+require('./uploadImage');
+require('./modalImage');
+

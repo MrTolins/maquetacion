@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin'], function () {
 
+    Route::get('/image/delete/{image?}', 'App\Vendor\Image\Image@destroy')->name('delete_image');
+    Route::get('/image/{image}', 'App\Vendor\Image\Image@showImageSeo')->name('show_image_seo');
+    Route::post('/image', 'App\Vendor\Image\Image@storeImageSeo')->name('store_image_seo');
+
     Route::post('/sliders/filter', 'App\Http\Controllers\Admin\SliderController@filter')->name('sliders_filter');
 
     Route::resource('sliders', 'App\Http\Controllers\Admin\SliderController', [

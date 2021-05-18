@@ -162,42 +162,44 @@
                 @component('admin.components.locale', ['tab' => 'images'])
 
                     
-                @foreach ($localizations as $localization)
+                    @foreach ($localizations as $localization)
 
-                <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="images" data-localetab="{{$localization->alias}}">
+                        <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="images" data-localetab="{{$localization->alias}}">
 
-                    <div class="two-columns">
-                        <div class="form-group">
-                            <div class="form-label">
-                                <label for="name" class="label-highlight">Foto destacada</label>
+                            <div class="two-columns">
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="name" class="label-highlight">Foto destacada</label>
+                                    </div>
+                                    <div class="form-input">
+                                        @include('admin.components.upload_image', [
+                                            'type' => 'image', 
+                                            'content' => 'featured', 
+                                            'alias' => $localization->alias,
+                                            'files' => $faq->images_featured_preview
+                                        ])
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-label">
+                                        <label for="name" class="label-highlight">Galería</label>
+                                    </div>
+                                    <div class="form-input">
+                                        @include('admin.components.upload_image', [
+                                            'type' => 'images', 
+                                            'content' => 'grid', 
+                                            'alias' => $localization->alias,
+                                            'files' => $faq->images_grid_preview
+                                        ])
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-input">
-                                @include('admin.components.upload', [
-                                    'type' => 'image', 
-                                    'content' => 'featured', 
-                                    'alias' => $localization->alias,
-                                    'files' => $faq->images_featured
-                                ])
-                            </div>
+
+
                         </div>
-                        <div class="form-group">
-                            <div class="form-label">
-                                <label for="name" class="label-highlight">Seleccionar varias</label>
-                            </div>
-                            <div class="form-input form-images">
-                                @include('admin.components.upload', [
-                                    'type' => 'images', 
-                                    'content' => 'featured', 
-                                    'alias' => $localization->alias,
-                                    'files' => $faq->images_featured
-                                ])
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-
-                @endforeach
+                    @endforeach
 
                     
 
