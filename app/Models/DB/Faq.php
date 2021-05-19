@@ -23,12 +23,7 @@ class Faq extends DBModel
         return $this->hasMany(Locale::class, 'key')->where('rel_parent', 'faqs')->where('language', App::getLocale());
     }
 
-    public function seo()
-    {
-        return $this->hasOne(LocaleSlugSeo::class, 'key')->where('rel_parent', 'faqs')->where('language', App::getLocale());
-    }
-
-    public function images_featured()
+    public function images_featured_preview()
     {
         return $this->hasMany(ImageResized::class, 'entity_id')->where('grid', 'preview')->where('content', 'featured')->where('entity', 'faqs');
     }
@@ -43,5 +38,21 @@ class Faq extends DBModel
         return $this->hasOne(ImageResized::class, 'entity_id')->where('grid', 'mobile')->where('content', 'featured')->where('entity', 'faqs')->where('language', App::getLocale());
     }
 
+    public function images_grid_preview()
+    {
+        return $this->hasMany(ImageResized::class, 'entity_id')->where('grid', 'preview')->where('content', 'grid')->where('entity', 'faqs');
+    }
+
+    public function image_grid_desktop()
+    {
+        return $this->hasMany(ImageResized::class, 'entity_id')->where('grid', 'desktop')->where('content', 'grid')->where('entity', 'faqs')->where('language', App::getLocale());
+    }
+
+    public function image_grid_mobile()
+    {
+        return $this->hasMany(ImageResized::class, 'entity_id')->where('grid', 'mobile')->where('content', 'grid')->where('entity', 'faqs')->where('language', App::getLocale());
+    }
+
 }
+
 

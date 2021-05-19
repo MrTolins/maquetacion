@@ -142,6 +142,8 @@ export let renderTable = () => {
     let deleteButtons = document.querySelectorAll(".delete-button");
     let formContainer = document.getElementById("form");
     let paginationButtons = document.querySelectorAll('.table-pagination-button');
+    let deleteConfirm = document.getElementById('delete-confirm');
+    let deleteCancel = document.getElementById('delete-cancel');
  
     
     editButtons.forEach(editButton => {
@@ -182,6 +184,7 @@ export let renderTable = () => {
                     axios.delete(url).then(response => {
                         table.innerHTML = response.data.table;
                         renderTable();
+                        
                     });
                 } catch (error) {
                     console.error(error);
@@ -189,6 +192,39 @@ export let renderTable = () => {
             });
         }
     
+        sendDeleteRequest();
+    });
+
+    deleteCancel.addEventListener("click", () => {
+        modalDelete.classList.remove('open');
+    });
+
+    deleteConfirm.addEventListener("click", () => {
+
+        let url = deleteConfirm.dataset.url;
+
+        startWait();
+
+        let sendDeleteRequest = async () => {
+
+            try {
+                await axios.delete(url).then(response => {
+                    table.innerHTML = response.data.table;
+                    form.innerHTML = response.data.form;
+                    modalDelete.classList.remove('open');
+                    renderTable();
+                    renderForm();
+
+                    stopWait();
+                    showMessage('success', response.data.message);
+                });
+                
+            } catch (error) {
+                stopWait();
+                console.error(error);
+            }
+        };
+
         sendDeleteRequest();
     });
 

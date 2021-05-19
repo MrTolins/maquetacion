@@ -1485,10 +1485,6 @@ textarea {
   text-align: center;
 }
 
-.upload-image-add.single {
-  border: none;
-}
-
 .upload-image-collection {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1497,7 +1493,7 @@ textarea {
 
 .upload-image.collection,
 .upload-image-add.collection {
-  height: 15vh;
+  height: 8vh;
   padding: 0;
 }
 
@@ -1541,7 +1537,6 @@ textarea {
 .upload-image-thumb {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   overflow: hidden;
   background-color: #cccccc;
   background-size: cover;
@@ -1559,4 +1554,74 @@ textarea {
   color: #ffffff;
   font-size: 14px;
   text-align: center;
+}
+
+#upload-image-modal {
+  background-color: white;
+  display: flex;
+  height: 80vh;
+  justify-content: space-between;
+  left: 10%;
+  padding: 1em;
+  position: fixed;
+  top: -100vh;
+  transition: top 0.3s;
+  width: 80%;
+  z-index: 3000;
+}
+
+#upload-image-modal.modal-active {
+  top: 10vh;
+  transition: top 0.3s;
+}
+
+.modal-image {
+  padding: 1em;
+  width: 65%;
+}
+
+#modal-image-original {
+  height: 100%;
+  width: 100%;
+}
+
+.modal-image-attributes {
+  padding: 1em;
+  width: 30%;
+}
+
+.modal-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  background: #80d4a4;
+  margin: 20px auto;
+  position: relative;
+  vertical-align: middle;
+  box-shadow: 15px 15px 5px 0px black;
+}
+
+.modal-image-store-button {
+  cursor: pointer;
+}
+.modal-image-store-button:hover .store-button-icon {
+  fill: #ff5100;
+}
+.modal-image-store-button svg {
+  float: right;
+  height: 2.4em;
+  width: 2.4em;
+}
+.modal-image-store-button svg .store-button-icon {
+  fill: black;
+}
+
+.modal-image-delete-button {
+  cursor: pointer;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.modal-image-delete-button svg:hover {
+  color: red;
 }

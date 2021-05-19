@@ -23,6 +23,7 @@
             @include('admin.components.messages')
             @include('admin.components.modal_delete')
             @include("admin.layout.partials.sidebar")
+            @include('admin.components.modal_image')
 
             @if(isset($filters))
                 @include('admin.components.table_filters', [
