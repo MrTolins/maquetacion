@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Jcupitt\Vips;
 use App\Vendor\Image\Models\ImageResized;
 use App\Vendor\Image\Models\ImageConfiguration;
-use Debugbar;
 
 class ProcessImage implements ShouldQueue
 {
@@ -32,7 +31,8 @@ class ProcessImage implements ShouldQueue
     protected $width;
     protected $quality;
     protected $file;
-    protected $format_conversion;
+    protected $image_original_id;
+    protected $temporal_id;
     protected $image_configuration_id;
 
     /**
@@ -56,6 +56,8 @@ class ProcessImage implements ShouldQueue
         $width,
         $quality,
         $file, 
+        $image_original_id,
+        $temporal_id,
         $image_configuration_id
     ){
         $this->entity_id = $entity_id;
@@ -73,6 +75,8 @@ class ProcessImage implements ShouldQueue
         $this->width = $width;
         $this->quality = $quality;
         $this->file = $file;
+        $this->image_original_id;
+        $this->temporal_id;
         $this->image_configuration_id = $image_configuration_id;
     }
 
@@ -107,15 +111,15 @@ class ProcessImage implements ShouldQueue
             $size = filesize($path);
         }
         
-        
         if($this->type == 'single'){
 
             ImageResized::updateOrCreate([
-                'entity_id' => $this->entity_id,
+                'temporal_id' => $this->temporal_id,
                 'entity' => $this->entity,
                 'grid' => $this->grid,
                 'language' => $this->language,
                 'content' => $this->content],[
+                'entity_id' => $this->entity_id,
                 'path' => $this->disk . $this->path,
                 'filename' => $this->filename,
                 'mime_type' => $this->file_extension == "svg" ? 'image/'. $this->file_extension : 'image/'. $this->extension_conversion,
@@ -123,6 +127,8 @@ class ProcessImage implements ShouldQueue
                 'width' => $this->width,
 				'height' => isset($height)? $height : null,
                 'quality' => $this->quality,
+                'temporal_id' => null,
+                'image_original_id' => $this->image_original_id,
                 'image_configuration_id' => $this->image_configuration_id,
             ]);
         }
@@ -142,6 +148,8 @@ class ProcessImage implements ShouldQueue
                 'width' => $this->width,
                 'height' => $height,
                 'quality' => $this->quality,
+                'temporal_id' => null,
+                'image_original_id' => $this->image_original_id,
                 'image_configuration_id' => $this->image_configuration_id,
             ]);
         }

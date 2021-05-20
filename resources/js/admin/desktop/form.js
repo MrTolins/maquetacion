@@ -167,7 +167,8 @@ export let renderTable = () => {
                 }
             });
         }
-    
+
+
         sendGetRequest();
     });
     
