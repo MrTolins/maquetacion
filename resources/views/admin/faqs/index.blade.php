@@ -166,7 +166,7 @@
 
                         <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="images" data-localetab="{{$localization->alias}}">
 
-                            <div class="two-columns">
+                            <div class="one-column">
                                 <div class="form-group">
                                     <div class="form-label">
                                         <label for="name" class="label-highlight">Foto destacada</label>

@@ -29,31 +29,23 @@ class FaqController extends Controller
     public function index()
     {        
         
-        // $locale = $this->locale->getAllByLanguage();
+        if($this->agent->isDesktop()){
+            $faqs = $this->faq->with('image_featured_desktop')->where('active', 1)->get();
+            
+        }
         
-        // $faqs = $this->faq->with(['locale' => function($query){
-        //     $query->pluck('value','tag')->toArray();
-        // }])->where('active', 1)->get();
+        elseif($this->agent->isMobile()){
+            $faqs = $this->faq->with('image_featured_mobile')->where('active', 1)->get();
+        }
 
-        // $faqs = $faqs->map(function($faq) {  
-        //     return collect($faq)->union($faq->locale->pluck('value','tag'));
-        // });
-
-        $faqs = $this->faq->where('active', 1)->get();
-
-        //->with('image_featured_desktop')-> ->where('visible', 1)
-       
-
-        $faqs = $faqs->each(function($faq) {  
+        $faqs = $faqs->each(function($faq){  
             
             $faq['locale'] = $faq->locale->pluck('value','tag');
             
             return $faq;
         });
 
-
-        $view = View::make('front.pages.faqs.index')
-                ->with('faqs', $faqs );
+        $view = View::make('front.pages.faqs.index')->with('faqs', $faqs );
 
         return $view;
     }

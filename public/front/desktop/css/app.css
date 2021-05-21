@@ -3,6 +3,34 @@ img {
   max-width: 100%;
 }
 
+.one-column .form-group {
+  width: 100%;
+}
+
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.two-columns .form-group {
+  width: 47%;
+}
+
+.three-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.three-columns .form-group {
+  width: 32%;
+}
+
+.four-columns {
+  display: flex;
+  justify-content: space-between;
+}
+.four-columns .form-group {
+  width: 23%;
+}
+
 .btn-main {
   background-color: #1074bc;
   border-color: #1074bc;
@@ -695,7 +723,6 @@ button:hover {
 }
 .faqs .faq .faq-title-container .faq-title h3 {
   color: white;
-  font-weight: 400;
 }
 .faqs .faq .faq-title-container .faq-plus-button {
   cursor: pointer;
@@ -744,16 +771,19 @@ button:hover {
   background-color: #00d35b;
 }
 .faqs .faq .faq-description {
-  background-color: #d3d3d3;
+  background-color: #00642b00;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s;
   width: 100%;
+  margin-left: 2em;
 }
 .faqs .faq .faq-description p {
   color: black;
-  font-weight: 200;
+  font-weight: 900;
   margin: 1em;
+  font-family: Lato;
+  text-align: justify;
 }
 .faqs .faq.active .faq-title-container {
   background-color: #80d4a4;
@@ -765,6 +795,17 @@ button:hover {
 .faqs-title h3 {
   text-align: center;
   font-family: Poppins;
+}
+
+.faq-group {
+  width: 62%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+}
+
+.faq-description-image {
+  margin: 0 auto;
 }
 
 .error-container {
