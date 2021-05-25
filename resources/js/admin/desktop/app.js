@@ -10,4 +10,9 @@ require('./tabs');
 require('./localeTabs');
 require('./uploadImage');
 require('./modalImage');
+require('./localeSeo');
+require('./googleBot');
+require('./sitemap');
+require('./blockParameters');
+
 

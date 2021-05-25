@@ -4,7 +4,6 @@ namespace App\Vendor\Locale;
 
 use App\Vendor\Locale\Models\Locale as DBLocale;
 use App\Vendor\Locale\Models\LocaleLanguage;
-use Debugbar;
 
 class Locale
 {
@@ -84,7 +83,6 @@ class Locale
 
         return $items;
     }
-
-    
 }
     
+

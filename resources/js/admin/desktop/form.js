@@ -3,7 +3,11 @@ import {startWait, stopWait} from './wait';
 import {renderUploadImage} from './uploadImage';
 import {showMessage} from './messages';
 import {renderTabs} from './tabs';
+import {renderLocaleSeo} from './localeSeo';
+import {renderGoogleBot} from './googleBot';
+import {renderSitemap} from './sitemap';
 import {renderLocaleTabs} from './localeTabs';
+import axios from 'axios';
 
 const table = document.getElementById("table");
 const form = document.getElementById("form");
@@ -15,6 +19,7 @@ export let renderForm = () => {
     let inputs = document.querySelectorAll('.input');
     let sendButton = document.getElementById("send-button");
     let clearButton = document.getElementById("clear-button");
+    let importButton = document.getElementById("import-button");
     let secondMenu = document.querySelectorAll(".second-menu-form");
     let secondMenuLi = document.querySelectorAll(".sub-menu-parent");
 
@@ -50,90 +55,130 @@ export let renderForm = () => {
         });
     });
 
-    sendButton.addEventListener("click", (event) => {
+    if(sendButton){
+        
+        sendButton.addEventListener("click", (event) => {
 
-        event.preventDefault();
-    
-        forms.forEach(form => { 
+            event.preventDefault();
+        
+            forms.forEach(form => { 
+                
+                let data = new FormData(form);
+
+                if( ckeditors != 'null'){
+
+                    Object.entries(ckeditors).forEach(([key, value]) => {
+                        data.append(key, value.getData());
+                    });
+                }
+                
+                let url = form.action;
+        
+                let sendPostRequest = async () => {
+        
+                    startWait();
+
+                    try {
+                        await axios.post(url, data).then(response => {
+
+                            if(response.data.id){
+                                form.id.value = response.data.id;
+                            }
+                            
+                            table.innerHTML = response.data.table;
+
+                            stopWait();
+                            showMessage('success', response.data.message);
+                            renderTable();
+                            
+                        });
+                        
+                    } catch (error) {
+                        stopWait();
+
+                        if(error.response.status == '422'){
+        
+                            let errors = error.response.data.errors;      
+                            let errorMessage = '';
+        
+                            Object.keys(errors).forEach(function(key) {
+                                errorMessage += '<li>' + errors[key] + '</li>';
+                            })
             
-            let data = new FormData(document.getElementById('form-faqs'));
-
-            if( ckeditors != 'null'){
-
-                Object.entries(ckeditors).forEach(([key, value]) => {
-                    data.append(key, value.getData());
-                });
-            }
+                            showMessage('error', errorMessage);
+                        }
+                    }
+                };
+        
+                sendPostRequest();
+        
             
-            let url = form.action;
-    
-            let sendPostRequest = async () => {
-    
-                startWait();
+            });
+        });
+    }
+
+    if(clearButton){
+        clearButton.addEventListener("click", (event) => {
+
+            event.preventDefault();
+            
+            let url = clearButton.dataset.url;
+
+            let cleanForm = async () => {
 
                 try {
-                    await axios.post(url, data).then(response => {
-                        form.id.value = response.data.id;
-                        table.innerHTML = response.data.table;
-
-                        stopWait();
-                        showMessage('success', response.data.message);
-                        renderTable();
-                        
+                    axios.get(url).then(response => {
+                        form.innerHTML = response.data.form;
+                        renderForm();
                     });
-                     
+                        
                 } catch (error) {
-                    stopWait();
-
-                    if(error.response.status == '422'){
-    
-                        let errors = error.response.data.errors;      
-                        let errorMessage = '';
-    
-                        Object.keys(errors).forEach(function(key) {
-                            errorMessage += '<li>' + errors[key] + '</li>';
-                        })
-        
-                        showMessage('error', errorMessage);
-                    }
+                    console.error(error);
                 }
             };
-    
-            sendPostRequest();
-    
-          
+
+            cleanForm();
+
+            
+
         });
-    });
+    }
 
-    clearButton.addEventListener("click", (event) => {
+    if(importButton){
+        importButton.addEventListener("click", (event) => {
 
-        event.preventDefault();
-        
-        let url = clearButton.dataset.url;
+            event.preventDefault();
 
-        let cleanForm = async () => {
+            let url = importButton.dataset.url;
 
-            try {
-                axios.get(url).then(response => {
-                    form.innerHTML = response.data.form;
-                    renderForm();
-                });
-                    
-            } catch (error) {
-                console.error(error);
-            }
-        };
+            let importTags = async () => {
 
-        cleanForm();
+                try {
+                    axios.get(url).then(response => {
+                        table.innerHTML = response.data.table;
+                        renderTable();
+                        showMessage('success', response.data.message);
+                    });
+                        
+                } catch (error) {
+                    console.error(error);
+                }
+            };
 
-        console.log('1');
+            importTags();
+           
+        });
+    }
 
-    });
+
 
     renderCkeditor();
     renderTabs();
     renderLocaleTabs();
     renderUploadImage();
+    renderLocaleSeo();
+    renderGoogleBot();
+    renderSitemap();
 }
 
 export let renderTable = () => {
@@ -158,7 +203,7 @@ export let renderTable = () => {
                 
                 try {
                     axios.get(url).then(response => {
-                        console.log(response.data.form);
+                        
                         formContainer.innerHTML = response.data.form;
                         renderForm();
                     });

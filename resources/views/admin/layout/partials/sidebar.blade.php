@@ -11,6 +11,8 @@
             <li class="sidebar-item" data-url="{{route("users")}}">Users</li>
             <li class="sidebar-item" data-url="{{route("clients")}}">Clients</li>
             <li class="sidebar-item" data-url="{{route("sliders")}}">Sliders</li>
+            <li class="sidebar-item" data-url="{{route("localeTags")}}">Tags</li>
+            <li class="sidebar-item" data-url="{{route("seo")}}">Seo</li>
         </ul>
     </div>
     

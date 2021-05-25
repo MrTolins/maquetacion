@@ -84,6 +84,11 @@ textarea{
     
 }
 
+#sitemap{
+    width: 90%;
+    margin:0;
+}
+
 .form-input .input{
     margin: 0 auto;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); 
@@ -172,6 +177,37 @@ textarea{
 }
 
 #send-button:hover {
+    cursor: pointer;
+    background-color:#00d35b ;
+}
+
+.import-label{
+    cursor: pointer;
+}
+
+.import-label:hover{
+    cursor: pointer;
+    color:#00d35b ;
+}
+
+
+.import-button{
+    border: solid;
+    border: none;
+    background-color: black;
+    margin-right: 1em;
+    width: 100%;
+    font-family: Poppins;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    color:white;
+    text-decoration: none;
+    height: 4vh;
+    cursor: pointer;
+}
+
+#import-button:hover {
     cursor: pointer;
     background-color:#00d35b ;
 }
