@@ -7,6 +7,7 @@ import {renderLocaleSeo} from './localeSeo';
 import {renderGoogleBot} from './googleBot';
 import {renderSitemap} from './sitemap';
 import {renderLocaleTabs} from './localeTabs';
+import {renderBlockParameters} from './blockParameters'
 import axios from 'axios';
 
 const table = document.getElementById("table");
@@ -179,6 +180,7 @@ export let renderForm = () => {
     renderLocaleSeo();
     renderGoogleBot();
     renderSitemap();
+    renderBlockParameters();
 }
 
 export let renderTable = () => {

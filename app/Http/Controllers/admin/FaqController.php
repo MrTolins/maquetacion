@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Jenssegers\Agent\Agent;
 use App\Http\Requests\Admin\FaqRequest;
 use App\Vendor\Locale\Locale;
+use App\Vendor\Locale\LocaleSlugSeo;
 use App\Vendor\Image\Image;
 use App\Models\DB\Faq;
 use Debugbar;
@@ -18,13 +19,15 @@ class FaqController extends Controller
     protected $agent;
     protected $faq;
     protected $locale;
+    protected $locale_slug_seo;
     protected $image;
 
-    function __construct(Faq $faq, Agent $agent, Locale $locale, Image $image)
+    function __construct(Faq $faq, Agent $agent, Locale $locale, LocaleSlugSeo $locale_slug_seo, Image $image)
     {
         $this->faq = $faq;
         $this->agent = $agent;
         $this->locale = $locale;
+        $this->locale_slug_seo = $locale_slug_seo;
         $this->image = $image;
 
         if ($this->agent->isMobile()) {
@@ -36,6 +39,8 @@ class FaqController extends Controller
         }
 
         $this->locale->setParent('faqs');
+        //lo que vas a guardar de locale slug seo va a faqs(rel_parent en base de datos)
+        $this->locale_slug_seo->setParent('faqs');
         $this->image->setEntity('faqs');
     }
 
@@ -85,7 +90,7 @@ class FaqController extends Controller
 
     public function store(FaqRequest $request)
     {          
-        Debugbar::info(request('images'));
+        Debugbar::info(request('seo'));
 
         $faq = $this->faq->updateOrCreate([
             'id' => request('id')],[
@@ -93,6 +98,11 @@ class FaqController extends Controller
             'category_id' => request('category_id'),
             'active' => 1,
         ]);
+
+        //le pasas los resultados de seo y la id de faq, mas front_faqs
+        if(request('seo')){
+            $seo = $this->locale_slug_seo->store(request("seo"), $faq->id, 'front_faq');
+        }
 
         if(request('locale')){
             $locale = $this->locale->store(request('locale'), $faq->id);
@@ -124,9 +134,11 @@ class FaqController extends Controller
     public function show(Faq $faq)
     {
         $locale = $this->locale->show($faq->id);
+        $seo = $this->locale_slug_seo->show($faq->id);
 
         $view = View::make('admin.faqs.index')
         ->with('locale', $locale)
+        ->with('seo', $seo)
         ->with('faq', $faq)
         ->with('faqs', $this->faq->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
         ->renderSections();        

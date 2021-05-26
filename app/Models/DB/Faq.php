@@ -11,7 +11,7 @@ class Faq extends DBModel
 {
 
     protected $table = 't_faqs';
-    protected $with = ['category'];
+    protected $with = ['category','seo'];
 
     public function category()
     {
@@ -23,6 +23,11 @@ class Faq extends DBModel
         return $this->hasMany(Locale::class, 'key')->where('rel_parent', 'faqs')->where('language', App::getLocale());
     }
 
+    public function seo()
+    {
+        return $this->hasOne(LocaleSlugSeo::class, 'key')->where('rel_parent', 'faqs')->where('language', App::getLocale());
+    }
+    
     public function images_featured_preview()
     {
         return $this->hasMany(ImageResized::class, 'entity_id')->where('grid', 'preview')->where('content', 'featured')->where('entity', 'faqs');
