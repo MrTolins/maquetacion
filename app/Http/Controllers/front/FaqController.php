@@ -11,6 +11,7 @@ use App\Vendor\Locale\Locale;
 use App\Vendor\Locale\LocaleSlugSeo;
 use App\Models\DB\Faq;
 use App;
+use Debugbar;
 
 class FaqController extends Controller
 {
@@ -55,8 +56,8 @@ class FaqController extends Controller
         });
 
         $view = View::make('front.pages.faqs.index')
-        ->with('faqs', $faqs )
-        ->with('seo', $seo );
+            ->with('faqs', $faqs)
+            ->with('seo', $seo);
 
         return $view;
     }
