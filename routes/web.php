@@ -39,18 +39,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/localeTags', 'App\Http\Controllers\Admin\LocaleTagController@store')->name('localeTags_store');
     
 
-    Route::get('/products/filter/{filters?}', 'App\Http\Controllers\Admin\ProductsController@filter')->name('products_filter');
-    
-    Route::resource('products', 'App\Http\Controllers\Admin\ProductController', [
-        'names' => [
-            'index' => 'products',
-            'create' => 'products_create',
-            'store' => 'products_store',
-            'destroy' => 'products_destroy',
-            'show' => 'products_show',
-        ]
-    ]);
-
     Route::get('/mobiles/filter/{filters?}', 'App\Http\Controllers\Admin\MobileController@filter')->name('mobiles_filter');
     
     Route::resource('mobiles', 'App\Http\Controllers\Admin\MobileController', [
@@ -91,7 +79,6 @@ Route::group(['prefix' => 'admin'], function () {
         ]
     ]);
 
-
     Route::resource('usuarios', 'App\Http\Controllers\Admin\UserController', [
         'parameters' => [
             'usuarios' => 'user', 
@@ -106,8 +93,6 @@ Route::group(['prefix' => 'admin'], function () {
         ]
     ]);
 
-
-
     Route::resource('faqs/categorias', 'App\Http\Controllers\Admin\FaqCategoryController', [
         'parameters' => [
             'categorias' => 'faq_category', 
@@ -121,7 +106,6 @@ Route::group(['prefix' => 'admin'], function () {
             'show' => 'faqs_categories_show',
         ]
     ]);
-
 
     Route::get('/faqs/filter/{filters?}', 'App\Http\Controllers\Admin\FaqController@filter')->name('faqs_filter');
     

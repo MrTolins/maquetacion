@@ -15,11 +15,11 @@ class CreateTProducts extends Migration
     {
         Schema::create('t_products', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('key');
-            $table->string('description');
+            $table->string('object');
             $table->integer('price');
-            $table->integer('mobile_id');
+            $table->integer('price_without_iva');
+            $table->integer('iva');
+            $table->integer('product_id');
             $table->boolean('active');
             $table->timestamps();
         });

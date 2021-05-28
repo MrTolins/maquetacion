@@ -76,7 +76,10 @@
                         </li>  
                         <li class="tab-item" data-tab="seo">
                             Seo
-                        </li>   
+                        </li>  
+                        <li class="tab-item" data-tab="price">
+                            Price
+                        </li> 
                     </ul>
                 </div>
                 
@@ -100,21 +103,6 @@
             
             <div class="tab-panel tab-active" data-tab="content">
                 <div class="two-columns">
-                    <div class="form-group">
-                        <div class="form-label">
-                            <label for="product" class="label-highlight">
-                                Tipo de dispositivo 
-                            </label>
-                        </div>
-                        <div class="form-input">
-                            <select name="product" data-placeholder="Seleccione una categoría" class="input-highlight" id="category-select">
-                                <option></option>
-                                @foreach($products as $product)
-                                    <option value="{{$product->id}}" {{$product->mobile_id == $product->id ? 'selected':''}} class="product">{{ $product->type }}</option>
-                                @endforeach
-                            </select>                   
-                        </div>
-                    </div>
 
                     <div class="form-group">
                         <div class="form-label">
@@ -253,6 +241,37 @@
                     @endforeach
             
                 @endcomponent
+
+            </div>
+
+            <div class="tab-panel" data-tab="price">
+
+                <div class="one-column">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="price_without_iva" class="label-highlight">
+                                Precio sin IVA 
+                            </label>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" name="product[price_without_iva]" value='{{isset($price["price_without_iva"]) ? $price["price_without_iva"] : ''}}' class="input-highlight">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-column">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="price" class="label-highlight">
+                                Precio 
+                            </label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="text" name="product[price]" value='{{isset($price["price"]) ? $price["price"] : ''}}' class="input-highlight">
+                        </div>
+                    </div>
+                </div>
 
             </div>
            

@@ -16,7 +16,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductElementRequest extends FormRequest
+class MobileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -36,14 +36,14 @@ class ProductElementRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'brand' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Debe añadir un nombre',
+            'brand.required' => 'Debe añadir una marca',
         ];
     }
 }

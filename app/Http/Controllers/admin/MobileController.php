@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\MobileRequest;
 use App\Vendor\Locale\Locale;
 use App\Vendor\Locale\LocaleSlugSeo;
 use App\Vendor\Image\Image;
+use App\Vendor\Product\Product;
 use App\Models\DB\Mobile;
 use Debugbar;
 
@@ -21,14 +22,16 @@ class MobileController extends Controller
     protected $locale;
     protected $locale_slug_seo;
     protected $image;
+    protected $product;
 
-    function __construct(Mobile $mobile, Agent $agent, Locale $locale, LocaleSlugSeo $locale_slug_seo, Image $image)
+    function __construct(Mobile $mobile, Agent $agent, Locale $locale, LocaleSlugSeo $locale_slug_seo, Image $image, Product $product)
     {
         $this->mobile = $mobile;
         $this->agent = $agent;
         $this->locale = $locale;
         $this->locale_slug_seo = $locale_slug_seo;
         $this->image = $image;
+        $this->product = $product;
 
         if ($this->agent->isMobile()) {
             $this->paginate = 10;
@@ -38,6 +41,7 @@ class MobileController extends Controller
             $this->paginate = 6;
         }
 
+        $this->product->setParent('mobiles');
         $this->locale->setParent('mobiles');
         //lo que vas a guardar de locale slug seo va a faqs(rel_parent en base de datos)
         $this->locale_slug_seo->setParent('mobiles');
@@ -90,7 +94,7 @@ class MobileController extends Controller
 
     public function store(MobileRequest $request)
     {          
-        Debugbar::info(request('seo'));
+        Debugbar::info(request('product'));
 
         $mobile = $this->mobile->updateOrCreate([
             'id' => request('id')],[
@@ -100,11 +104,15 @@ class MobileController extends Controller
             'inches' => request('inches'),
             'height' => request('height'),
             'width' => request('width'),
-            'camera' => request('camera'),
+            'price' => request('price'),
             'active' => 1,
         ]);
 
         //le pasas los resultados de seo y la id de faq, mas front_faqs
+        if(request('product')){
+            $product = $this->product->store(request("product"), $mobile->id);
+        }
+        
         if(request('seo')){
             $seo = $this->locale_slug_seo->store(request("seo"), $mobile->id, 'front_mobile');
         }
