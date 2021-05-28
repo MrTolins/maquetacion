@@ -27,19 +27,17 @@ class Product
     public function store($product, $product_id)
     {  
 
-        foreach ($product as $rel_anchor => $value){
-
-            array_pop($explode_rel_anchor); 
-            $tag = implode(".", $explode_rel_anchor); 
+        foreach ($product as $object => $price){
+ 
 
             $product[] = $this->product->updateOrCreate([
                     'product_id' => $product_id,
                     'rel_parent' => $this->rel_parent,
-                    'rel_anchor' => $rel_anchor],[
+                    'object' => $object],[
                     'rel_parent' => $this->rel_parent,
-                    'rel_anchor' => $rel_anchor,
-                    'tag' => $tag,
-                    'value' => $value,
+                    'object' => $object,
+                    'price' => $price,
+                    'price_without_iva' => $price_without_iva,
             ]);
         }
 
