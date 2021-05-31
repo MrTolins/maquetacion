@@ -100,11 +100,9 @@ class MobileController extends Controller
             'id' => request('id')],[
             'brand' => request('brand'),
             'model' => request('model'),
-            'description' => request('descrition'),
             'inches' => request('inches'),
             'height' => request('height'),
             'width' => request('width'),
-            'price' => request('price'),
             'active' => 1,
         ]);
 

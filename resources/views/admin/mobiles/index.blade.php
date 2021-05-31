@@ -16,12 +16,12 @@
                 <h1>Table</h1>
             </div>
 
-            @foreach($mobiles as $mobiles_element)
+            @foreach($mobiles as $mobile_element)
                 <div class="table-row swipe-element">
-                    <div class="table-field-container swipe-front" data-swipe="{{$mobiles_element->id}}">
-                            <div class="table-field"><p><span>Name:</span> {{$mobiles_element->brand}}</p></div>
-                            <div class="table-field"><p><span>Category:</span> {{$mobiles_element->product->type}}</p></div>
-                            <div class="table-field"><p><span>Date:</span> {{$mobiles_element->created_at}}</p></div>
+                    <div class="table-field-container swipe-front" data-swipe="{{$mobile_element->id}}">
+                            <div class="table-field"><p><span>Marca:</span> {{$mobile_element->brand}}</p></div>
+                            <div class="table-field"><p><span>Modelo:</span> {{$mobile_element->model}}</p></div>
+                            <div class="table-field"><p><span>Date:</span> {{$mobile_element->created_at}}</p></div>
                     </div>
 
                     <div class="table-icons-container swipe-back">
@@ -108,8 +108,47 @@
                         <div class="form-label">
                             <label for="brand" class="label-highlight">Marca</label>
                         </div>
+
                         <div class="form-input">
-                            <input type="text" name="brand" value="{{isset($mobile->brand) ? $mobiles->brand : ''}}"  class="input-highlight"  />
+                            <input type="text" name="brand" value="{{isset($mobile->brand) ? $mobile->brand : ''}}"  class="input-highlight"  />
+                        </div>
+
+                        <div class="form-label">
+                            <label for="model" class="label-highlight">Modelo</label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="text" name="model" value="{{isset($mobile->model) ? $mobile->model : ''}}"  class="input-highlight"  />
+                        </div>
+
+                        <div class="form-label">
+                            <label for="inches" class="label-highlight">Pulgadas</label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="number" name="inches" value="{{isset($mobile->inches) ? $mobile->inches : ''}}"  class="input-highlight"  />
+                        </div>
+
+                    </div>
+
+    
+
+                    <div class="form-group">
+            
+                        <div class="form-label">
+                            <label for="height" class="label-highlight">Altura</label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="number" name="height" value="{{isset($mobile->height) ? $mobile->height : ''}}"  class="input-highlight"  />
+                        </div>
+
+                        <div class="form-label">
+                            <label for="width" class="label-highlight">Ancho</label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="number" name="width" value="{{isset($mobile->width) ? $mobile->width : ''}}"  class="input-highlight"  />
                         </div>
                     </div>
                 </div>
@@ -254,7 +293,7 @@
                             </label>
                         </div>
                         <div class="form-input">
-                            <input type="text" name="product[price_without_iva]" value='{{isset($price["price_without_iva"]) ? $price["price_without_iva"] : ''}}' class="input-highlight">
+                            <input type="number" name="product[price_without_iva]" value='{{isset($price["price_without_iva"]) ? $price["price_without_iva"] : ''}}' class="input-highlight">
                         </div>
                     </div>
                 </div>
@@ -268,7 +307,21 @@
                         </div>
 
                         <div class="form-input">
-                            <input type="text" name="product[price]" value='{{isset($price["price"]) ? $price["price"] : ''}}' class="input-highlight">
+                            <input type="number" name="product[price]" value='{{isset($price["price"]) ? $price["price"] : ''}}' class="input-highlight">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="one-column">
+                    <div class="form-group">
+                        <div class="form-label">
+                            <label for="iva" class="label-highlight">
+                                IVA 
+                            </label>
+                        </div>
+
+                        <div class="form-input">
+                            <input type="number" name="product[iva]" value='{{isset($price["iva"]) ? $price["iva"] : ''}}' class="input-highlight">
                         </div>
                     </div>
                 </div>

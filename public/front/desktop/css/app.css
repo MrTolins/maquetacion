@@ -841,3 +841,113 @@ button:hover {
   padding: 0.1em 0;
   list-style: none;
 }
+
+.mobiles {
+  margin: 0 auto;
+  width: 80%;
+}
+.mobiles .mobile {
+  width: 100%;
+}
+.mobiles .mobile .mobile-title-container {
+  background-color: #80d4a4;
+  border-bottom: 0.2em solid white;
+  display: flex;
+  height: 10vh;
+  width: 100%;
+}
+@media (min-width: 1920px) {
+  .mobiles .mobile .mobile-title-container {
+    height: 6vh;
+  }
+}
+.mobiles .mobile .mobile-title-container .mobile-title {
+  margin: 0 1em;
+  width: 90%;
+}
+.mobiles .mobile .mobile-title-container .mobile-title h3 {
+  color: white;
+}
+.mobiles .mobile .mobile-title-container .mobile-plus-button {
+  cursor: pointer;
+  margin: 1em;
+  box-sizing: border-box;
+  transition: transform 0.3s;
+  width: 1.5em;
+  height: 1.5em;
+  transform: rotate(180deg);
+  position: relative;
+}
+.mobiles .mobile .mobile-title-container .mobile-plus-button.active {
+  transform: rotate(0deg);
+}
+.mobiles .mobile .mobile-title-container .mobile-plus-button::before {
+  content: "";
+  display: block;
+  width: 1.5em;
+  height: 0px;
+  border-bottom: solid 0.2em white;
+  position: absolute;
+  bottom: 0.65em;
+  transform: rotate(90deg);
+  transition: width 0.3s;
+}
+.mobiles .mobile .mobile-title-container .mobile-plus-button.active::before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+  border-bottom: solid 0.2em white;
+  position: absolute;
+  bottom: 0.65em;
+  transform: rotate(90deg);
+}
+.mobiles .mobile .mobile-title-container .mobile-plus-button::after {
+  content: "";
+  display: block;
+  width: 1.5em;
+  height: 0px;
+  border-bottom: solid 0.2em white;
+  position: absolute;
+  bottom: 0.65em;
+}
+.mobiles .mobile .mobile-title-container:hover {
+  background-color: #00d35b;
+}
+.mobiles .mobile .mobile-description {
+  background-color: #00642b00;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s;
+  width: 100%;
+  margin-left: 2em;
+}
+.mobiles .mobile .mobile-description p {
+  color: black;
+  font-weight: 900;
+  margin: 1em;
+  font-family: Lato;
+  text-align: justify;
+}
+.mobiles .mobile.active .mobile-title-container {
+  background-color: #80d4a4;
+}
+.mobiles .mobile.active .mobile-description {
+  max-height: 70vh;
+}
+
+.mobiles-title h3 {
+  text-align: center;
+  font-family: Poppins;
+}
+
+.mobile-group {
+  width: 62%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+}
+
+.mobile-description-image {
+  margin: 0 auto;
+}

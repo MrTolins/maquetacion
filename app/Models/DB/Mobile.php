@@ -11,11 +11,11 @@ class Mobile extends DBModel
 {
 
     protected $table = 't_mobiles';
-    protected $with = ['product','seo'];
+    protected $with = ['seo'];
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Product::class, 'product_id')->where('object', 'mobiles');
     }
     
     public function locale()

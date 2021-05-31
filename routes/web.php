@@ -125,16 +125,10 @@ Route::group(['prefix' => $localizationseo->setLocale(),
               'middleware' => [ 'localize' ]
             ], function () use ($localizationseo) {
 
-    Route::get($localizationseo->transRoute('routes.front_mobiles'), 'App\Http\Controllers\Front\MobileController@index')->name('front_mobiles');
-    Route::get($localizationseo->transRoute('routes.front_mobile'), 'App\Http\Controllers\Front\MobileController@show')->name('front_mobile');
-});
-
-Route::group(['prefix' => $localizationseo->setLocale(),
-              'middleware' => [ 'localize' ]
-            ], function () use ($localizationseo) {
-
     Route::get($localizationseo->transRoute('routes.front_faqs'), 'App\Http\Controllers\Front\FaqController@index')->name('front_faqs');
     Route::get($localizationseo->transRoute('routes.front_faq'), 'App\Http\Controllers\Front\FaqController@show')->name('front_faq');
+    Route::get($localizationseo->transRoute('routes.front_mobiles'), 'App\Http\Controllers\Front\MobileController@index')->name('front_mobiles');
+    Route::get($localizationseo->transRoute('routes.front_mobile'), 'App\Http\Controllers\Front\MobileController@show')->name('front_mobile');
 });
 
 Route::get('/sitemap', 'App\Http\Controllers\Front\LocaleSeoController@getSitemaps')->name('sitemap');

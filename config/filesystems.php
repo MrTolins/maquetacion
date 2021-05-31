@@ -64,6 +64,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'mobiles' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/mobiles'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

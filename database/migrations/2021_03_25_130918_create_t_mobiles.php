@@ -17,7 +17,6 @@ class CreateTMobiles extends Migration
             $table->id();
             $table->string('brand');
             $table->string('model');
-            $table->string('description');
             $table->integer('inches');
             $table->integer('height');
             $table->integer('width');

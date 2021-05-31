@@ -1194,3 +1194,48 @@ Horizon started successfully.
 Horizon started successfully.
 Horizon started successfully.
 Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2021-05-31 11:52:46][6a8a232f-6612-4092-b0e3-711118e559c2] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:46][faf88f81-bd08-43bf-8375-1cb4089e153d] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][6a8a232f-6612-4092-b0e3-711118e559c2] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][9468b5cd-415c-4cab-92a7-24c3e7053cb9] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][26aea3d9-c9c2-4890-8288-5c813be72ae5] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:46][26aea3d9-c9c2-4890-8288-5c813be72ae5] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:46][c8826ea1-977e-46fb-a192-15fe156fa3f8] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][26aea3d9-c9c2-4890-8288-5c813be72ae5] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][c8826ea1-977e-46fb-a192-15fe156fa3f8] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][6a8a232f-6612-4092-b0e3-711118e559c2] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:46][a963d693-1777-47e5-a86e-22ade70ac454] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:46][9468b5cd-415c-4cab-92a7-24c3e7053cb9] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][a963d693-1777-47e5-a86e-22ade70ac454] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][faf88f81-bd08-43bf-8375-1cb4089e153d] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][a963d693-1777-47e5-a86e-22ade70ac454] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][26aea3d9-c9c2-4890-8288-5c813be72ae5] Failed:     App\Jobs\ProcessImage
+[2021-05-31 11:52:47][faf88f81-bd08-43bf-8375-1cb4089e153d] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][faf88f81-bd08-43bf-8375-1cb4089e153d] Failed:     App\Jobs\ProcessImage
+[2021-05-31 11:52:47][6a8a232f-6612-4092-b0e3-711118e559c2] Failed:     App\Jobs\ProcessImage
+[2021-05-31 11:52:47][a963d693-1777-47e5-a86e-22ade70ac454] Failed:     App\Jobs\ProcessImage
+[2021-05-31 11:52:47][9468b5cd-415c-4cab-92a7-24c3e7053cb9] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][9468b5cd-415c-4cab-92a7-24c3e7053cb9] Failed:     App\Jobs\ProcessImage
+[2021-05-31 11:52:47][c8826ea1-977e-46fb-a192-15fe156fa3f8] Processing: App\Jobs\ProcessImage
+[2021-05-31 11:52:47][c8826ea1-977e-46fb-a192-15fe156fa3f8] Failed:     App\Jobs\ProcessImage
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.

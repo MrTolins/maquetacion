@@ -7,25 +7,13 @@ use Debugbar;
 
 class Product extends Model
 {
-    protected $table = 't_product';
+    protected $table = 't_products';
     protected $guarded = [];
 
-    public function scopeGetValues($query, $rel_parent, $key){
+    public function scopeGetValues($query, $object, $product_id){
 
-        return $query->where('key', $key)
-            ->where('rel_parent', $rel_parent);
+        return $query->where('product_id', $product_id)
+            ->where('object', $object);
     }
 
-    // public function scopeGetIdByLanguage($query, $rel_parent, $language, $key){
-        
-    //     return $query->where('key', $key)
-    //         ->where('language', $language)
-    //         ->where('rel_parent', $rel_parent);
-    // }
-
-    // public function scopeGetAllByLanguage($query, $rel_parent, $language){
-
-    //     return $query->where('language', $language)
-    //         ->where('rel_parent', $rel_parent);
-    // }
 }

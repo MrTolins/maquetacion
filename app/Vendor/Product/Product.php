@@ -14,46 +14,41 @@ class Product
         $this->product = $product;
     }
 
-    public function setParent($rel_parent)
+    public function setParent($object)
     {
-        $this->rel_parent = $rel_parent;
+        $this->object = $object;
     }
 
     public function getParent()
     {
-        return $this->rel_parent;
+        return $this->object;
     }
 
     public function store($product, $product_id)
     {  
 
-        foreach ($product as $object => $price){
- 
-
-            $product[] = $this->product->updateOrCreate([
-                    'product_id' => $product_id,
-                    'rel_parent' => $this->rel_parent,
-                    'object' => $object],[
-                    'rel_parent' => $this->rel_parent,
-                    'object' => $object,
-                    'price' => $price,
-                    'price_without_iva' => $price_without_iva,
-            ]);
-        }
+        $product[] = $this->product->updateOrCreate([
+                'product_id' => $product_id,
+                'object' => $this->object],[
+                'object' => $this->object,
+                'price' => $product['price'],
+                'price_without_iva' => $product['price_without_iva'],
+                'iva' => $product['iva']
+        ]);
 
         return $product;
     }
 
     public function show($product_id)
     {
-        return DBProduct::getValues($this->rel_parent, $product_id)->pluck('value','rel_anchor')->all();   
+        return DBProduct::getValues($this->object, $product_id)->all();   
     }
 
     public function delete($product_id)
     {
-        if (DBProduct::getValues($this->rel_parent, $product_id)->count() > 0) {
+        if (DBProduct::getValues($this->object, $product_id)->count() > 0) {
 
-            DBProduct::getValues($this->rel_parent, $product_id)->delete();   
+            DBProduct::getValues($this->object, $product_id)->delete();   
         }
     }
 }

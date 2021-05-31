@@ -20,7 +20,7 @@ class CreateTProducts extends Migration
             $table->integer('price_without_iva');
             $table->integer('iva');
             $table->integer('product_id');
-            $table->boolean('active');
+            $table->boolean('active')->nullable();
             $table->timestamps();
         });
     }
