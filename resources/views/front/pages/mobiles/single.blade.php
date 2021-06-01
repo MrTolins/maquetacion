@@ -10,7 +10,7 @@
 @section("content")
     @if($agent->isDesktop())
         <div class="page-section">
-            @include("front.pages.mobiles.desktop.mobiles")
+            @include("front.pages.mobiles.desktop.mobile")
         </div>
     @endif
 

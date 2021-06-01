@@ -5,6 +5,7 @@ namespace App\Models\DB;
 use App\Vendor\Locale\Models\Locale;
 use App\Vendor\Locale\Models\LocaleSlugSeo;
 use App\Vendor\Image\Models\ImageResized;
+use App\Vendor\Product\Models\Product;
 use App;
 
 class Mobile extends DBModel
@@ -15,7 +16,7 @@ class Mobile extends DBModel
 
     public function product()
     {
-        return $this->hasMany(Product::class, 'product_id')->where('object', 'mobiles');
+        return $this->hasOne(Product::class, 'product_id')->where('object', 'mobiles');
     }
     
     public function locale()

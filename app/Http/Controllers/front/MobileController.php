@@ -53,6 +53,7 @@ class MobileController extends Controller
             $mobile['locale'] = $mobile->locale->pluck('value','tag');
             
             return $mobile;
+            
         });
 
         $view = View::make('front.pages.mobiles.index')

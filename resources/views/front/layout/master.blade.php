@@ -24,20 +24,7 @@
 
       
     </head>
-    <header>
-        <nav>   
-            <ul>   
-                <li class="sub-menu-parent" tab-index="0">
-                    <a href="#">Menu 1</a>              
-                </li>
-                <li class="sub-menu-parent" tab-index="0">
-                    <a href="#">Menu 2</a>
-                </li>
-                <li class="sub-menu-parent" tab-index="0">
-                    <a href="#">Menu 3</a>
-            </ul>
-        </nav>
-    </header>
+
     <body>
         <div class="main">
             @yield('content')

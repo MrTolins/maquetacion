@@ -1997,6 +1997,39 @@ sendFingerprintRequest();
 
 /***/ }),
 
+/***/ "./resources/js/front/desktop/mobiles.js":
+/*!***********************************************!*\
+  !*** ./resources/js/front/desktop/mobiles.js ***!
+  \***********************************************/
+/***/ (() => {
+
+var plusButtons = document.querySelectorAll('.mobile-plus-button');
+var mobileElements = document.querySelectorAll(".mobile");
+plusButtons.forEach(function (plusButton) {
+  plusButton.addEventListener("click", function () {
+    var activeElements = document.querySelectorAll(".active");
+
+    if (plusButton.classList.contains("active")) {
+      plusButton.classList.remove("active");
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
+    } else {
+      activeElements.forEach(function (activeElement) {
+        activeElement.classList.remove("active");
+      });
+      plusButton.classList.add("active");
+      mobileElements.forEach(function (mobileElement) {
+        if (mobileElement.dataset.content == plusButton.dataset.button) {
+          mobileElement.classList.add("active");
+        } else {}
+      });
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./node_modules/clientjs/dist/client.min.js":
 /*!**************************************************!*\
   !*** ./node_modules/clientjs/dist/client.min.js ***!
@@ -20354,6 +20387,8 @@ __webpack_require__(/*! ../../bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./fingerprint */ "./resources/js/front/desktop/fingerprint.js");
 
 __webpack_require__(/*! ./faqs */ "./resources/js/front/desktop/faqs.js");
+
+__webpack_require__(/*! ./mobiles */ "./resources/js/front/desktop/mobiles.js");
 })();
 
 /******/ })()
