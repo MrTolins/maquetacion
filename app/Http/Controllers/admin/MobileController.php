@@ -94,7 +94,6 @@ class MobileController extends Controller
 
     public function store(MobileRequest $request)
     {          
-        Debugbar::info(request('product'));
 
         $mobile = $this->mobile->updateOrCreate([
             'id' => request('id')],[
@@ -146,10 +145,12 @@ class MobileController extends Controller
     {
         $locale = $this->locale->show($mobile->id);
         $seo = $this->locale_slug_seo->show($mobile->id);
+        $product = $this->product->show($mobile->id);
 
         $view = View::make('admin.mobiles.index')
         ->with('locale', $locale)
         ->with('seo', $seo)
+        ->with('product', $product)
         ->with('mobile', $mobile)
         ->with('mobiles', $this->mobile->where('active', 1)->orderBy('created_at', 'desc')->paginate($this->paginate))
         ->renderSections();        
@@ -162,6 +163,9 @@ class MobileController extends Controller
 
     public function destroy(Mobile $mobile)
     {
+
+        $this->locale->delete($mobile->id);
+        $this->locale_slug_seo->delete($mobile->id);
         $mobile->active = 0;
         $mobile->save();
 

@@ -41,7 +41,7 @@ class Product
 
     public function show($product_id)
     {
-        return DBProduct::getValues($this->object, $product_id)->all();   
+        return DBProduct::getValues($this->object, $product_id)->first();   
     }
 
     public function delete($product_id)

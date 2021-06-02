@@ -15,11 +15,11 @@ class CreateTProducts extends Migration
     {
         Schema::create('t_products', function (Blueprint $table) {
             $table->id();
-            $table->string('object');
-            $table->integer('price');
-            $table->integer('price_without_iva');
-            $table->integer('iva');
-            $table->integer('product_id');
+            $table->string('object')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('price_without_iva')->nullable();
+            $table->integer('iva')->nullable();
+            $table->integer('product_id')->nullable();
             $table->boolean('active')->nullable();
             $table->timestamps();
         });

@@ -293,7 +293,7 @@
                             </label>
                         </div>
                         <div class="form-input">
-                            <input type="number" name="product[price_without_iva]" value='{{isset($price["price_without_iva"]) ? $price["price_without_iva"] : ''}}' class="input-highlight">
+                            <input type="number" name="product[price_without_iva]" value='{{isset($product["price_without_iva"]) ? $product["price_without_iva"] : ''}}' class="input-highlight">
                         </div>
                     </div>
                 </div>
@@ -307,7 +307,7 @@
                         </div>
 
                         <div class="form-input">
-                            <input type="number" name="product[price]" value='{{isset($price["price"]) ? $price["price"] : ''}}' class="input-highlight">
+                            <input type="number" name="product[price]" value='{{isset($product["price"]) ? $product["price"] : ''}}' class="input-highlight">
                         </div>
                     </div>
                 </div>
@@ -321,7 +321,7 @@
                         </div>
 
                         <div class="form-input">
-                            <input type="number" name="product[iva]" value='{{isset($price["iva"]) ? $price["iva"] : ''}}' class="input-highlight">
+                            <input type="number" name="product[iva]" value='{{isset($product["iva"]) ? $product["iva"] : ''}}' class="input-highlight">
                         </div>
                     </div>
                 </div>

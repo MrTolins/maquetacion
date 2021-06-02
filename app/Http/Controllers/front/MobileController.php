@@ -11,7 +11,6 @@ use App\Vendor\Locale\Locale;
 use App\Vendor\Locale\LocaleSlugSeo;
 use App\Models\DB\Mobile;
 use App;
-use Debugbar;
 
 class MobileController extends Controller
 {
@@ -70,20 +69,20 @@ class MobileController extends Controller
         if(isset($seo->key)){
 
             if($this->agent->isDesktop()){
+                
                 $mobile = $this->mobile
                     ->with('image_featured_desktop')
                     ->with('image_grid_desktop')
                     ->where('active', 1)
-                
                     ->find($seo->key);
             }
             
             elseif($this->agent->isMobile()){
+
                 $mobile = $this->mobile
                     ->with('image_featured_mobile')
                     ->with('image_grid_mobile')
                     ->where('active', 1)
-                  
                     ->find($seo->key);
             }
 

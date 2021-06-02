@@ -35,3 +35,19 @@ plusButtons.forEach(plusButton => {
     
 });
 
+const activeImage = document.querySelector(".product-image .active-img");
+const productImages = document.querySelectorAll(".image-list img");
+const navItem = document.querySelector("a.toggle-nav");
+
+function changeImage(e) {
+  activeImage.src = e.target.src;
+}
+
+function toggleNavigation() {
+  this.nextElementSibling.classList.toggle("active-img");
+}
+
+productImages.forEach((image) => image.addEventListener("click", changeImage));
+
+
+

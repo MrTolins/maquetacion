@@ -11,44 +11,8 @@ body{
     padding: 0; 
 }
 
-#logo{
-    width:2em;
-    cursor: pointer; 
-    float:left; 
-    padding:5px;
-}
-
-nav a { 
-    
-    width: 100%;
-    font-family:Poppins;
-    font-weight:bold;
-    color:black; 
-    display: block; 
-    padding: 0.5em 1em; 
-    text-decoration: none;
-    height: 4vh; 
-}
-
-nav a:hover { 
-    color: #ffffff; 
-}
-
-nav ul,nav ul li { 
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
-}
-
-nav > ul { 
-    background:#80d4a4; 
-    text-align: center; 
-}
-nav > ul > li { 
-    display: inline-block;
-    margin-right: 6%;
-}
 
 .page-section{
-    margin-top: -1.1em;
+    margin-top: -1.8em;
+    height: 100vh;
 }

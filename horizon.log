@@ -1301,3 +1301,79 @@ Horizon started successfully.
 Horizon started successfully.
 Horizon started successfully.
 Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2021-06-02 07:01:16][d4d237a9-3c37-4ad0-b47c-81eb5e0f32c3] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:16][ed149b09-e8cf-4606-93ae-1747855a7804] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:16][ef3eec45-49ce-44c0-a4cb-9add46f2ac08] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:17][d4d237a9-3c37-4ad0-b47c-81eb5e0f32c3] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:17][477eede9-0ca2-4b36-bd8c-d78b0f5c58b2] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:18][477eede9-0ca2-4b36-bd8c-d78b0f5c58b2] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:18][83effa8a-de68-4f70-8297-4772c87ea00e] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:17][ed149b09-e8cf-4606-93ae-1747855a7804] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:17][667b65c4-0184-4724-8bbd-580b6a97b2bb] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:18][667b65c4-0184-4724-8bbd-580b6a97b2bb] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:18][7a47d95f-45d0-4d40-8fb8-d938d26ca589] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:18][ef3eec45-49ce-44c0-a4cb-9add46f2ac08] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:18][273af1dd-09ec-4667-aee8-3f5c4b0e17ad] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:18][273af1dd-09ec-4667-aee8-3f5c4b0e17ad] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:18][b7222354-42fa-4c65-950e-e3336e1a38b8] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:19][83effa8a-de68-4f70-8297-4772c87ea00e] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:19][6d146cd8-bb8e-4b7e-bcc8-77a1ce23e5aa] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:19][7a47d95f-45d0-4d40-8fb8-d938d26ca589] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:19][50c43dec-9e7c-4ba2-a495-0d191a17410c] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:19][b7222354-42fa-4c65-950e-e3336e1a38b8] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:19][75b7232a-c1de-415a-9425-2a67d8d86492] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:01:19][6d146cd8-bb8e-4b7e-bcc8-77a1ce23e5aa] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:19][50c43dec-9e7c-4ba2-a495-0d191a17410c] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:01:19][75b7232a-c1de-415a-9425-2a67d8d86492] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:03:55][342cba68-73ef-42f3-80fe-d550a55f391a] Processing: App\Jobs\DeleteImage
+[2021-06-02 07:03:55][342cba68-73ef-42f3-80fe-d550a55f391a] Processed:  App\Jobs\DeleteImage
+[2021-06-02 07:06:17][9ed02443-6bdc-41e0-b5fe-7ff9a3db79c9] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:17][7ca36489-0a02-433d-87f3-506daade0381] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:17][7b677e32-dc4b-44c9-9240-55a70a917f49] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:18][9ed02443-6bdc-41e0-b5fe-7ff9a3db79c9] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:18][083bad8e-2a06-4688-86c8-e17cba899989] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:19][083bad8e-2a06-4688-86c8-e17cba899989] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:19][4e7b1c6d-28cd-4076-8717-feca0bbd5003] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:18][7ca36489-0a02-433d-87f3-506daade0381] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:18][4590ac8b-43d5-4050-b692-d30341d788e3] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:18][7b677e32-dc4b-44c9-9240-55a70a917f49] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:18][b99bbd9d-6363-408f-b931-c24069aa61ad] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:18][b99bbd9d-6363-408f-b931-c24069aa61ad] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:18][8b11309c-28ec-48de-9730-2316eafc1297] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:19][4590ac8b-43d5-4050-b692-d30341d788e3] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:19][de385793-b478-4719-8b8d-4e515687f9a6] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:20][4e7b1c6d-28cd-4076-8717-feca0bbd5003] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:20][0d07ec9b-14cf-4319-a49d-7214d3624749] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:21][de385793-b478-4719-8b8d-4e515687f9a6] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:21][3230de74-d1f9-446e-86a6-a1bd5ce73675] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:20][8b11309c-28ec-48de-9730-2316eafc1297] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:20][730f99ac-bec4-4e47-a26b-f1add9e444f1] Processing: App\Jobs\ProcessImage
+[2021-06-02 07:06:21][730f99ac-bec4-4e47-a26b-f1add9e444f1] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:21][0d07ec9b-14cf-4319-a49d-7214d3624749] Processed:  App\Jobs\ProcessImage
+[2021-06-02 07:06:21][3230de74-d1f9-446e-86a6-a1bd5ce73675] Processed:  App\Jobs\ProcessImage
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+Horizon started successfully.
+[2021-06-02 13:43:19][9d4cbceb-5210-4159-99b9-6a40e7398536] Processing: App\Jobs\ProcessImage
+[2021-06-02 13:43:19][f563ba83-5329-422d-a286-3915d6a26f9a] Processing: App\Jobs\ProcessImage
+[2021-06-02 13:43:19][fafb9b04-f360-41ed-ad12-16894a88ff19] Processing: App\Jobs\ProcessImage
+[2021-06-02 13:43:19][9d4cbceb-5210-4159-99b9-6a40e7398536] Processed:  App\Jobs\ProcessImage
+[2021-06-02 13:43:19][f563ba83-5329-422d-a286-3915d6a26f9a] Processed:  App\Jobs\ProcessImage
+[2021-06-02 13:43:19][fafb9b04-f360-41ed-ad12-16894a88ff19] Processed:  App\Jobs\ProcessImage

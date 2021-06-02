@@ -532,46 +532,9 @@ body {
   padding: 0;
 }
 
-#logo {
-  width: 2em;
-  cursor: pointer;
-  float: left;
-  padding: 5px;
-}
-
-nav a {
-  width: 100%;
-  font-family: Poppins;
-  font-weight: bold;
-  color: black;
-  display: block;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  height: 4vh;
-}
-
-nav a:hover {
-  color: #ffffff;
-}
-
-nav ul, nav ul li {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav > ul {
-  background: #80d4a4;
-  text-align: center;
-}
-
-nav > ul > li {
-  display: inline-block;
-  margin-right: 6%;
-}
-
 .page-section {
-  margin-top: -1.1em;
+  margin-top: -1.8em;
+  height: 100vh;
 }
 
 .form {
@@ -1541,7 +1504,6 @@ h3,
 h4 {
   color: #333;
   font-weight: normal;
-  margin: 1.75rem 0 1rem 0;
 }
 
 h1 {
@@ -1561,9 +1523,9 @@ h3 {
 }
 
 h4 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 1rem 0 0.5rem 0;
-  font-family: Lato;
+  font-family: Poppins;
 }
 
 section {
@@ -1751,7 +1713,9 @@ footer {
 
 .product-image img {
   height: auto;
-  width: 60%;
+  width: 80%;
+  display: block;
+  margin: auto;
 }
 
 .product-image img.active {
@@ -1877,22 +1841,28 @@ nav ul {
   display: block;
   padding: 1rem 0.5rem;
   text-align: center;
+  margin-top: -2.7em;
 }
 
 .description-mobiles {
   position: absolute;
-  bottom: 1rem;
+  top: -10rem;
   left: 0;
   right: 0;
   display: block;
-  padding: 0 1.5rem;
+  padding: 0 0.6rem;
   opacity: 0;
   transition: opacity 0.1s linear 0s;
   text-align: justify;
+  filter: none;
+}
+
+.description-mobiles p {
+  font-family: Lato;
+  font-style: italic;
 }
 
 .wrapper-mobiles:hover .box-mobiles:not(:hover) {
-  filter: blur(3px);
   opacity: 0.5;
 }
 
@@ -1902,13 +1872,24 @@ nav ul {
 }
 
 .box-mobiles:hover .product-mobiles {
-  height: 31rem;
+  filter: blur(10px);
+  height: 25rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   transition: box-shadow 1s linear, height 0.3s linear 0.5s;
 }
 
-.box-mobiles:hover .description-mobiles {
+.box-mobiles:hover .description-mobiles:hover {
   opacity: 1;
-  transition: opacity 0.3s linear 0.75s;
+  transition: opacity 0.3s linear 0.5s;
   height: 100px;
+  top: 5px;
+  color: black;
+}
+
+.description p {
+  font-size: 15px;
+}
+
+.column-xs-12 h4 {
+  font-size: 20px;
 }

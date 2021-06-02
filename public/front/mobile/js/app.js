@@ -2027,6 +2027,21 @@ plusButtons.forEach(function (plusButton) {
     }
   });
 });
+var activeImage = document.querySelector(".product-image .active-img");
+var productImages = document.querySelectorAll(".image-list img");
+var navItem = document.querySelector("a.toggle-nav");
+
+function changeImage(e) {
+  activeImage.src = e.target.src;
+}
+
+function toggleNavigation() {
+  this.nextElementSibling.classList.toggle("active-img");
+}
+
+productImages.forEach(function (image) {
+  return image.addEventListener("click", changeImage);
+});
 
 /***/ }),
 
