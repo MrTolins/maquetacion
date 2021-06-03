@@ -3,10 +3,10 @@
     <div class="mobiles-title">
         <h3>@lang('front/mobiles.title')</h3>
     </div>
-    <div class="wrapper-mobiles">
+    <div class="wrapper-mobiles" >
         @foreach ($mobiles as $mobile)
 
-            <div class="box-mobiles" id="box-mobiles">
+            <div class="box-mobiles" id="box-mobiles" data-url="">
                 <div class="product-mobiles" id="product-mobiles">
                     <div class="image-mobiles">
                         <img src="{{Storage::url($mobile->image_featured_desktop->path)}}" alt="{{$mobile->image_featured_desktop->alt}}" title="{{$mobile->image_featured_desktop->title}}" />

@@ -16,7 +16,7 @@ class CreateTProducts extends Migration
         Schema::create('t_products', function (Blueprint $table) {
             $table->id();
             $table->string('object')->nullable();
-            $table->integer('price')->nullable();
+            $table->decimal('price', 11, 2)->nullable();
             $table->integer('price_without_iva')->nullable();
             $table->integer('iva')->nullable();
             $table->integer('product_id')->nullable();

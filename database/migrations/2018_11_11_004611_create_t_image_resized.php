@@ -44,7 +44,7 @@ class CreateTImageResized extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_image');
+        Schema::dropIfExists('t_image_resized');
     }
 }
 

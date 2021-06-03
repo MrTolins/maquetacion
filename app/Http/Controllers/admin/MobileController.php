@@ -211,7 +211,7 @@ class MobileController extends Controller
                     return $q;
                 }
                 else {
-                    return $q->where('title', 'like', "%$search%");
+                    return $q->where('brand', 'like', "%$search%");
                 }
             });
 

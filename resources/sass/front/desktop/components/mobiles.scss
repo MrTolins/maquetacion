@@ -443,6 +443,7 @@
   .column-xs-12 {
     grid-column-start: span 12;
     grid-column-end: span 12;
+    
   }
 
   @media (min-width: 48rem) {
@@ -682,6 +683,20 @@ h1 {
   font-family: Poppins;
 }
 
+.column-xs-12 h2{
+  position: relative;
+  display: inline-block;
+  background: #3e3e3f;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 1.25rem 2.5rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  letter-spacing: 0.0625rem;
+}
+
 h2 {
   font-size: 2.125rem;
   font-family: Poppins;
@@ -722,7 +737,7 @@ nav li {
   position: absolute;
   z-index: 1;
   list-style: none;
-  margin: 0;
+  margin-top:1em; 
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -731,7 +746,7 @@ nav li {
   width: 100%;
   left: 0;
   padding: 1rem;
-  background: #fff;
+  background-color: transparent;
   text-align: center;
 }
 .flex-nav ul.active {
@@ -777,7 +792,7 @@ nav li {
   text-transform: uppercase;
 }
 
-.breadcrumb-item.active {
+.breadcrumb-item.active-list {
   color: #333;
 }
 .breadcrumb-item + .breadcrumb-item::before {
@@ -830,6 +845,7 @@ nav li {
   padding: 0 1rem;
   max-width: 75rem;
   width: 100%;
+
 }
 
 .grid > [class*=column-] {
@@ -839,7 +855,7 @@ nav li {
   border-bottom: 0.0625rem solid #e3dddd;
 }
 .grid.menu > [class*=column-] {
-  padding: 0.5rem 1rem 0.5rem 1rem;
+  background-color: transparent;
 }
 .grid.product {
   padding: 0 0 1.5rem 0;
@@ -979,7 +995,7 @@ margin: 0;
 .product-mobiles {
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 36vh;
   border-radius: 0.2rem;
   background-color: #fff;
   background-position: top 3rem center;
@@ -1014,10 +1030,6 @@ margin: 0;
   font-style: italic;
 }
 
-.wrapper-mobiles:hover .box-mobiles:not(:hover)   {
-  opacity: 0.5;
-}
-
 .box-mobiles:hover  {
   transform: scale(1.1);
   transition:
@@ -1025,9 +1037,9 @@ margin: 0;
     filter 0.1s linear 0s,
     opacity 0.1s linear 0s;
 }
-.box-mobiles:hover .product-mobiles {
+.box-mobiles:hover .product-mobiles{
   filter: blur(10px);
-  height: 25rem;
+  height: 20rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
   transition:
     box-shadow 1s linear,
@@ -1035,8 +1047,9 @@ margin: 0;
 
 }
 .box-mobiles:hover .description-mobiles:hover {
+  cursor: pointer;
   opacity: 1;
-  transition: opacity 0.3s linear 0.5s;
+  transition: opacity 0.3s linear 0.2s;
   height: 100px;
   top: 5px;
   color: black;
