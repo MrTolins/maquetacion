@@ -14,5 +14,8 @@ require('./localeSeo');
 require('./googleBot');
 require('./sitemap');
 require('./blockParameters');
-
+require('./sortable');
+require('./menuItems');
+require('./modalMenuItem');
+require('./selects');
 

@@ -1,5 +1,5 @@
 import {renderCkeditor} from './ckeditor';
-import {startWait, stopWait} from './wait';
+import {startWait, stopWait, startOverlay} from './wait';
 import {renderUploadImage} from './uploadImage';
 import {showMessage} from './messages';
 import {renderTabs} from './tabs';
@@ -8,6 +8,9 @@ import {renderGoogleBot} from './googleBot';
 import {renderSitemap} from './sitemap';
 import {renderLocaleTabs} from './localeTabs';
 import {renderBlockParameters} from './blockParameters'
+import {renderNestedSortables} from './sortable';
+import {renderMenuItems} from './menuItems';
+import {renderSelects} from './selects';
 import axios from 'axios';
 
 const table = document.getElementById("table");
@@ -181,6 +184,9 @@ export let renderForm = () => {
     renderGoogleBot();
     renderSitemap();
     renderBlockParameters();
+    renderNestedSortables();
+    renderMenuItems();
+    renderSelects();
 }
 
 export let renderTable = () => {
@@ -191,6 +197,7 @@ export let renderTable = () => {
     let paginationButtons = document.querySelectorAll('.table-pagination-button');
     let deleteConfirm = document.getElementById('delete-confirm');
     let deleteCancel = document.getElementById('delete-cancel');
+    let modalDelete = document.getElementById('modal-delete');
  
     
     editButtons.forEach(editButton => {
@@ -219,62 +226,56 @@ export let renderTable = () => {
         sendGetRequest();
     });
     
-    
-    deleteButtons.forEach(deleteButton => {
-    
-        let sendDeleteRequest = async () => {
-    
-            deleteButton.addEventListener("click", (event) =>{
+
+    if(deleteButtons){
+
+        deleteButtons.forEach(deleteButton => {
+
+            deleteButton.addEventListener("click", () => {
     
                 let url = deleteButton.dataset.url;
-            
+                deleteConfirm.dataset.url = url;
+                modalDelete.classList.add('modal-active');
+                startOverlay();
+            });
+        });
+    
+        deleteCancel.addEventListener("click", () => {
+            modalDelete.classList.remove('modal-active');
+            stopWait();
+        });
+    
+        deleteConfirm.addEventListener("click", () => {
+    
+            let url = deleteConfirm.dataset.url;
+        
+            let sendDeleteRequest = async () => {
+    
                 try {
-                    axios.delete(url).then(response => {
-                        table.innerHTML = response.data.table;
-                        renderTable();
+                    await axios.delete(url).then(response => {
                         
+                        if(response.data.table){
+                            table.innerHTML = response.data.table;
+                        }
+
+                        form.innerHTML = response.data.form;
+                        modalDelete.classList.remove('modal-active');
+                        renderTable();
+                        renderForm();
+    
+                        stopWait();
+                        showMessage('success', response.data.message);
                     });
+                    
                 } catch (error) {
+                    stopWait();
                     console.error(error);
                 }
-            });
-        }
+            };
     
-        sendDeleteRequest();
-    });
-
-    deleteCancel.addEventListener("click", () => {
-        modalDelete.classList.remove('open');
-    });
-
-    deleteConfirm.addEventListener("click", () => {
-
-        let url = deleteConfirm.dataset.url;
-
-        startWait();
-
-        let sendDeleteRequest = async () => {
-
-            try {
-                await axios.delete(url).then(response => {
-                    table.innerHTML = response.data.table;
-                    form.innerHTML = response.data.form;
-                    modalDelete.classList.remove('open');
-                    renderTable();
-                    renderForm();
-
-                    stopWait();
-                    showMessage('success', response.data.message);
-                });
-                
-            } catch (error) {
-                stopWait();
-                console.error(error);
-            }
-        };
-
-        sendDeleteRequest();
-    });
+            sendDeleteRequest();
+        });    
+    }
 
     paginationButtons.forEach(paginationButton => {
 

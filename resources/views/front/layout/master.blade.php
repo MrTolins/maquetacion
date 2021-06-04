@@ -26,6 +26,9 @@
     </head>
 
     <body>
+
+        {{display_menu('principal','horizontal')}}
+
         <div class="main">
             @yield('content')
         </div>

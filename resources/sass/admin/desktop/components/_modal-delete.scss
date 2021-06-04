@@ -12,14 +12,14 @@
     width: 40%;
     z-index: 3000;
 
-    &.open{
+    &.modal-active{
         top: 30%;
         transform: translateY(0);
     }
 
     .modal-delete-header{
 
-        background-color: grey;
+        background-color: $grey;
         border-bottom: 1px solid #e9ecef;
         padding: 0.5em 1em;
         text-align: center;

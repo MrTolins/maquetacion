@@ -1904,3 +1904,55 @@ nav ul {
 .column-xs-12 h4 {
   font-size: 20px;
 }
+
+.menu-inline {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  z-index: 1001;
+}
+.menu-inline li {
+  margin: 0.5em;
+  cursor: pointer;
+  display: inline-flex;
+}
+.menu-inline li.selected a h4 {
+  color: #ff7a7a;
+}
+.menu-inline li a h4 {
+  color: #253786;
+  font-size: 1em;
+}
+.menu-inline li:hover a h4 {
+  color: #00a7b0;
+}
+@media (min-width: 1920px) {
+  .menu-inline li a h4 {
+    font-size: 1.6em;
+  }
+}
+.menu-inline:hover .menu {
+  opacity: 1;
+  top: 5vh;
+  transition: all 0.7s;
+}
+
+.menu-vertical li {
+  margin: 0.5em 0;
+}
+
+.menu {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.7s;
+  top: 0;
+}
+.menu li {
+  margin: 1em 0.5em;
+}
