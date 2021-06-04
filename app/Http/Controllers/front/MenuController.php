@@ -16,6 +16,7 @@ class MenuController extends Controller
         $language = app()->getLocale();
         $agent = new Agent();
 
+           //mira si el menu que le ha pasado tiene hijos
         $menu = Menu::where('name', '=', $menu_name)
         ->with(['parent_items'=> function ($q) use ($language) {
             $q->where('language', $language)->with('children');
@@ -23,6 +24,7 @@ class MenuController extends Controller
                 
         if (isset($menu)) {
 
+            //coge cada menu
             $items = $this->getItems($menu->parent_items);
 
             if($agent->isDesktop()){
@@ -47,6 +49,9 @@ class MenuController extends Controller
             return false;
         }
     }
+
+    //coge los items, por cada uno puede ser padre de uno mismo
+    //se llama a si misma para combrobar si cada uno de los menus tiene un submenu
 
     public function getItems($items){
 
