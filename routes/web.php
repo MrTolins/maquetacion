@@ -17,6 +17,9 @@ $localizationseo = new LocalizationSeo();
 */
 
 Route::group(['prefix' => 'admin'], function () {    
+
+    Route::get('/informacion-de-la-empresa', 'App\Http\Controllers\Admin\BusinessInformationController@index')->name('business_information');
+    Route::post('/informacion-de-la-empresa', 'App\Http\Controllers\Admin\BusinessInformationController@store')->name('business_information_store');
     
     Route::get('/seo/sitemap', 'App\Http\Controllers\Admin\LocaleSeoController@getSitemaps')->name('create_sitemap');
     Route::get('/seo/import', 'App\Http\Controllers\Admin\LocaleSeoController@importSeo')->name('seo_import');
@@ -138,16 +141,6 @@ Route::group(['prefix' => 'admin'], function () {
         
 });
 
-Route::group(['prefix' => $localizationseo->setLocale(),
-              'middleware' => [ 'localize' ]
-            ], function () use ($localizationseo) {
-
-    Route::get($localizationseo->transRoute('routes.front_faqs'), 'App\Http\Controllers\Front\FaqController@index')->name('front_faqs');
-    Route::get($localizationseo->transRoute('routes.front_faq'), 'App\Http\Controllers\Front\FaqController@show')->name('front_faq');
-    Route::get($localizationseo->transRoute('routes.front_mobiles'), 'App\Http\Controllers\Front\MobileController@index')->name('front_mobiles');
-    Route::get($localizationseo->transRoute('routes.front_mobile'), 'App\Http\Controllers\Front\MobileController@show')->name('front_mobile');
-});
-
 Route::get('/sitemap', 'App\Http\Controllers\Front\LocaleSeoController@getSitemaps')->name('sitemap');
 Route::post('/fingerprint', 'App\Http\Controllers\Front\FingerprintController@store')->name('front_fingerprint');
 
@@ -156,3 +149,17 @@ Route::get('/login', 'App\Http\Controllers\Front\LoginController@index')->name('
 Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name('front_login_submit');
 
 Route::get('/', 'App\Http\Controllers\Front\HomeController@index')->name('home_front');
+
+Route::post('/contacto', 'App\Http\Controllers\Front\ContactController@send')->name('front_contact_form');
+
+Route::group(['prefix' => $localizationseo->setLocale(),
+              'middleware' => [ 'localize' ]
+            ], function () use ($localizationseo) {
+
+    Route::get($localizationseo->transRoute('routes.front_faqs'), 'App\Http\Controllers\Front\FaqController@index')->name('front_faqs');
+    Route::get($localizationseo->transRoute('routes.front_faq'), 'App\Http\Controllers\Front\FaqController@show')->name('front_faq');
+    Route::get($localizationseo->transRoute('routes.front_mobiles'), 'App\Http\Controllers\Front\MobileController@index')->name('front_mobiles');
+    Route::get($localizationseo->transRoute('routes.front_mobile'), 'App\Http\Controllers\Front\MobileController@show')->name('front_mobile');
+    Route::get($localizationseo->transRoute('routes.front_contact'), 'App\Http\Controllers\Front\ContactController@index')->name('front_contact');
+    Route::get($localizationseo->transRoute('routes.front_about_us'), 'App\Http\Controllers\Front\AboutUsController@index')->name('front_about_us');
+});

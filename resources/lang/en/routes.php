@@ -5,5 +5,7 @@ return array (
   'front_faqs' => 'faqs',
   'front_faq' => 'faqs/{slug}',
   'front_mobiles' => 'mobiles',
-  'front_mobile' => 'mobiles/{slug}'
+  'front_mobile' => 'mobiles/{slug}',
+  'front_contact' => 'contacto',
+  'front_about_us' => 'our-fleet',
 );

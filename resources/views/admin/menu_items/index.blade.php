@@ -10,7 +10,7 @@
 
     @foreach ($localizations as $localization)
 
-        <div class="locale-tab-panel {{ $loop->first ? 'locale-tab-active':'' }}" data-tab="content" data-localetab="{{$localization->alias}}">
+        <div class="locale-panel {{ $loop->first ? 'locale-active':'' }}" data-tab="content" data-localetab="{{$localization->alias}}">
                 
             <div class="one-column">
                 <div class="form-group">

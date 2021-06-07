@@ -1956,3 +1956,327 @@ nav ul {
 .menu li {
   margin: 1em 0.5em;
 }
+
+.header-fixed {
+  background-color: rgba(198, 240, 190, 0.118);
+  padding: 1% 5%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+  z-index: 2000;
+}
+.header-fixed.hidden {
+  opacity: 0;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-name: fadeOut;
+          animation-name: fadeOut;
+}
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.header-fixed.blur {
+  background-color: rgba(73, 73, 73, 0.8);
+  overflow: hidden;
+}
+.header-fixed.blur h4 {
+  color: #ffffff;
+}
+
+.header-fixed .header-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+.header-fixed .header-container .header-logo {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  z-index: 3000;
+}
+.header-fixed .header-container .header-menu {
+  display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  z-index: 3000;
+}
+.header-fixed .header-container .header-menu .booking-button {
+  margin: auto;
+  margin-left: 2em;
+}
+.header-fixed .header-container .header-menu .booking-button button {
+  background-image: linear-gradient(to right, #6ec787 0%, #02b03c 50%, #6ec787 100%);
+  background-size: 200% auto;
+  border-radius: 1.2em;
+  border: none;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0px;
+  min-width: 20%;
+  padding: 1.2em 2em;
+  transition: 0.5s;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 0%;
+}
+.header-fixed .header-container .header-menu .booking-button button:hover {
+  background-size: 100% auto;
+}
+.header-fixed .header-container .header-menu .booking-button button:focus {
+  outline: 0;
+}
+
+.header-fixed .header-bar {
+  height: 3.5em;
+  overflow: hidden;
+  padding-top: 1em;
+  width: 100%;
+  z-index: 2000;
+}
+.header-fixed .header-bar.blur {
+  background-color: grey;
+  filter: blur(2px);
+  opacity: 0.8;
+  overflow: hidden;
+}
+
+.topbar {
+  background-image: linear-gradient(to right, #80d4a4 0%, #80d4a4 50%, #80d4a4 100%) !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 5%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+  z-index: 2000;
+}
+.topbar .topbar-element {
+  display: flex;
+  margin: 0 1em;
+}
+.topbar .topbar-element .topbar-element-icon {
+  margin: auto;
+  margin-right: 0.5em;
+}
+.topbar .topbar-element .topbar-element-icon svg {
+  height: 1em;
+  width: 1em;
+}
+.topbar .topbar-element .topbar-element-icon svg path {
+  fill: white;
+}
+.topbar .topbar-element .topbar-element-text {
+  margin: auto;
+}
+.topbar .topbar-element .topbar-element-text p, .topbar .topbar-element .topbar-element-text a, .topbar .topbar-element .topbar-element-text h1 {
+  color: white;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+@media (min-width: 1920px) {
+  .topbar .topbar-element .topbar-element-text p {
+    font-size: 1em;
+  }
+}
+.topbar.hidden {
+  opacity: 0;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-name: fadeOut;
+          animation-name: fadeOut;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.topbar .topbar-left, .topbar .topbar-right {
+  display: flex;
+}
+
+.footer {
+  background-color: #80d4a4;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin-top: 0px;
+  padding: 5% 10%;
+  position: relative;
+  width: 100%;
+}
+
+.footer:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 20px;
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle at 20px -29px, transparent 40px, #FFF 41px);
+  transform: rotate(180deg);
+}
+
+.footer:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 30px;
+  background-size: 80px 40px;
+  background-image: radial-gradient(circle at 20px 52px, #FFF 40px, transparent 41px);
+  transform: rotate(180deg);
+}
+
+.footer .footer-element-title {
+  color: white;
+  margin-bottom: 1.5em;
+}
+
+.footer .booking-button {
+  margin-top: 2em;
+}
+.footer .booking-button button {
+  background-image: linear-gradient(to right, #6ec787 0%, #02b03c 50%, #6ec787 100%);
+  background-size: 200% auto;
+  border-radius: 1.2em;
+  border: none;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0px;
+  min-width: 20%;
+  padding: 1.2em 2em;
+  transition: 0.5s;
+  text-decoration: none;
+  width: 100%;
+  border-radius: 0%;
+}
+.footer .booking-button button:hover {
+  background-size: 100% auto;
+}
+.footer .booking-button button:focus {
+  outline: 0;
+}
+
+.footer .footer-element-container p, .footer .footer-element-container a, .footer .footer-element-container h1, .footer .footer-element-container h2, .footer .footer-element-container h3, .footer .footer-element-container h4, .footer .footer-element-container h5 {
+  color: white;
+  font-weight: 400;
+}
+
+.footer .footer-element-icon {
+  margin-right: 0.5em;
+}
+.footer .footer-element-icon svg {
+  height: 1em;
+  width: 1em;
+}
+.footer .footer-element-icon svg path {
+  fill: white;
+}
+
+.footer .footer-socials-container {
+  display: flex;
+}
+
+.footer .footer-contact-item {
+  display: flex;
+  margin: 0.5em 0;
+}
+
+.bottombar {
+  background-image: linear-gradient(to right, #80d4a4 0%, #80d4a4 50%, #80d4a4 100%) !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 100%;
+  z-index: 2000;
+}
+.bottombar .bottombar-element {
+  display: flex;
+  margin: 0 1em;
+}
+.bottombar .bottombar-element .bottombar-element-icon {
+  margin: auto;
+  margin-right: 0.5em;
+}
+.bottombar .bottombar-element .bottombar-element-icon svg {
+  height: 1em;
+  width: 1em;
+}
+.bottombar .bottombar-element .bottombar-element-icon svg path {
+  fill: white;
+}
+.bottombar .bottombar-element .bottombar-element-text {
+  margin: auto;
+}
+.bottombar .bottombar-element .bottombar-element-text p, .bottombar .bottombar-element .bottombar-element-text a, .bottombar .bottombar-element .bottombar-element-text h1 {
+  color: white;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+@media (min-width: 1920px) {
+  .bottombar .bottombar-element .bottombar-element-text p {
+    font-size: 1em;
+  }
+}
+.bottombar.hidden {
+  opacity: 0;
+  -webkit-animation-delay: 0;
+          animation-delay: 0;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-name: fadeOut;
+          animation-name: fadeOut;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.bottombar .bottombar-left, .bottombar .bottombar-right {
+  display: flex;
+}
+
+.bottombar .bottombar-element p, .bottombar .bottombar-element a, .bottombar .bottombar-element h1, .bottombar .bottombar-element h2, .bottombar .bottombar-element h3, .bottombar .bottombar-element h4, .bottombar .bottombar-element h5 {
+  color: white;
+  font-size: 0.9em;
+  font-weight: 400;
+}

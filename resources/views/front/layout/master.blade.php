@@ -27,12 +27,17 @@
 
     <body>
 
-        {{display_menu('principal','horizontal')}}
+        @include("front.layout.partials.topbar")
+        @include("front.layout.partials.header_fixed")
+
+        {{-- {{display_menu('principal','horizontal')}} --}}
 
         <div class="main">
             @yield('content')
         </div>
         
+        @include("front.layout.partials.footer")
+        @include("front.layout.partials.bottombar")
         @include("front.layout.partials.js")  
     </body>
 </html>
