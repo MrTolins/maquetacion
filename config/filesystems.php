@@ -73,7 +73,7 @@ return [
 
         'business_information' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/business-information'),
+            'root' => storage_path('app/public/business_information'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

@@ -288,7 +288,7 @@
                                 <div class="form-group">
                                     <div class="form-input">
                                         @include('admin.components.upload_image', [
-                                            'entity' => 'business-information',
+                                            'entity' => 'business_information',
                                             'type' => 'single', 
                                             'content' => 'ourbusiness', 
                                             'alias' => $localization->alias,
@@ -302,7 +302,7 @@
                                 <div class="form-group">
                                     <div class="form-input">
                                         @include('admin.components.upload_image', [
-                                            'entity' => 'business-information',
+                                            'entity' => 'business_information',
                                             'type' => 'single', 
                                             'content' => 'ourfleet', 
                                             'alias' => $localization->alias,

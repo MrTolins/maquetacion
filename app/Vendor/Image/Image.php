@@ -9,8 +9,8 @@ use App\Vendor\Image\Models\ImageOriginal;
 use App\Vendor\Image\Models\ImageResized;
 use App\Jobs\ProcessImage;
 use App\Jobs\DeleteImage;
+use App\Jobs\DeleteTemporalImage;
 use Jcupitt\Vips;
-use Debugbar;
 
 class Image
 {
@@ -36,28 +36,54 @@ class Image
 			$image = $this->storeOriginal($file, $entity_id, $content, $language);
 			$image->temporal_id = $temporal_id;
 
-			$this->storeResize($file, $entity_id, $content, $language, $image);
+			$images[] = $this->storeResize($file, $entity_id, $content, $language, $image);
 		}
+
+		$this->destroyTemporal();
+
+		return $images;
 	}
 
 	public function storeSeo(Request $request){
-		
+
 		$settings = ImageConfiguration::where('entity', request('entity'))
 				->where('content', request('content'))
 				->where('grid', '!=', 'original')
 				->get();
 
-		foreach ($settings as $setting => $configuration){
+		if(request('temporalId')){
 
-			ImageResized::updateOrCreate([
-				'temporal_id' => request('temporalId'),
-				'grid' => $configuration->grid],[
-				'title' => request('title'),
-				'entity' => request('entity'),
-				'language' => request('language'),
-				'content' => request('content'),
-				'alt' => request('alt'),
-			]);
+			foreach ($settings as $setting => $configuration){
+
+				ImageResized::updateOrCreate([
+					'temporal_id' => request('temporalId'),
+					'grid' => $configuration->grid],[
+					'title' => request('title'),
+					'entity' => request('entity'),
+					'language' => request('language'),
+					'content' => request('content'),
+					'alt' => request('alt'),
+				]);
+			}
+		}
+			
+		if(request('imageId')){
+
+			$entity_id = ImageResized::find(request('imageId'))->entity_id;
+
+			foreach ($settings as $setting => $configuration){
+
+				$image = ImageResized::updateOrCreate([
+					'entity_id' => $entity_id,
+					'grid' => $configuration->grid,
+					'filename' => request('filename'),
+					'entity' => request('entity'),
+					'language' => request('language'),
+					'content' => request('content')],[
+					'title' => request('title'),
+					'alt' => request('alt'),
+				]);
+			}
 		}
 	
 		$message = \Lang::get('admin/image.image-update');
@@ -207,6 +233,8 @@ class Image
 				$image->temporal_id
 			)->onQueue('process_image');
 		}
+
+		return $image;
 	}
 
 	public function show(Request $request, $image)
@@ -219,9 +247,18 @@ class Image
 		return ImageResized::where('temporal_id', $request->input('image'))->first();
 	}
 
+	public function showByEntity()
+	{		
+		return ImageResized::where('entity', $this->entity)->get();
+	}
+
+	public function showPreview()
+	{		
+		return ImageResized::where('entity', $this->entity)->where('grid', 'preview')->get();
+	}
+
 	public function destroy(Request $request, $image = null)
 	{
-		Debugbar::info($request->input('image'));
 		$image = ImageResized::find($request->input('image'));
 
 		DeleteImage::dispatch($image->filename, $image->content, $image->entity, $image->language)->onQueue('delete_image');
@@ -234,14 +271,31 @@ class Image
         ]);
 	}
 
-	public function getAllByLanguage($language){ 
+	public function destroyTemporal()
+	{
+		deleteTemporalImage::dispatch()->onQueue('process_image');
+	}
 
-        $items = ImageOriginal::getAllByLanguage($this->entity, $language)->get()->groupBy('entity_id');
+	public function delete($entity_id)
+	{
+		if (ImageResized::getImages($this->entity, $entity_id)->count() > 0) {
 
-        $items =  $items->map(function ($item) {
-            return $item->pluck('path','grid');
-        });
+			$images = ImageResized::getImages($this->entity, $entity_id)->get();
 
-        return $items;
-    }
+			foreach ($images as $image){
+				Storage::disk($image->entity)->delete($image->path);
+				$image->delete();
+			}
+		}
+
+		if (ImageOriginal::getImages($this->entity, $entity_id)->count() > 0) {
+
+			$images = ImageOriginal::getImages($this->entity, $entity_id)->get();
+
+			foreach ($images as $image){
+				Storage::disk($image->entity)->delete($image->path);
+				$image->delete();
+			}
+		}
+	}
 }

@@ -534,7 +534,8 @@ body {
 
 .page-section {
   margin-top: -1.8em;
-  height: 100vh;
+  min-height: 80vh;
+  width: 100%;
 }
 
 .form {
@@ -787,17 +788,6 @@ button:hover {
   opacity: 1;
   padding: 0 2em;
   position: relative;
-}
-.error-container.active .close-errors-button {
-  cursor: pointer;
-  margin: auto 0;
-}
-.error-container.active .close-errors-button svg {
-  height: 2em;
-  width: 2em;
-}
-.error-container.active .close-errors-button svg path {
-  fill: white;
 }
 .error-container.active ul li {
   color: white;
@@ -1921,7 +1911,7 @@ nav ul {
   color: #ff7a7a;
 }
 .menu-inline li a h4 {
-  color: #253786;
+  color: #19ce67;
   font-size: 1em;
 }
 .menu-inline li:hover a h4 {
@@ -1955,6 +1945,505 @@ nav ul {
 }
 .menu li {
   margin: 1em 0.5em;
+}
+
+.menu-inline li:hover {
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEi%0D%0AIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhs%0D%0AaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB3aWR0%0D%0AaD0iMzkwcHgiIGhlaWdodD0iNTBweCIgdmlld0JveD0iMCAwIDM5MCA1MCIgZW5hYmxlLWJhY2tn%0D%0Acm91bmQ9Im5ldyAwIDAgMzkwIDUwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0i%0D%0Abm9uZSIgc3Ryb2tlPSIjZDk0ZjVjIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLW1pdGVybGlt%0D%0AaXQ9IjEwIiBkPSJNMCw0Ny41ODVjMCwwLDk3LjUsMCwxMzAsMAoJYzEzLjc1LDAsMjguNzQtMzgu%0D%0ANzc4LDQ2LjE2OC0xOS40MTZDMTkyLjY2OSw0Ni41LDI0My42MDMsNDcuNTg1LDI2MCw0Ny41ODVj%0D%0AMzEuODIxLDAsMTMwLDAsMTMwLDAiLz4KPC9zdmc+Cg==");
+  -webkit-animation: line 1s;
+  animation: line 1s;
+}
+
+.about-us {
+  margin: 5% auto;
+  width: 90%;
+}
+.about-us .about-us-element {
+  margin-bottom: 3em;
+  width: 45%;
+}
+.about-us .about-us-element .about-us-title {
+  margin-bottom: 2em;
+}
+.about-us .about-us-element .about-us-title h3 {
+  font-size: 2em;
+  color: #00a9b1;
+}
+.about-us .about-us-element .about-us-text p {
+  margin: 1.5em 0;
+}
+
+.contact-form {
+  width: 100%;
+}
+.contact-form .form-error {
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: 100%;
+}
+.contact-form .form-error.active {
+  opacity: 1;
+}
+.contact-form .form-error p {
+  color: red;
+}
+.contact-form .form-container {
+  width: 100%;
+}
+.contact-form .form-group {
+  margin-bottom: 1em;
+  width: 100%;
+}
+.contact-form .form-label {
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+.contact-form .form-label label {
+  color: black;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1em;
+  transition: color 0.5s;
+}
+.contact-form .form-label label.active {
+  color: #19ce67;
+}
+.contact-form .form-input {
+  width: 100%;
+}
+.contact-form .form-input input,
+.contact-form .form-input textarea,
+.contact-form .form-input select {
+  border: 0.1em solid #d4d4d4;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  color: black;
+  font-family: Lato;
+  padding: 0.4em;
+  width: 100%;
+}
+.contact-form .form-input input:focus, .contact-form .form-input textarea:focus {
+  outline: none;
+}
+.contact-form .form-input .ck-editor__editable_inline {
+  min-height: 15vh;
+}
+.contact-form .form-input textarea {
+  height: 20vh;
+}
+.contact-form input[type=checkbox] {
+  display: none;
+}
+.contact-form input[type=checkbox] + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.contact-form input[type=checkbox] + label:last-child {
+  margin-bottom: 0;
+}
+.contact-form input[type=checkbox] + label:before {
+  content: "";
+  display: block;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid #000;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0.6;
+  transition: all 0.12s, border-color 0.08s;
+}
+.contact-form input[type=checkbox]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border: 0.2em solid green;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: rotate(45deg);
+}
+.contact-form .form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.contact-form .form-submit {
+  margin: 3em auto;
+  width: 30%;
+}
+.contact-form .form-submit button {
+  background-image: linear-gradient(to right, #80d4a4 0%, #19ce67 50%, #80d4a4 100%);
+  background-size: 200% auto;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0px;
+  min-width: 20%;
+  padding: 1.2em;
+  transition: 0.5s;
+  text-decoration: none;
+}
+.contact-form .form-submit button:hover {
+  background-size: 100% auto;
+}
+.contact-form .form-submit button:focus {
+  outline: 0;
+}
+
+.contact {
+  margin: 5% auto;
+  width: 70%;
+}
+
+.sidebar-contact {
+  margin-left: -1em;
+  margin-right: 3em;
+  width: 100%;
+}
+
+.contact .contact-socials .contact-socials-title,
+.contact .contact-info .contact-info-title {
+  margin-bottom: 2em;
+}
+.contact .contact-socials .contact-socials-title h3,
+.contact .contact-info .contact-info-title h3 {
+  font-size: 1.5em;
+  color: #19ce67;
+  margin: 0;
+}
+.contact .contact-socials .socials-icons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 2em;
+}
+.contact .contact-info .contact-info-element {
+  display: flex;
+  margin-bottom: 2em;
+}
+.contact .contact-info .contact-info-element .contact-info-text {
+  margin: auto 0;
+  margin-left: 1em;
+  text-align: left;
+}
+.contact .contact-socials .socials-icons .social-icon,
+.contact .contact-info .contact-info-element .contact-info-icon {
+  background-color: #80d4a4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  height: 3em;
+  width: 3em;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+.contact .contact-socials .socials-icons .social-icon:hover,
+.contact .contact-info .contact-info-element .contact-info-icon:hover {
+  cursor: pointer;
+  background-color: #18cc66;
+}
+.contact .contact-socials .socials-icons .social-icon:hover path,
+.contact .contact-info .contact-info-element .contact-info-icon:hover path {
+  fill: black;
+}
+.contact .contact-socials .socials-icons .social-icon svg,
+.contact .contact-info .contact-info-element .contact-info-icon svg {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+}
+.contact .contact-socials .socials-icons .social-icon svg path,
+.contact .contact-info .contact-info-element .contact-info-icon svg path {
+  fill: white;
+}
+
+.contact .contact-map {
+  margin: 0.5em 0;
+}
+.contact .contact-map .contact-map-title h3 {
+  font-size: 1.5em;
+  color: #19ce67;
+}
+.contact .contact-map .contact-map-text {
+  margin: 0.5em 0;
+}
+.contact .contact-map .contact-map-text p {
+  margin: 0.5em 0;
+  text-align: justify;
+}
+.contact .contact-map .contact-map-ubication {
+  height: 50vh;
+  margin: 2em 0;
+}
+
+.error-container {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.error-container.active {
+  background-color: #ff7a7a;
+  border-radius: 0.2em;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  opacity: 1;
+  padding: 0 2em;
+  position: relative;
+}
+.error-container.active ul li {
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  padding: 0.1em 0;
+  list-style: none;
+}
+
+.login {
+  width: 100%;
+}
+.login .login-form {
+  margin: 10vh auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.login .login-form .login-logo {
+  margin: 0 auto;
+  margin-bottom: 2em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.login .login-form .form-error {
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: 100%;
+}
+.login .login-form .form-error.active {
+  opacity: 1;
+}
+.login .login-form .form-error p {
+  color: red;
+}
+.login .login-form .form-container {
+  width: 100%;
+}
+.login .login-form .form-group {
+  margin-bottom: 1em;
+  width: 100%;
+}
+.login .login-form .form-label {
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+.login .login-form .form-label label {
+  color: black;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  transition: color 0.5s;
+}
+.login .login-form .form-label label.active {
+  color: #00aab3;
+}
+.login .login-form .form-input {
+  width: 100%;
+}
+.login .login-form .form-input input,
+.login .login-form .form-input textarea,
+.login .login-form .form-input select {
+  border: 0.1em solid #d4d4d4;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  color: black;
+  font-family: "Ubuntu", sans-serif;
+  padding: 0.4em;
+  width: 100%;
+}
+.login .login-form .form-input input:focus, .login .login-form .form-input textarea:focus {
+  outline: none;
+}
+.login .login-form .form-input .ck-editor__editable_inline {
+  min-height: 15vh;
+}
+.login .login-form .form-input textarea {
+  height: 20vh;
+}
+.login .login-form .form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.login .login-form .form-submit {
+  margin-top: 1em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.login .login-form .login-submit {
+  margin-top: 3em;
+}
+.login .login-form .login-submit button {
+  background-image: linear-gradient(to right, #253786 0%, #02A8B0 50%, #253786 100%);
+  background-size: 200% auto;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0px;
+  min-width: 20%;
+  padding: 1.2em;
+  transition: 0.5s;
+  text-decoration: none;
+}
+.login .login-form .login-submit button:hover {
+  background-size: 100% auto;
+}
+.login .login-form .login-submit button:focus {
+  outline: 0;
+}
+
+.page-header {
+  margin-top: 2em;
+  background-color: #80d4a4;
+  padding: 1em;
+  position: relative;
+  margin-bottom: 2em;
+}
+
+.page-header:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20px;
+  background-size: 40px 40px;
+  background-image: radial-gradient(circle at 20px -29px, transparent 40px, #FFF 41px);
+}
+
+.page-header:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  background-size: 80px 40px;
+  background-image: radial-gradient(circle at 20px 52px, #FFF 40px, transparent 41px);
+}
+
+.page-header .page-header-title {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 120rem;
+  text-align: center;
+  width: calc(100% - 4rem);
+}
+.page-header .page-header-title h2 {
+  color: white;
+  font-size: 2.5em;
+}
+
+.register {
+  width: 100%;
+}
+.register .register-form {
+  margin: 15vh auto;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.register .register-form .form-error {
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: 100%;
+}
+.register .register-form .form-error.active {
+  opacity: 1;
+}
+.register .register-form .form-error p {
+  color: red;
+}
+.register .register-form .form-container {
+  width: 100%;
+}
+.register .register-form .form-group {
+  margin-bottom: 1em;
+}
+.register .register-form .form-label {
+  margin-bottom: 0.5em;
+  width: 100%;
+}
+.register .register-form .form-label label {
+  color: black;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+  transition: color 0.5s;
+}
+.register .register-form .form-label label.active {
+  color: #00aab3;
+}
+.register .register-form .form-input {
+  width: 100%;
+}
+.register .register-form .form-input input,
+.register .register-form .form-input textarea,
+.register .register-form .form-input select {
+  border: 0.1em solid #d4d4d4;
+  border-radius: 0.3em;
+  box-sizing: border-box;
+  color: black;
+  font-family: "Ubuntu", sans-serif;
+  padding: 0.4em;
+  width: 100%;
+}
+.register .register-form .form-input input:focus, .register .register-form .form-input textarea:focus {
+  outline: none;
+}
+.register .register-form .form-input .ck-editor__editable_inline {
+  min-height: 15vh;
+}
+.register .register-form .form-input textarea {
+  height: 20vh;
+}
+.register .register-form .form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+.register .register-form .form-submit {
+  margin-top: 1em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.register .register-form .login-submit {
+  margin-top: 3em;
+}
+.register .register-form .login-submit button {
+  background-image: linear-gradient(to right, #253786 0%, #02A8B0 50%, #253786 100%);
+  background-size: 200% auto;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0px;
+  min-width: 20%;
+  padding: 1.2em;
+  transition: 0.5s;
+  text-decoration: none;
+}
+.register .register-form .login-submit button:hover {
+  background-size: 100% auto;
+}
+.register .register-form .login-submit button:focus {
+  outline: 0;
 }
 
 .header-fixed {
@@ -2026,7 +2515,6 @@ nav ul {
 .header-fixed .header-container .header-menu .booking-button button {
   background-image: linear-gradient(to right, #6ec787 0%, #02b03c 50%, #6ec787 100%);
   background-size: 200% auto;
-  border-radius: 1.2em;
   border: none;
   color: white;
   font-size: 1em;
@@ -2034,10 +2522,9 @@ nav ul {
   letter-spacing: 0;
   line-height: 0px;
   min-width: 20%;
-  padding: 1.2em 2em;
+  padding: 1.2em;
   transition: 0.5s;
   text-decoration: none;
-  width: 100%;
   border-radius: 0%;
 }
 .header-fixed .header-container .header-menu .booking-button button:hover {
@@ -2167,7 +2654,6 @@ nav ul {
 .footer .booking-button button {
   background-image: linear-gradient(to right, #6ec787 0%, #02b03c 50%, #6ec787 100%);
   background-size: 200% auto;
-  border-radius: 1.2em;
   border: none;
   color: white;
   font-size: 1em;
@@ -2175,10 +2661,9 @@ nav ul {
   letter-spacing: 0;
   line-height: 0px;
   min-width: 20%;
-  padding: 1.2em 2em;
+  padding: 1.2em;
   transition: 0.5s;
   text-decoration: none;
-  width: 100%;
   border-radius: 0%;
 }
 .footer .booking-button button:hover {

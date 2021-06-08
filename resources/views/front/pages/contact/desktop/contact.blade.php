@@ -1,7 +1,7 @@
 <div class="contact">
 
     <div class="two-columns">
-        <div class="sidebar">
+        <div class="sidebar-contact">
             <div class="contact-socials">
 
                 <div class="contact-socials-title">
@@ -125,8 +125,10 @@
             <div class="contact-map-text">
                 <p>@lang('front/contact.contact-map-text')</p>
             </div>
-            <div class="contact-map-ubication">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3077.156430153422!2d2.7122383153692575!3d39.53352497947753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129796a141bfb921%3A0x7d2d887f8bb0fc7d!2sCarrer%20de%20Virgili%2C%2027%2C%2007610%20Palma%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1618557330406!5m2!1ses!2ses" allowfullscreen="" loading="lazy" data-origwidth="600" data-origheight="350"></iframe>
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=avenida%20gabriel%20y%20alomar,%20n17&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2piratebay.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;margin: 0 auto;}</style><a href="https://www.embedgooglemap.net">html google map embed</a><style>.gmap_canvas {margin: 0 auto;overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+                </div>
             </div>
         </div>
      
