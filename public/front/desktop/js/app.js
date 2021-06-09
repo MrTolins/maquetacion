@@ -1890,36 +1890,66 @@ window.requestAnimFrame = function () {
 
 /***/ }),
 
+/***/ "./resources/js/front/desktop/components.js":
+/*!**************************************************!*\
+  !*** ./resources/js/front/desktop/components.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderComponents": () => (/* binding */ renderComponents)
+/* harmony export */ });
+/* harmony import */ var _faqs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./faqs */ "./resources/js/front/desktop/faqs.js");
+/* harmony import */ var _forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./forms */ "./resources/js/front/desktop/forms.js");
+
+
+var renderComponents = function renderComponents() {
+  (0,_faqs__WEBPACK_IMPORTED_MODULE_0__.renderFaqs)();
+  (0,_forms__WEBPACK_IMPORTED_MODULE_1__.renderForm)();
+};
+
+/***/ }),
+
 /***/ "./resources/js/front/desktop/faqs.js":
 /*!********************************************!*\
   !*** ./resources/js/front/desktop/faqs.js ***!
   \********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var plusButtons = document.querySelectorAll('.faq-plus-button');
-var faqElements = document.querySelectorAll(".faq");
-plusButtons.forEach(function (plusButton) {
-  plusButton.addEventListener("click", function () {
-    var activeElements = document.querySelectorAll(".active");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderFaqs": () => (/* binding */ renderFaqs)
+/* harmony export */ });
+var renderFaqs = function renderFaqs() {
+  var plusButtons = document.querySelectorAll('.faq-plus-button');
+  var faqElements = document.querySelectorAll(".faq");
+  plusButtons.forEach(function (plusButton) {
+    plusButton.addEventListener("click", function () {
+      var activeElements = document.querySelectorAll(".active");
 
-    if (plusButton.classList.contains("active")) {
-      plusButton.classList.remove("active");
-      activeElements.forEach(function (activeElement) {
-        activeElement.classList.remove("active");
-      });
-    } else {
-      activeElements.forEach(function (activeElement) {
-        activeElement.classList.remove("active");
-      });
-      plusButton.classList.add("active");
-      faqElements.forEach(function (faqElement) {
-        if (faqElement.dataset.content == plusButton.dataset.button) {
-          faqElement.classList.add("active");
-        } else {}
-      });
-    }
+      if (plusButton.classList.contains("active")) {
+        plusButton.classList.remove("active");
+        activeElements.forEach(function (activeElement) {
+          activeElement.classList.remove("active");
+        });
+      } else {
+        activeElements.forEach(function (activeElement) {
+          activeElement.classList.remove("active");
+        });
+        plusButton.classList.add("active");
+        faqElements.forEach(function (faqElement) {
+          if (faqElement.dataset.content == plusButton.dataset.button) {
+            faqElement.classList.add("active");
+          } else {}
+        });
+      }
+    });
   });
-});
+};
+renderFaqs();
 
 /***/ }),
 
@@ -2044,6 +2074,7 @@ var renderForm = function renderForm() {
                       document.getElementById("success-container").classList.add('active');
                       document.getElementById("success-message").innerHTML = response.data.message;
                       form.reset();
+                      window.history.pushState('', '', url);
                     });
 
                   case 3:
@@ -2085,6 +2116,185 @@ var renderForm = function renderForm() {
   }
 };
 renderForm();
+
+/***/ }),
+
+/***/ "./resources/js/front/desktop/localization.js":
+/*!****************************************************!*\
+  !*** ./resources/js/front/desktop/localization.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderLocalization": () => (/* binding */ renderLocalization)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wait__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wait */ "./resources/js/front/desktop/wait.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var renderLocalization = function renderLocalization() {
+  var modalLocalization = document.getElementById('modal-localization');
+  var localization = document.getElementById('localization');
+  var localizationOptions = document.querySelectorAll('.localization-option');
+
+  if (localization) {
+    localization.addEventListener("click", function (event) {
+      modalLocalization.classList.add('modal-active');
+      (0,_wait__WEBPACK_IMPORTED_MODULE_1__.startOverlay)();
+    });
+  }
+
+  if (localizationOptions) {
+    localizationOptions.forEach(function (localizationOption) {
+      localizationOption.addEventListener("click", function (event) {
+        var url = localizationOption.dataset.route;
+
+        var sendLocalizationRequest = /*#__PURE__*/function () {
+          var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    try {
+                      axios.get(url).then(function (response) {
+                        modalLocalization.classList.remove('modal-active');
+                        (0,_wait__WEBPACK_IMPORTED_MODULE_1__.stopOverlay)();
+                      });
+                    } catch (error) {}
+
+                  case 1:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+
+          return function sendLocalizationRequest() {
+            return _ref.apply(this, arguments);
+          };
+        }();
+
+        sendLocalizationRequest();
+      });
+    });
+  }
+};
+renderLocalization();
+
+/***/ }),
+
+/***/ "./resources/js/front/desktop/menu.js":
+/*!********************************************!*\
+  !*** ./resources/js/front/desktop/menu.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "renderMenu": () => (/* binding */ renderMenu)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./resources/js/front/desktop/components.js");
+/* harmony import */ var _fingerprint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fingerprint */ "./resources/js/front/desktop/fingerprint.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var renderMenu = function renderMenu() {
+  var menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(function (menuItem) {
+    menuItem.addEventListener("click", function () {
+      var activeElements = document.querySelectorAll(".selected");
+      var url = menuItem.dataset.route;
+      var mainContent = document.getElementById('main-content');
+
+      if (!menuItem.classList.contains("active")) {
+        activeElements.forEach(function (activeElement) {
+          activeElement.classList.remove("selected");
+        });
+        menuItem.classList.add("selected");
+
+        var sendPageRequest = /*#__PURE__*/function () {
+          var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    try {
+                      axios.get(url).then(function (response) {
+                        mainContent.innerHTML = response.data.view;
+                        (0,_components__WEBPACK_IMPORTED_MODULE_1__.renderComponents)();
+                        window.history.pushState('', '', url);
+                      });
+                    } catch (error) {}
+
+                  case 1:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+
+          return function sendPageRequest() {
+            return _ref.apply(this, arguments);
+          };
+        }();
+
+        sendPageRequest();
+      }
+    });
+  });
+  window.addEventListener('popstate', function (event) {
+    var mainContent = document.getElementById('main-content');
+    var url = event.state;
+
+    var sendPageRequest = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                try {
+                  axios.get(url).then(function (response) {
+                    mainContent.innerHTML = response.data.view;
+                    (0,_components__WEBPACK_IMPORTED_MODULE_1__.renderComponents)();
+                    window.history.pushState(url, 'url', url);
+                  });
+                } catch (error) {}
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function sendPageRequest() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    sendPageRequest();
+  });
+};
+renderMenu();
 
 /***/ }),
 
@@ -2133,6 +2343,58 @@ function toggleNavigation() {
 productImages.forEach(function (image) {
   return image.addEventListener("click", changeImage);
 });
+
+/***/ }),
+
+/***/ "./resources/js/front/desktop/wait.js":
+/*!********************************************!*\
+  !*** ./resources/js/front/desktop/wait.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "startWait": () => (/* binding */ startWait),
+/* harmony export */   "stopWait": () => (/* binding */ stopWait),
+/* harmony export */   "startOverlay": () => (/* binding */ startOverlay),
+/* harmony export */   "stopOverlay": () => (/* binding */ stopOverlay)
+/* harmony export */ });
+var spinner = document.getElementById('spinner');
+var overlay = document.getElementById('overlay');
+var partials = document.querySelectorAll('.partial');
+var startWait = function startWait() {
+  spinner.classList.add('spinner-active');
+  overlay.classList.add('overlay-active');
+};
+var stopWait = function stopWait() {
+  spinner.classList.remove('spinner-active');
+  overlay.classList.remove('overlay-active');
+};
+var startOverlay = function startOverlay() {
+  partials.forEach(function (partial) {
+    partial.classList.add('partial-blur');
+  });
+  overlay.classList.add('overlay-active');
+  overlay.addEventListener("click", function (e) {
+    var modals = document.querySelectorAll('.modal');
+    partials.forEach(function (partial) {
+      partial.classList.remove('partial-blur');
+    });
+    modals.forEach(function (modal) {
+      if (modal.classList.contains('modal-active')) {
+        modal.classList.remove('modal-active');
+      }
+    });
+    overlay.classList.remove('overlay-active');
+  });
+};
+var stopOverlay = function stopOverlay() {
+  overlay.classList.remove('overlay-active');
+  partials.forEach(function (partial) {
+    partial.classList.remove('partial-blur');
+  });
+};
 
 /***/ }),
 
@@ -20497,6 +20759,14 @@ __webpack_require__(/*! ./faqs */ "./resources/js/front/desktop/faqs.js");
 __webpack_require__(/*! ./mobiles */ "./resources/js/front/desktop/mobiles.js");
 
 __webpack_require__(/*! ./forms */ "./resources/js/front/desktop/forms.js");
+
+__webpack_require__(/*! ./components */ "./resources/js/front/desktop/components.js");
+
+__webpack_require__(/*! ./menu */ "./resources/js/front/desktop/menu.js");
+
+__webpack_require__(/*! ./wait */ "./resources/js/front/desktop/wait.js");
+
+__webpack_require__(/*! ./localization */ "./resources/js/front/desktop/localization.js");
 })();
 
 /******/ })()

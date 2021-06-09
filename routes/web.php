@@ -151,6 +151,7 @@ Route::post('/login', 'App\Http\Controllers\Front\LoginController@login')->name(
 Route::get('/', 'App\Http\Controllers\Front\HomeController@index')->name('home_front');
 
 Route::post('/contacto', 'App\Http\Controllers\Front\ContactController@store')->name('front_contact_form');
+Route::get('/traduccion/{language}/{parent}/{slug?}', 'App\Http\Controllers\Front\LocalizationController@show')->name('front_localization');
 
 Route::group(['prefix' => $localizationseo->setLocale(),
               'middleware' => [ 'localize' ]

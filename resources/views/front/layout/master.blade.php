@@ -26,13 +26,14 @@
     </head>
 
     <body>
-
+        @include('front.layout.partials.wait')
+        @include("front.layout.partials.modal_localization")
         @include("front.layout.partials.topbar")
         @include("front.layout.partials.header_fixed")
 
         {{-- {{display_menu('principal','horizontal')}} --}}
 
-        <div class="main">
+        <div class="main" id="main-content">
             @yield('content')
         </div>
         

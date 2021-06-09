@@ -36,13 +36,26 @@ class ViewComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer([
-            'admin.*'], 
+            'admin.*',
+            'front.components.desktop.localization',
+            'front.layout.partials.modal_localization'], 
             'App\Http\ViewComposers\Admin\LocaleLanguage'
         );
 
         view()->composer([
             'admin.localeTags.index'], 
             'App\Http\ViewComposers\Admin\LocaleGroups'
+        );
+
+        view()->composer([
+            'front.layout.partials.header_fixed',
+            'front.pages.login.index'],
+            'App\Http\ViewComposers\Front\Logo'
+        );
+
+        view()->composer(
+            'front.layout.partials.footer',
+            'App\Http\ViewComposers\Front\LogoLight'
         );
     }
 
